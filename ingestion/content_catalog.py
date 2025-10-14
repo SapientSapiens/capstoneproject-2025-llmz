@@ -84,7 +84,7 @@ def iso8601_to_seconds(s):
         sec += v * (3600 if u=='H' else 60 if u=='M' else 1)
     return sec
 
-@task(name="fetch_playlist_items", retries=2, retry_delay_seconds=20)
+@task(name="fetch_playlist_items", retries=2, retry_delay_seconds=5)
 def fetch_playlist_items(token, pid):
     """Fetch all items from a playlist"""
     out = []
@@ -109,7 +109,7 @@ def fetch_playlist_items(token, pid):
     logger.info(f"Completed fetching {len(out)} items from playlist {pid}")    
     return out
 
-@task(name="fetch_videos_info", retries=2, retry_delay_seconds=20)
+@task(name="fetch_videos_info", retries=2, retry_delay_seconds=5)
 def fetch_videos_info(token, vids):
     """Fetch video metadata including duration and caption availability"""
     token_hdr = {"Authorization": f"Bearer {token}"}

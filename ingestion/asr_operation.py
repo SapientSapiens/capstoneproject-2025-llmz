@@ -56,7 +56,8 @@ def download_audio(video_url, video_title, output_dir=AUDIO_DIR):
         
     except Exception as e:
         logger.error(f"❌ Audio download failed for {video_title}: {e}")
-        return None
+        # return None
+        raise
 
 @task(name="extract_chapters_yt_dlp", retries=2, retry_delay_seconds=5)
 def extract_chapters_yt_dlp(video_url):
@@ -100,7 +101,8 @@ def extract_chapters_yt_dlp(video_url):
 
     except Exception as e:
         logger.warning(f"Could not extract chapters: {e}")
-        return []
+        # return []
+        raise
 
 @task(name="segment_transcript_by_chapters")
 def segment_transcript_by_chapters(transcript_segments, chapters):
