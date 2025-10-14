@@ -1,0 +1,276 @@
+2025-10-14 12:32:42 - prefect - INFO - Starting temporary server on http://127.0.0.1:8803
+See https://docs.prefect.io/v3/concepts/server#how-to-guides for more information on running a dedicated Prefect server.
+2025-10-14 12:32:47 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8803/api/health "HTTP/1.1 200 OK"
+2025-10-14 12:32:47 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8803/api/admin/version "HTTP/1.1 200 OK"
+2025-10-14 12:32:47 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8803/api/csrf-token?client=634ac098-eb97-40db-8b33-ead6303543a1 "HTTP/1.1 422 Unprocessable Entity"
+2025-10-14 12:32:47 - httpx - INFO - HTTP Request: PATCH http://127.0.0.1:8803/api/flow_runs/37113284-666b-4f2d-8bbc-93c9ef6204d2 "HTTP/1.1 204 No Content"
+2025-10-14 12:32:47 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/flow_runs/37113284-666b-4f2d-8bbc-93c9ef6204d2/set_state "HTTP/1.1 201 Created"
+2025-10-14 12:32:47 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8803/api/flow_runs/37113284-666b-4f2d-8bbc-93c9ef6204d2 "HTTP/1.1 200 OK"
+2025-10-14 12:32:47 - prefect.flow_runs - INFO - Beginning flow run 'nifty-ferret' for flow 'orchestrated-youtube-playlist-content-ingestion-pipeline'
+2025-10-14 12:32:47 - __main__ - INFO - 🚀 Starting Content Ingestion Pipeline
+2025-10-14 12:32:47 - __main__ - INFO - 📥 Step 1: Loading existing content catalog...
+2025-10-14 12:32:48 - ingestion.content_catalog - INFO - 📂 Loading existing catalog: /home/sidd4ml/capstoneproject-2025-llmz/data/content_catalog/content_catalog_20251013_215927.csv
+2025-10-14 12:32:48 - ingestion.content_catalog - INFO - ✅ Successfully loaded 98 videos from existing catalog
+2025-10-14 12:32:48 - ingestion.content_catalog - INFO - 🗑️  Deleted previous catalog file: /home/sidd4ml/capstoneproject-2025-llmz/data/content_catalog/content_catalog_20251013_215927.csv
+2025-10-14 12:32:48 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:32:48 - __main__ - INFO - 🔄 Step 2: Creating current content catalog...
+2025-10-14 12:32:48 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8803/api/flows/83a940f8-0e70-4577-bb9e-a302bd69d983 "HTTP/1.1 200 OK"
+2025-10-14 12:32:48 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8803/api/deployments/c290ec49-2d0c-4b78-b6a3-d95ae13fe863 "HTTP/1.1 200 OK"
+2025-10-14 12:32:48 - ingestion.content_catalog - INFO - 📁 Looking for properties file: /home/sidd4ml/capstoneproject-2025-llmz/playlists.properties
+2025-10-14 12:32:48 - ingestion.content_catalog - INFO - 📁 File exists: True
+2025-10-14 12:32:48 - ingestion.content_catalog - INFO - 📋 Read 2 playlist URLs from /home/sidd4ml/capstoneproject-2025-llmz/playlists.properties
+2025-10-14 12:32:48 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:32:48 - ingestion.content_catalog - INFO - ✅ Successfully obtained access token
+2025-10-14 12:32:48 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:32:48 - ingestion.content_catalog - INFO - 🔍 Scanning playlist: https://www.youtube.com/playlist?list=PLSG9IRx05GOn-ioDWMw5-92PsbPi-MHSH
+2025-10-14 12:32:48 - ingestion.content_catalog - INFO - Fetching playlist items for playlist ID: PLSG9IRx05GOn-ioDWMw5-92PsbPi-MHSH
+2025-10-14 12:32:49 - ingestion.content_catalog - INFO - Completed fetching 61 items from playlist PLSG9IRx05GOn-ioDWMw5-92PsbPi-MHSH
+2025-10-14 12:32:49 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:32:49 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8803/api/csrf-token?client=0134defe-7bb4-4db1-a2d2-2cae7942da1b "HTTP/1.1 422 Unprocessable Entity"
+2025-10-14 12:32:50 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:32:50 - ingestion.content_catalog - INFO - Fetching metadata for 61 videos
+2025-10-14 12:32:51 - ingestion.content_catalog - INFO - Completed metadata fetch for 61 videos
+2025-10-14 12:32:51 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:32:51 - ingestion.content_catalog - INFO - 🔍 Scanning playlist: https://www.youtube.com/playlist?list=PLSG9IRx05GOlqnHGUm2bYVi2KPXYC_lTg
+2025-10-14 12:32:51 - ingestion.content_catalog - INFO - Fetching playlist items for playlist ID: PLSG9IRx05GOlqnHGUm2bYVi2KPXYC_lTg
+2025-10-14 12:32:52 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:32:52 - ingestion.content_catalog - INFO - Completed fetching 63 items from playlist PLSG9IRx05GOlqnHGUm2bYVi2KPXYC_lTg
+2025-10-14 12:32:52 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:32:52 - ingestion.content_catalog - INFO - Fetching metadata for 63 videos
+2025-10-14 12:32:53 - ingestion.content_catalog - WARNING - Missing metadata for videos: ['jRlkOU0g9kM']
+2025-10-14 12:32:53 - ingestion.content_catalog - INFO - Completed metadata fetch for 62 videos
+2025-10-14 12:32:53 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:32:53 - ingestion.content_catalog - INFO - ✅ Created new content catalog: /home/sidd4ml/capstoneproject-2025-llmz/data/content_catalog/content_catalog_20251014_123253.csv with 108 videos
+2025-10-14 12:32:53 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:32:53 - __main__ - INFO - 🔍 Step 3: Comparing catalogs for new videos...
+2025-10-14 12:32:54 - __main__ - INFO - 🆕 Found 10 new videos
+2025-10-14 12:32:54 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:32:54 - __main__ - INFO - 🎯 Step 4: Processing 10 new videos...
+2025-10-14 12:32:54 - __main__ - INFO - 📊 Initial Video Type Breakdown:
+2025-10-14 12:32:54 - __main__ - INFO -  Videos  🎯 With captions: 6 videos
+2025-10-14 12:32:54 - __main__ - INFO -  Videos  🔇 Without captions: 4 videos (ASR candidates)
+2025-10-14 12:32:54 - __main__ - INFO - 🎬 Starting transcript processing for videos with captions...
+2025-10-14 12:32:54 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:32:54 - __main__ - INFO - 🎬 Processing: How to Survive Being Kicked in the Groin (euq82a4SJdY)
+2025-10-14 12:32:54 - ingestion.transcript_ingestion - INFO - 
+🎬 Processing Video: How to Survive Being Kicked in the Groin (euq82a4SJdY)
+2025-10-14 12:32:54 - ingestion.transcript_ingestion - INFO - 📝 Step 1: Extracting Transcript...
+2025-10-14 12:32:55 - ingestion.transcript_ingestion - WARNING - ⛔ Video is age-restricted. Skipping as authentication is currently unsupported.
+2025-10-14 12:32:55 - ingestion.transcript_ingestion - WARNING - ⛔ Age-restricted video - cannot process with transcript API
+2025-10-14 12:32:55 - __main__ - WARNING - ❌ Failed to process: How to Survive Being Kicked in the Groin
+2025-10-14 12:32:55 - __main__ - INFO - 🎬 Processing: How to Survive Frost Bite (sr-xcxgPWq8)
+2025-10-14 12:32:55 - ingestion.transcript_ingestion - INFO - 
+🎬 Processing Video: How to Survive Frost Bite (sr-xcxgPWq8)
+2025-10-14 12:32:55 - ingestion.transcript_ingestion - INFO - 📝 Step 1: Extracting Transcript...
+2025-10-14 12:32:56 - ingestion.transcript_ingestion - WARNING - ⛔ Video is age-restricted. Skipping as authentication is currently unsupported.
+2025-10-14 12:32:56 - ingestion.transcript_ingestion - WARNING - ⛔ Age-restricted video - cannot process with transcript API
+2025-10-14 12:32:56 - __main__ - WARNING - ❌ Failed to process: How to Survive Frost Bite
+2025-10-14 12:32:56 - __main__ - INFO - 🎬 Processing: How I Survived a Tsunami (nhRk6oETRoE)
+2025-10-14 12:32:56 - ingestion.transcript_ingestion - INFO - 
+🎬 Processing Video: How I Survived a Tsunami (nhRk6oETRoE)
+2025-10-14 12:32:56 - ingestion.transcript_ingestion - INFO - 📝 Step 1: Extracting Transcript...
+2025-10-14 12:32:57 - ingestion.transcript_ingestion - INFO - Found: English (United States) (en-US) - Manual
+2025-10-14 12:32:57 - ingestion.transcript_ingestion - INFO - Found: English (auto-generated) (en) - Auto
+2025-10-14 12:32:57 - ingestion.transcript_ingestion - INFO - ✓ Using MANUAL transcript: en-US
+2025-10-14 12:32:58 - ingestion.transcript_ingestion - INFO - ✅ Transcript extracted: 148 lines
+2025-10-14 12:32:58 - ingestion.transcript_ingestion - INFO - 📖 Step 2: Extracting Chapters...
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - Extracted 4 chapters from video
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - ✅ Chapters found: 4 chapters
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - [00:00] Tsunami Survivor Stories
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - [00:00] Holding On
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - [00:00] A Black Wall
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - ... and 1 more chapters
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - 🔗 Step 3: Combining Transcript with Chapters...
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - Segmented transcript into 4 chapters
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - 💾 Step 4: Saving Transcript...
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - 💾 Transcript with temporal context saved: /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How I Survived a Tsunami_25-10-14 12:33 PM.json
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - ✅ Successfully processed: How I Survived a Tsunami
+2025-10-14 12:33:05 - __main__ - INFO - ✅ Successfully processed: How I Survived a Tsunami
+2025-10-14 12:33:05 - __main__ - INFO - 🎬 Processing: AI Predicts a Massive Asteroid Strike on Earth (7r-SYJ_yclc)
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - 
+🎬 Processing Video: AI Predicts a Massive Asteroid Strike on Earth (7r-SYJ_yclc)
+2025-10-14 12:33:05 - ingestion.transcript_ingestion - INFO - 📝 Step 1: Extracting Transcript...
+2025-10-14 12:33:06 - ingestion.transcript_ingestion - INFO - Found: English (United States) (en-US) - Manual
+2025-10-14 12:33:06 - ingestion.transcript_ingestion - INFO - Found: English (auto-generated) (en) - Auto
+2025-10-14 12:33:06 - ingestion.transcript_ingestion - INFO - ✓ Using MANUAL transcript: en-US
+2025-10-14 12:33:06 - ingestion.transcript_ingestion - INFO - ✅ Transcript extracted: 141 lines
+2025-10-14 12:33:06 - ingestion.transcript_ingestion - INFO - 📖 Step 2: Extracting Chapters...
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - Extracted 7 chapters from video
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - ✅ Chapters found: 7 chapters
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - [00:00] A.I. Predicts a Massive Asteroid Strike on Earth
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - [01:07] one year before impact
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - [02:24] 1 month before impact
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - ... and 4 more chapters
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - 🔗 Step 3: Combining Transcript with Chapters...
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - Segmented transcript into 7 chapters
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - 💾 Step 4: Saving Transcript...
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - 💾 Transcript with temporal context saved: /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/AI Predicts a Massive Asteroid Strike on Earth_25-10-14 12:33 PM.json
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - ✅ Successfully processed: AI Predicts a Massive Asteroid Strike on Earth
+2025-10-14 12:33:13 - __main__ - INFO - ✅ Successfully processed: AI Predicts a Massive Asteroid Strike on Earth
+2025-10-14 12:33:13 - __main__ - INFO - 🎬 Processing: Earthquake Size Comparison (3wopJlRVKMM)
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - 
+🎬 Processing Video: Earthquake Size Comparison (3wopJlRVKMM)
+2025-10-14 12:33:13 - ingestion.transcript_ingestion - INFO - 📝 Step 1: Extracting Transcript...
+2025-10-14 12:33:14 - ingestion.transcript_ingestion - INFO - Found: English (United States) (en-US) - Manual
+2025-10-14 12:33:14 - ingestion.transcript_ingestion - INFO - Found: English (auto-generated) (en) - Auto
+2025-10-14 12:33:14 - ingestion.transcript_ingestion - INFO - ✓ Using MANUAL transcript: en-US
+2025-10-14 12:33:15 - ingestion.transcript_ingestion - INFO - ✅ Transcript extracted: 146 lines
+2025-10-14 12:33:15 - ingestion.transcript_ingestion - INFO - 📖 Step 2: Extracting Chapters...
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - Extracted 7 chapters from video
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - ✅ Chapters found: 7 chapters
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - [00:00] Assam-Tibet
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - [01:50] Rat Island
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - [02:40] Chile
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - ... and 4 more chapters
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - 🔗 Step 3: Combining Transcript with Chapters...
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - Segmented transcript into 7 chapters
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - 💾 Step 4: Saving Transcript...
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - 💾 Transcript with temporal context saved: /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/Earthquake Size Comparison_25-10-14 12:33 PM.json
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - ✅ Successfully processed: Earthquake Size Comparison
+2025-10-14 12:33:19 - __main__ - INFO - ✅ Successfully processed: Earthquake Size Comparison
+2025-10-14 12:33:19 - __main__ - INFO - 🎬 Processing: TERRIFYING Tornado Scenarios: What You Should Do (CAjkJ2kSMmE)
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - 
+🎬 Processing Video: TERRIFYING Tornado Scenarios: What You Should Do (CAjkJ2kSMmE)
+2025-10-14 12:33:19 - ingestion.transcript_ingestion - INFO - 📝 Step 1: Extracting Transcript...
+2025-10-14 12:33:21 - ingestion.transcript_ingestion - INFO - Found: English (en) - Manual
+2025-10-14 12:33:21 - ingestion.transcript_ingestion - INFO - Found: English (United States) (en-US) - Manual
+2025-10-14 12:33:21 - ingestion.transcript_ingestion - INFO - Found: English (auto-generated) (en) - Auto
+2025-10-14 12:33:21 - ingestion.transcript_ingestion - INFO - ✓ Using MANUAL transcript: en
+2025-10-14 12:33:21 - ingestion.transcript_ingestion - INFO - ✅ Transcript extracted: 628 lines
+2025-10-14 12:33:21 - ingestion.transcript_ingestion - INFO - 📖 Step 2: Extracting Chapters...
+2025-10-14 12:33:26 - ingestion.transcript_ingestion - INFO - Extracted 5 chapters from video
+2025-10-14 12:33:26 - ingestion.transcript_ingestion - INFO - ✅ Chapters found: 5 chapters
+2025-10-14 12:33:26 - ingestion.transcript_ingestion - INFO - [00:00] Simulating The Deadliest Tornado Scenarios
+2025-10-14 12:33:26 - ingestion.transcript_ingestion - INFO - [04:21] SURVIVING A TORNADO IN A HOUSE
+2025-10-14 12:33:26 - ingestion.transcript_ingestion - INFO - [06:25] SURVIVING A TORNADO IN A SKYSCRAPER
+2025-10-14 12:33:26 - ingestion.transcript_ingestion - INFO - ... and 2 more chapters
+2025-10-14 12:33:26 - ingestion.transcript_ingestion - INFO - 🔗 Step 3: Combining Transcript with Chapters...
+2025-10-14 12:33:26 - ingestion.transcript_ingestion - INFO - Segmented transcript into 5 chapters
+2025-10-14 12:33:26 - ingestion.transcript_ingestion - INFO - 💾 Step 4: Saving Transcript...
+2025-10-14 12:33:26 - ingestion.transcript_ingestion - INFO - 💾 Transcript with temporal context saved: /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/TERRIFYING Tornado Scenarios- What You Should Do_25-10-14 12:33 PM.json
+2025-10-14 12:33:26 - ingestion.transcript_ingestion - INFO - ✅ Successfully processed: TERRIFYING Tornado Scenarios: What You Should Do
+2025-10-14 12:33:26 - __main__ - INFO - ✅ Successfully processed: TERRIFYING Tornado Scenarios: What You Should Do
+2025-10-14 12:33:26 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:33:26 - __main__ - INFO - 📊 Processing Summary:
+2025-10-14 12:33:26 - __main__ - INFO - ✅ Successful transcript extraction: 4 videos
+2025-10-14 12:33:26 - __main__ - INFO - 🔇 ASR candidate : 6 videos
+2025-10-14 12:33:26 - __main__ - INFO -  - Originally without captions: 4
+2025-10-14 12:33:26 - __main__ - INFO -  - Failed/age-restricted: 2
+2025-10-14 12:33:26 - __main__ - INFO -  🚨 Failed/Age-restricted videos (also added to ASR bucket): ['euq82a4SJdY', 'sr-xcxgPWq8']
+2025-10-14 12:33:26 - __main__ - INFO - 🎤 Step 5: Starting ASR processing...
+2025-10-14 12:33:26 - ingestion.asr_operation - INFO - 🎯 Starting ASR processing for 6 videos
+2025-10-14 12:33:26 - ingestion.asr_operation - INFO - 🔊 Processing 1/6: How to Survive in the Arctic Without Clothes
+2025-10-14 12:33:26 - ingestion.asr_operation - INFO - 🎤 Starting ASR pipeline for: How to Survive in the Arctic Without Clothes
+2025-10-14 12:33:26 - ingestion.asr_operation - INFO - 📥 Downloading audio for: How to Survive in the Arctic Without Clothes
+2025-10-14 12:33:27 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:33:38 - ingestion.asr_operation - INFO - ✅ Audio downloaded: /home/sidd4ml/capstoneproject-2025-llmz/data/ingested_audio_files/How to Survive in the Arctic Without Clothes_25-10-14 12:33 PM.wav
+2025-10-14 12:33:38 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:33:39 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:33:45 - ingestion.asr_operation - INFO - Extracted 10 chapters from video
+2025-10-14 12:33:45 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:33:45 - ingestion.asr_operation - INFO - 📖 Chapters found: 10
+2025-10-14 12:33:45 - ingestion.asr_operation - INFO - 🔊 Starting ASR transcription: /home/sidd4ml/capstoneproject-2025-llmz/data/ingested_audio_files/How to Survive in the Arctic Without Clothes_25-10-14 12:33 PM.wav
+2025-10-14 12:33:46 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:33:46 - faster_whisper - INFO - Processing audio with duration 05:28.539
+2025-10-14 12:33:48 - faster_whisper - INFO - VAD filter removed 00:22.011 of audio
+2025-10-14 12:33:49 - faster_whisper - INFO - Detected language 'en' with probability 1.00
+2025-10-14 12:34:20 - ingestion.asr_operation - INFO - ✅ ASR completed: 87 segments, language: en
+2025-10-14 12:34:20 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:34:20 - ingestion.asr_operation - INFO - Segmented transcript into 10 chapters
+2025-10-14 12:34:20 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:34:20 - ingestion.asr_operation - INFO - 💾 ASR transcript saved: /home/sidd4ml/capstoneproject-2025-llmz/data/raw_asr_transcripts/How to Survive in the Arctic Without Clothes_25-10-14 12:34 PM.json
+2025-10-14 12:34:20 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:34:20 - ingestion.asr_operation - INFO - ✅ ASR pipeline completed for: How to Survive in the Arctic Without Clothes
+2025-10-14 12:34:20 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:34:20 - ingestion.asr_operation - INFO - ✅ ASR success for : How to Survive in the Arctic Without Clothes
+2025-10-14 12:34:20 - ingestion.asr_operation - INFO - 🔄 Waiting 5s before next ASR video...
+2025-10-14 12:34:21 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:34:25 - ingestion.asr_operation - INFO - 🔊 Processing 2/6: How to Survive a Week in a Bathtub
+2025-10-14 12:34:25 - ingestion.asr_operation - INFO - 🎤 Starting ASR pipeline for: How to Survive a Week in a Bathtub
+2025-10-14 12:34:25 - ingestion.asr_operation - INFO - 📥 Downloading audio for: How to Survive a Week in a Bathtub
+2025-10-14 12:34:37 - ingestion.asr_operation - INFO - ✅ Audio downloaded: /home/sidd4ml/capstoneproject-2025-llmz/data/ingested_audio_files/How to Survive a Week in a Bathtub_25-10-14 12:34 PM.wav
+2025-10-14 12:34:37 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:34:37 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:34:44 - ingestion.asr_operation - INFO - Extracted 5 chapters from video
+2025-10-14 12:34:45 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:34:45 - ingestion.asr_operation - INFO - 📖 Chapters found: 5
+2025-10-14 12:34:45 - ingestion.asr_operation - INFO - 🔊 Starting ASR transcription: /home/sidd4ml/capstoneproject-2025-llmz/data/ingested_audio_files/How to Survive a Week in a Bathtub_25-10-14 12:34 PM.wav
+2025-10-14 12:34:46 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:34:47 - faster_whisper - INFO - Processing audio with duration 05:28.896
+2025-10-14 12:34:51 - faster_whisper - INFO - VAD filter removed 00:30.048 of audio
+2025-10-14 12:34:52 - faster_whisper - INFO - Detected language 'en' with probability 0.94
+2025-10-14 12:35:30 - ingestion.asr_operation - INFO - ✅ ASR completed: 63 segments, language: en
+2025-10-14 12:35:30 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:35:31 - ingestion.asr_operation - INFO - Segmented transcript into 5 chapters
+2025-10-14 12:35:31 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:35:31 - ingestion.asr_operation - INFO - 💾 ASR transcript saved: /home/sidd4ml/capstoneproject-2025-llmz/data/raw_asr_transcripts/How to Survive a Week in a Bathtub_25-10-14 12:35 PM.json
+2025-10-14 12:35:31 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:35:31 - ingestion.asr_operation - INFO - ✅ ASR pipeline completed for: How to Survive a Week in a Bathtub
+2025-10-14 12:35:31 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:35:31 - ingestion.asr_operation - INFO - ✅ ASR success for : How to Survive a Week in a Bathtub
+2025-10-14 12:35:31 - ingestion.asr_operation - INFO - 🔄 Waiting 5s before next ASR video...
+2025-10-14 12:35:32 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:35:36 - ingestion.asr_operation - INFO - 🔊 Processing 3/6: How to Survive an Avalanche, According to Science
+2025-10-14 12:35:36 - ingestion.asr_operation - INFO - 🎤 Starting ASR pipeline for: How to Survive an Avalanche, According to Science
+2025-10-14 12:35:36 - ingestion.asr_operation - INFO - 📥 Downloading audio for: How to Survive an Avalanche, According to Science
+2025-10-14 12:35:48 - ingestion.asr_operation - INFO - ✅ Audio downloaded: /home/sidd4ml/capstoneproject-2025-llmz/data/ingested_audio_files/How to Survive an Avalanche, According to Science_25-10-14 12:35 PM.wav
+2025-10-14 12:35:48 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:35:48 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:35:53 - ingestion.asr_operation - INFO - No chapters found in video
+2025-10-14 12:35:53 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:35:53 - ingestion.asr_operation - INFO - ℹ️ No chapters found
+2025-10-14 12:35:53 - ingestion.asr_operation - INFO - 🔊 Starting ASR transcription: /home/sidd4ml/capstoneproject-2025-llmz/data/ingested_audio_files/How to Survive an Avalanche, According to Science_25-10-14 12:35 PM.wav
+2025-10-14 12:35:54 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:35:55 - faster_whisper - INFO - Processing audio with duration 04:13.748
+2025-10-14 12:35:56 - faster_whisper - INFO - VAD filter removed 00:12.948 of audio
+2025-10-14 12:35:58 - faster_whisper - INFO - Detected language 'en' with probability 1.00
+2025-10-14 12:36:35 - ingestion.asr_operation - INFO - ✅ ASR completed: 99 segments, language: en
+2025-10-14 12:36:35 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:36:35 - ingestion.asr_operation - INFO - No chapters found, using full video as single segment
+2025-10-14 12:36:35 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:36:35 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:36:35 - ingestion.asr_operation - INFO - 💾 ASR transcript saved: /home/sidd4ml/capstoneproject-2025-llmz/data/raw_asr_transcripts/How to Survive an Avalanche, According to Science_25-10-14 12:36 PM.json
+2025-10-14 12:36:35 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:36:35 - ingestion.asr_operation - INFO - ✅ ASR pipeline completed for: How to Survive an Avalanche, According to Science
+2025-10-14 12:36:35 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:36:35 - ingestion.asr_operation - INFO - ✅ ASR success for : How to Survive an Avalanche, According to Science
+2025-10-14 12:36:35 - ingestion.asr_operation - INFO - 🔄 Waiting 5s before next ASR video...
+2025-10-14 12:36:37 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:36:40 - ingestion.asr_operation - INFO - 🔊 Processing 4/6: Deleted video
+2025-10-14 12:36:40 - ingestion.asr_operation - INFO - 🎤 Starting ASR pipeline for: Deleted video
+2025-10-14 12:36:40 - ingestion.asr_operation - INFO - 📥 Downloading audio for: Deleted video
+2025-10-14 12:36:42 - ingestion.asr_operation - ERROR - ❌ Audio download failed for Deleted video: [0;31mERROR:[0m [youtube] jRlkOU0g9kM: Video unavailable. This video is no longer available due to a copyright claim by Viral DRM
+2025-10-14 12:36:42 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:36:42 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:36:42 - ingestion.asr_operation - ERROR - ❌ ASR failed for: Deleted video
+2025-10-14 12:36:42 - ingestion.asr_operation - INFO - 🔄 Waiting 5s before next ASR video...
+2025-10-14 12:36:43 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:36:47 - ingestion.asr_operation - INFO - 🔊 Processing 5/6: How to Survive Being Kicked in the Groin
+2025-10-14 12:36:47 - ingestion.asr_operation - INFO - 🎤 Starting ASR pipeline for: How to Survive Being Kicked in the Groin
+2025-10-14 12:36:47 - ingestion.asr_operation - INFO - 📥 Downloading audio for: How to Survive Being Kicked in the Groin
+2025-10-14 12:36:49 - ingestion.asr_operation - ERROR - ❌ Audio download failed for How to Survive Being Kicked in the Groin: [0;31mERROR:[0m [youtube] euq82a4SJdY: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+2025-10-14 12:36:49 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:36:49 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:36:49 - ingestion.asr_operation - ERROR - ❌ ASR failed for: How to Survive Being Kicked in the Groin
+2025-10-14 12:36:49 - ingestion.asr_operation - INFO - 🔄 Waiting 5s before next ASR video...
+2025-10-14 12:36:49 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:36:54 - ingestion.asr_operation - INFO - 🔊 Processing 6/6: How to Survive Frost Bite
+2025-10-14 12:36:54 - ingestion.asr_operation - INFO - 🎤 Starting ASR pipeline for: How to Survive Frost Bite
+2025-10-14 12:36:54 - ingestion.asr_operation - INFO - 📥 Downloading audio for: How to Survive Frost Bite
+2025-10-14 12:36:56 - ingestion.asr_operation - ERROR - ❌ Audio download failed for How to Survive Frost Bite: [0;31mERROR:[0m [youtube] sr-xcxgPWq8: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+2025-10-14 12:36:56 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:36:56 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:36:56 - ingestion.asr_operation - ERROR - ❌ ASR failed for: How to Survive Frost Bite
+2025-10-14 12:36:56 - ingestion.asr_operation - INFO - 🏁 ASR batch completed: 3 success, 3 failed
+2025-10-14 12:36:56 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-14 12:36:56 - __main__ - INFO - 📊 FINAL PIPELINE SUMMARY:
+2025-10-14 12:36:56 - __main__ - INFO - 🎯 Original new videos: 10
+2025-10-14 12:36:56 - __main__ - INFO - ✅ Successful transcript API: 4
+2025-10-14 12:36:56 - __main__ - INFO - 🔊 Successful ASR: 3
+2025-10-14 12:36:56 - __main__ - INFO - ❌ Total failed: 5
+2025-10-14 12:36:56 - __main__ - INFO - 📄 Total transcripts generated: 7
+2025-10-14 12:36:56 - __main__ - INFO - 🏁 Content Ingestion Pipeline Completed 🏁
+2025-10-14 12:36:56 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/flow_runs/37113284-666b-4f2d-8bbc-93c9ef6204d2/set_state "HTTP/1.1 201 Created"
+2025-10-14 12:36:56 - prefect.flow_runs - INFO - Finished in state Completed()
+2025-10-14 12:36:56 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8803/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:36:56 - prefect - INFO - Stopping temporary server on http://127.0.0.1:8803

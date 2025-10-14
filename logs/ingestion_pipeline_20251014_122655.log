@@ -1,0 +1,268 @@
+2025-10-14 12:26:56 - prefect - INFO - Starting temporary server on http://127.0.0.1:8439
+See https://docs.prefect.io/v3/concepts/server#how-to-guides for more information on running a dedicated Prefect server.
+2025-10-14 12:27:02 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8439/api/health "HTTP/1.1 200 OK"
+2025-10-14 12:27:02 - prefect.runner - WARNING - Cannot schedule flows on an ephemeral server; run `prefect server start` to start the scheduler.
+2025-10-14 12:27:02 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8439/api/deployments/name/orchestrated-youtube-playlist-content-ingestion-pipeline/youtube-playlist-content-ingestion-pipeline "HTTP/1.1 404 Not Found"
+2025-10-14 12:27:02 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8439/api/csrf-token?client=c6449f66-f2a6-4c8e-b641-64212e69e02f "HTTP/1.1 422 Unprocessable Entity"
+2025-10-14 12:27:02 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/flows/ "HTTP/1.1 201 Created"
+2025-10-14 12:27:02 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/ "HTTP/1.1 201 Created"
+2025-10-14 12:27:02 - httpx - INFO - HTTP Request: DELETE http://127.0.0.1:8439/api/automations/owned-by/prefect.deployment.c290ec49-2d0c-4b78-b6a3-d95ae13fe863 "HTTP/1.1 202 Accepted"
+2025-10-14 12:27:02 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8439/api/csrf-token?client=cd49abf1-806a-43b7-b366-27f6e45c5e4d "HTTP/1.1 422 Unprocessable Entity"
+2025-10-14 12:27:02 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:27:15 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:27:24 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:27:37 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:27:46 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:27:55 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:28:06 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:28:18 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:28:30 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:28:42 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:28:51 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:29:01 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:29:09 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:29:20 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:29:28 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:29:39 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:29:48 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:29:56 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:30:05 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:30:15 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:30:24 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:30:32 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:30:42 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:30:56 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:31:06 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:31:16 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:31:29 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:31:38 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:31:49 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:31:58 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:32:09 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:32:18 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:32:27 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:32:37 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:32:37 - prefect.flow_runs.runner - INFO - Runner 'youtube-playlist-content-ingestion-pipeline' submitting flow run '37113284-666b-4f2d-8bbc-93c9ef6204d2'
+2025-10-14 12:32:37 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/flow_runs/37113284-666b-4f2d-8bbc-93c9ef6204d2/set_state "HTTP/1.1 201 Created"
+2025-10-14 12:32:37 - prefect.flow_runs.runner - INFO - Completed submission of flow run '37113284-666b-4f2d-8bbc-93c9ef6204d2'
+2025-10-14 12:32:39 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8439/api/csrf-token?client=eac301b5-00c7-4dce-bc91-4b20e8ff4b32 "HTTP/1.1 422 Unprocessable Entity"
+2025-10-14 12:32:39 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:32:45 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:32:57 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:33:05 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:33:18 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:33:29 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:33:38 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:33:46 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:33:55 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:34:05 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:34:17 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:34:25 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:34:34 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:34:46 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:34:59 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:35:08 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:35:17 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:35:26 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:35:36 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:35:49 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:36:03 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:36:11 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:36:22 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:36:36 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:36:44 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:36:52 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:36:59 - prefect.flow_runs.runner - INFO - Process for flow run 'nifty-ferret' exited cleanly.
+2025-10-14 12:36:59 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8439/api/flow_runs/37113284-666b-4f2d-8bbc-93c9ef6204d2 "HTTP/1.1 200 OK"
+2025-10-14 12:37:00 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/logs/ "HTTP/1.1 201 Created"
+2025-10-14 12:37:00 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:37:10 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:37:20 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:37:32 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:37:45 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:37:56 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:38:07 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:38:20 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:38:33 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:38:41 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:38:51 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:39:03 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:39:16 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:39:25 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:39:33 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:39:42 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:39:55 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:40:03 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:40:15 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:40:23 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:40:32 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:40:43 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:40:53 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:41:04 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:41:16 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:41:26 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:41:38 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:41:48 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:42:00 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:42:09 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:42:17 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:42:28 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:42:36 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:42:48 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:42:58 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:43:10 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:43:24 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:43:35 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:43:45 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:43:57 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:44:06 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:44:18 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:44:28 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:44:36 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:44:48 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:45:00 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:45:08 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:45:19 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:45:31 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:45:43 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:45:52 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:46:06 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:46:16 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:46:25 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:46:33 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:46:43 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8439/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-14 12:46:43 - prefect.runner - INFO - Pausing all deployments...
+2025-10-14 12:46:44 - httpx - INFO - HTTP Request: PATCH http://127.0.0.1:8439/api/deployments/c290ec49-2d0c-4b78-b6a3-d95ae13fe863 "HTTP/1.1 204 No Content"
+2025-10-14 12:46:44 - prefect.runner - INFO - All deployments have been paused!
+2025-10-14 12:46:44 - prefect.FlowRunCancellingObserver - WARNING - Consumer task exited with exception
+Traceback (most recent call last):
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/contextlib.py", line 716, in __aexit__
+    cb_suppress = await cb(*exc_details)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 771, in __aexit__
+    raise exc_val
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/runner/runner.py", line 509, in start
+    async with self._loops_task_group as loops_task_group:
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 771, in __aexit__
+    raise exc_val
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 743, in __aexit__
+    await self._on_completed_fut
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/runner/_observers.py", line 176, in __aexit__
+    await self._consumer_task
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/runner/_observers.py", line 67, in _consume_events
+    async for event in self._events_subscriber:
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/events/clients.py", line 634, in __anext__
+    await self._reconnect()
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/events/clients.py", line 566, in _reconnect
+    self._websocket = await self._connect.__aenter__()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/websockets/asyncio/client.py", line 587, in __aenter__
+    return await self
+           ^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/_internal/websockets.py", line 135, in _proxy_connect
+    proto = await self.__await_impl__()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/websockets/asyncio/client.py", line 541, in __await_impl__
+    self.connection = await self.create_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/websockets/asyncio/client.py", line 467, in create_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/asyncio/base_events.py", line 1085, in create_connection
+    raise exceptions[0]
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/asyncio/base_events.py", line 1069, in create_connection
+    sock = await self._connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/asyncio/base_events.py", line 973, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/asyncio/selector_events.py", line 634, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/asyncio/selector_events.py", line 674, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 111] Connect call failed ('127.0.0.1', 8439)
+2025-10-14 12:46:44 - asyncio - ERROR - Exception in callback FlowRunCancellingObserver._start_polling_task.<locals>.<lambda>(<Task cancell...rvices.py:21>>) at /home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/runner/_observers.py:99
+handle: <Handle FlowRunCancellingObserver._start_polling_task.<locals>.<lambda>(<Task cancell...rvices.py:21>>) at /home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/runner/_observers.py:99>
+Traceback (most recent call last):
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/runner/_observers.py", line 103, in <lambda>
+    if task.exception()
+       ^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/utilities/services.py", line 64, in critical_service_loop
+    await workload()
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/runner/_observers.py", line 116, in _check_for_cancelled_flow_runs
+    named_cancelling_flow_runs = await self._client.read_flow_runs(
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/client/orchestration/_flow_runs/client.py", line 813, in read_flow_runs
+    response = await self.request("POST", "/flow_runs/filter", json=body)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/client/orchestration/base.py", line 53, in request
+    return await self._client.send(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/client/base.py", line 348, in send
+    response = await self._send_with_retry(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/client/base.py", line 261, in _send_with_retry
+    await self._add_csrf_headers(request=request)
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/client/base.py", line 397, in _add_csrf_headers
+    token_response = await self.send(token_request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/client/base.py", line 348, in send
+    response = await self._send_with_retry(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/client/base.py", line 268, in _send_with_retry
+    response = await send(request, *send_args, **send_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/httpcore/_async/connection.py", line 101, in handle_async_request
+    raise exc
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/httpcore/_async/connection.py", line 78, in handle_async_request
+    stream = await self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/httpcore/_async/connection.py", line 124, in _connect
+    stream = await self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/httpcore/_backends/auto.py", line 31, in connect_tcp
+    return await self._backend.connect_tcp(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/httpcore/_backends/anyio.py", line 115, in connect_tcp
+    stream: anyio.abc.ByteStream = await anyio.connect_tcp(
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/anyio/_core/_sockets.py", line 227, in connect_tcp
+    async with create_task_group() as tg:
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 771, in __aexit__
+    raise exc_val
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/anyio/_core/_sockets.py", line 232, in connect_tcp
+    await event.wait()
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 1766, in wait
+    await self._event.wait()
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/asyncio/locks.py", line 213, in wait
+    await fut
+asyncio.exceptions.CancelledError
+2025-10-14 12:46:44 - prefect.flows - INFO - Received KeyboardInterrupt, shutting down...
+2025-10-14 12:46:44 - prefect - INFO - Stopping temporary server on http://127.0.0.1:8439

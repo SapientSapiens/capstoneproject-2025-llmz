@@ -1,0 +1,11 @@
+jupyter
+ipykernel
+tqdm 
+setuptools
+numpy 
+pandas
+requests
+prefect
+yt_dlp
+youtube_transcript_api
+faster-whisper
