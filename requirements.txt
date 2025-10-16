@@ -9,3 +9,4 @@ prefect
 yt_dlp
 youtube_transcript_api
 faster-whisper
+qdrant-client[fastembed]>=1.14.2
