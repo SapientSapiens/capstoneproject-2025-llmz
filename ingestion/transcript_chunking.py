@@ -186,7 +186,7 @@ def create_safe_filename(video_title: str) -> str:
     return f"{safe_title}_{timestamp}.json"
 
 
-@task(name="process_transcript_file")
+# @task(name="process_transcript_file")
 def process_transcript_file(file_path: Path) -> Tuple[List[Dict[str, Any]], str]:
     """Process a single transcript JSON file and return all chunks and video title."""
     try:
@@ -210,7 +210,7 @@ def process_transcript_file(file_path: Path) -> Tuple[List[Dict[str, Any]], str]
     return all_chunks, video_title
 
 
-@task(name="save_video_chunks")
+# @task(name="save_video_chunks")
 def save_video_chunks(chunks: List[Dict[str, Any]], video_title: str) -> Path:
     """Save all chunks for a video as a single JSON array file."""
     CHUNKED_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)

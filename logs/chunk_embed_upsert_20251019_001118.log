@@ -1,0 +1,452 @@
+2025-10-19 00:11:21 - prefect - INFO - Starting temporary server on http://127.0.0.1:8546
+See https://docs.prefect.io/v3/concepts/server#how-to-guides for more information on running a dedicated Prefect server.
+2025-10-19 00:11:27 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8546/api/health "HTTP/1.1 200 OK"
+2025-10-19 00:11:27 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8546/api/admin/version "HTTP/1.1 200 OK"
+2025-10-19 00:11:27 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8546/api/csrf-token?client=0f570b72-d991-4684-a345-32dd1c7700b5 "HTTP/1.1 422 Unprocessable Entity"
+2025-10-19 00:11:27 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8546/api/flows/ "HTTP/1.1 200 OK"
+2025-10-19 00:11:27 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8546/api/flow_runs/ "HTTP/1.1 201 Created"
+2025-10-19 00:11:27 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8546/api/flow_runs/0e6b5262-8a56-4760-8960-566ede95e524/set_state "HTTP/1.1 201 Created"
+2025-10-19 00:11:27 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8546/api/flow_runs/0e6b5262-8a56-4760-8960-566ede95e524 "HTTP/1.1 200 OK"
+2025-10-19 00:11:27 - prefect.flow_runs - INFO - Beginning flow run 'aboriginal-goat' for flow 'orchestrated-chunk-embed-upsert-pipeline'
+2025-10-19 00:11:27 - __main__ - INFO - 🚀 Starting Chunk->Embed->Upsert Pipeline
+2025-10-19 00:11:27 - __main__ - INFO - 📋 Step 1: Executing transcript chunking...
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Starting transcript chunking process...
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Found 101 files in /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Found 3 files in /home/sidd4ml/capstoneproject-2025-llmz/data/raw_asr_transcripts
+2025-10-19 00:11:27 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-19 00:11:27 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8546/api/flows/b17889ed-d3b1-418a-88b9-746b1b61a768 "HTTP/1.1 200 OK"
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: The Worst Things To Do When You Have Lice_25-10-12 08:57 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/The Worst Things To Do When You Have Lice_25-10-12 08:57 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'The Worst Things To Do When You Have Lice' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/the_worst_things_to_do_when_you_have_lice_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Eating Bad Sushi_25-10-12 08:55 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Eating Bad Sushi_25-10-12 08:55 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive Eating Bad Sushi' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_eating_bad_sushi_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How To Escape Quicksand_25-10-12 10:30 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How To Escape Quicksand_25-10-12 10:30 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How To Escape Quicksand' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_escape_quicksand_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Wildfire_25-10-12 09:00 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Wildfire_25-10-12 09:00 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive a Wildfire' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_wildfire_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive The Most Dangerous Hikes in the World_25-10-12 10:29 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive The Most Dangerous Hikes in the World_25-10-12 10:29 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive The Most Dangerous Hikes in the World' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_the_most_dangerous_hikes_in_the_world_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Hot Dog Eating Contest_25-10-12 08:54 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Hot Dog Eating Contest_25-10-12 08:54 PM.json: 5 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 5 chunks for 'How to Survive a Hot Dog Eating Contest' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_hot_dog_eating_contest_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Social Isolation_25-10-12 08:53 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Social Isolation_25-10-12 08:53 PM.json: 9 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 9 chunks for 'How to Survive Social Isolation' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_social_isolation_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How I Survived a Tsunami_25-10-18 11:00 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How I Survived a Tsunami_25-10-18 11:00 PM.json: 1 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 1 chunks for 'How I Survived a Tsunami' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_i_survived_a_tsunami_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive the Top 5 Accidental Deaths_25-10-12 08:54 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive the Top 5 Accidental Deaths_25-10-12 08:54 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive the Top 5 Accidental Deaths' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_the_top_5_accidental_deaths_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Limnic Eruption_25-10-12 09:01 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Limnic Eruption_25-10-12 09:01 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive a Limnic Eruption' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_limnic_eruption_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Dam Break_25-10-12 09:01 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Dam Break_25-10-12 09:01 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive a Dam Break' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_dam_break_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Flood_25-10-12 09:02 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Flood_25-10-12 09:02 PM.json: 8 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 8 chunks for 'How to Survive a Flood' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_flood_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive an Asteroid Impact_25-10-12 09:01 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive an Asteroid Impact_25-10-12 09:01 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive an Asteroid Impact' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_an_asteroid_impact_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Tree Falling on Your House_25-10-12 10:02 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Tree Falling on Your House_25-10-12 10:02 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive a Tree Falling on Your House' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_tree_falling_on_your_house_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Walking on Broken Glass_25-10-12 03:48 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Walking on Broken Glass_25-10-12 03:48 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive Walking on Broken Glass' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_walking_on_broken_glass_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Salmonella_25-10-12 08:56 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Salmonella_25-10-12 08:56 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive Salmonella' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_salmonella_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive the Toxic Desert_25-10-12 10:30 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive the Toxic Desert_25-10-12 10:30 PM.json: 5 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 5 chunks for 'How to Survive the Toxic Desert' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_the_toxic_desert_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: The Top 5 Worst Survival Mistakes_25-10-12 08:56 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/The Top 5 Worst Survival Mistakes_25-10-12 08:56 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'The Top 5 Worst Survival Mistakes' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/the_top_5_worst_survival_mistakes_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Falling Into Quicksand_25-10-12 09:01 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Falling Into Quicksand_25-10-12 09:01 PM.json: 8 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 8 chunks for 'How to Survive Falling Into Quicksand' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_falling_into_quicksand_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Flood, According to Science_25-10-12 09:02 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Flood, According to Science_25-10-12 09:02 PM.json: 8 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 8 chunks for 'How to Survive a Flood, According to Science' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_flood_according_to_science_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Hurricane, According to Science_25-10-12 10:02 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Hurricane, According to Science_25-10-12 10:02 PM.json: 8 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 8 chunks for 'How to Survive a Hurricane, According to Science' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_hurricane_according_to_science_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Sun Poisoning_25-10-12 03:46 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Sun Poisoning_25-10-12 03:46 PM.json: 1 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 1 chunks for 'How to Survive Sun Poisoning' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_sun_poisoning_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Pyroclastic Flow_25-10-12 09:02 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Pyroclastic Flow_25-10-12 09:02 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive a Pyroclastic Flow' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_pyroclastic_flow_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Being Depressed_25-10-12 03:49 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Being Depressed_25-10-12 03:49 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive Being Depressed' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_being_depressed_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive the Black Plague_25-10-12 08:52 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive the Black Plague_25-10-12 08:52 PM.json: 8 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 8 chunks for 'How to Survive the Black Plague' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_the_black_plague_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Landslide_25-10-12 09:02 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Landslide_25-10-12 09:02 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive a Landslide' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_landslide_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Heat Wave_25-10-12 10:29 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Heat Wave_25-10-12 10:29 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive a Heat Wave' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_heat_wave_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: What Happens When Humans Get Rabies-_25-10-12 08:57 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/What Happens When Humans Get Rabies-_25-10-12 08:57 PM.json: 5 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 5 chunks for 'What Happens When Humans Get Rabies?' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/what_happens_when_humans_get_rabies_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive 24 Hours in Death Valley_25-10-12 09:00 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive 24 Hours in Death Valley_25-10-12 09:00 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive 24 Hours in Death Valley' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_24_hours_in_death_valley_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Collapsing Building_25-10-12 09:00 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Collapsing Building_25-10-12 09:00 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive a Collapsing Building' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_collapsing_building_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Being Bullied Online_25-10-12 03:48 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Being Bullied Online_25-10-12 03:48 PM.json: 10 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 10 chunks for 'How to Survive Being Bullied Online' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_being_bullied_online_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive in the Bermuda Triangle_25-10-12 08:59 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive in the Bermuda Triangle_25-10-12 08:59 PM.json: 5 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 5 chunks for 'How to Survive in the Bermuda Triangle' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_in_the_bermuda_triangle_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: Never Visit These Abandoned Places!_25-10-12 10:02 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/Never Visit These Abandoned Places!_25-10-12 10:02 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'Never Visit These Abandoned Places!' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/never_visit_these_abandoned_places_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Being Locked in a Freezer_25-10-12 03:46 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Being Locked in a Freezer_25-10-12 03:46 PM.json: 5 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 5 chunks for 'How to Survive Being Locked in a Freezer' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_being_locked_in_a_freezer_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Meteor Strike,  According To Science_25-10-12 09:03 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Meteor Strike,  According To Science_25-10-12 09:03 PM.json: 1 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 1 chunks for 'How to Survive a Meteor Strike,  According To Science' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_meteor_strike_according_to_science_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive With No Food or Water_25-10-12 08:53 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive With No Food or Water_25-10-12 08:53 PM.json: 9 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 9 chunks for 'How to Survive With No Food or Water' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_with_no_food_or_water_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Eating the World's Hottest Pepper_25-10-12 08:54 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Eating the World's Hottest Pepper_25-10-12 08:54 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive Eating the World's Hottest Pepper' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_eating_the_worlds_hottest_pepper_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Giving Birth in a Car_25-10-12 03:48 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Giving Birth in a Car_25-10-12 03:48 PM.json: 1 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 1 chunks for 'How to Survive Giving Birth in a Car' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_giving_birth_in_a_car_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How To Survive the Top 5 Deadliest Foods_25-10-12 08:55 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How To Survive the Top 5 Deadliest Foods_25-10-12 08:55 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How To Survive the Top 5 Deadliest Foods' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_the_top_5_deadliest_foods_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Eating Raw Meat_25-10-12 08:55 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Eating Raw Meat_25-10-12 08:55 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive Eating Raw Meat' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_eating_raw_meat_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: People Who Survived Falling Into Quicksand_25-10-12 08:59 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/People Who Survived Falling Into Quicksand_25-10-12 08:59 PM.json: 4 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 4 chunks for 'People Who Survived Falling Into Quicksand' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/people_who_survived_falling_into_quicksand_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How Big Can a Tornado Actually Get-_25-10-12 08:59 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How Big Can a Tornado Actually Get-_25-10-12 08:59 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How Big Can a Tornado Actually Get?' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_big_can_a_tornado_actually_get_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive the Top 5 Most Painful Things_25-10-12 08:54 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive the Top 5 Most Painful Things_25-10-12 08:54 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive the Top 5 Most Painful Things' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_the_top_5_most_painful_things_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: The Deadliest Tsunamis In Human History_25-10-12 08:58 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/The Deadliest Tsunamis In Human History_25-10-12 08:58 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'The Deadliest Tsunamis In Human History' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/the_deadliest_tsunamis_in_human_history_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Tapeworms (Warning- distressing footage)_25-10-12 08:52 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Tapeworms (Warning- distressing footage)_25-10-12 08:52 PM.json: 8 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 8 chunks for 'How to Survive Tapeworms (Warning: distressing footage)' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_tapeworms_warning_distressing_footage_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Being Lost in the Andes Mountains_25-10-12 10:29 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Being Lost in the Andes Mountains_25-10-12 10:29 PM.json: 8 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 8 chunks for 'How to Survive Being Lost in the Andes Mountains' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_being_lost_in_the_andes_mountains_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Your House Being Swallowed by a Sinkhole_25-10-12 09:00 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Your House Being Swallowed by a Sinkhole_25-10-12 09:00 PM.json: 10 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 10 chunks for 'How to Survive Your House Being Swallowed by a Sinkhole' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_your_house_being_swallowed_by_a_sinkhole_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: TERRIFYING Tornado Scenarios- What You Should Do_25-10-18 11:00 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/TERRIFYING Tornado Scenarios- What You Should Do_25-10-18 11:00 PM.json: 5 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 5 chunks for 'TERRIFYING Tornado Scenarios: What You Should Do' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/terrifying_tornado_scenarios_what_you_should_do_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Cave Collapse_25-10-12 09:00 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Cave Collapse_25-10-12 09:00 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive a Cave Collapse' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_cave_collapse_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive the Top 5 Most Deadly Viruses_25-10-12 03:47 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive the Top 5 Most Deadly Viruses_25-10-12 03:47 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive the Top 5 Most Deadly Viruses' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_the_top_5_most_deadly_viruses_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Malfunctioning Microwave_25-10-12 03:49 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Malfunctioning Microwave_25-10-12 03:49 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive a Malfunctioning Microwave' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_malfunctioning_microwave_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive the Corpse Flower_25-10-12 08:56 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive the Corpse Flower_25-10-12 08:56 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive the Corpse Flower' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_the_corpse_flower_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How Long Could You Survive Ebola-_25-10-12 08:58 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How Long Could You Survive Ebola-_25-10-12 08:58 PM.json: 5 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 5 chunks for 'How Long Could You Survive Ebola?' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_long_could_you_survive_ebola_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: Earthquake Size Comparison_25-10-18 11:00 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/Earthquake Size Comparison_25-10-18 11:00 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'Earthquake Size Comparison' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/earthquake_size_comparison_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Without Showering for a Month_25-10-12 08:52 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Without Showering for a Month_25-10-12 08:52 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive Without Showering for a Month' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_without_showering_for_a_month_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Eating Mold_25-10-12 08:53 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Eating Mold_25-10-12 08:53 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive Eating Mold' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_eating_mold_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Falling Into the Door to Hell_25-10-12 09:00 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Falling Into the Door to Hell_25-10-12 09:00 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive Falling Into the Door to Hell' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_falling_into_the_door_to_hell_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Falling into a Pool of Liquid Nitrogen_25-10-12 03:49 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Falling into a Pool of Liquid Nitrogen_25-10-12 03:49 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive Falling into a Pool of Liquid Nitrogen' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_falling_into_a_pool_of_liquid_nitrogen_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: Top 5 Basic Survival Skills_25-10-12 08:54 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/Top 5 Basic Survival Skills_25-10-12 08:54 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'Top 5 Basic Survival Skills' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/top_5_basic_survival_skills_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Being Trapped in a Mine_25-10-12 10:29 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Being Trapped in a Mine_25-10-12 10:29 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive Being Trapped in a Mine' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_being_trapped_in_a_mine_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: Nature's Deadliest Hurricanes- Size Comparison_25-10-12 08:59 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/Nature's Deadliest Hurricanes- Size Comparison_25-10-12 08:59 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'Nature's Deadliest Hurricanes: Size Comparison' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/natures_deadliest_hurricanes_size_comparison_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Breakup_25-10-12 03:47 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Breakup_25-10-12 03:47 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive a Breakup' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_breakup_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Birth_25-10-12 03:50 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Birth_25-10-12 03:50 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive Birth' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_birth_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive the Biggest Wave_25-10-12 09:02 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive the Biggest Wave_25-10-12 09:02 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive the Biggest Wave' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_the_biggest_wave_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How To Survive Being Pregnant_25-10-12 08:56 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How To Survive Being Pregnant_25-10-12 08:56 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How To Survive Being Pregnant' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_being_pregnant_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Giving Birth on an Airplane_25-10-12 08:57 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Giving Birth on an Airplane_25-10-12 08:57 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive Giving Birth on an Airplane' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_giving_birth_on_an_airplane_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: 7 Things You Should Never Do During Sleep Paralysis_25-10-12 08:58 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/7 Things You Should Never Do During Sleep Paralysis_25-10-12 08:58 PM.json: 8 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 8 chunks for '7 Things You Should Never Do During Sleep Paralysis' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/7_things_you_should_never_do_during_sleep_paralysis_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Being a Mall Santa_25-10-12 08:53 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Being a Mall Santa_25-10-12 08:53 PM.json: 4 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 4 chunks for 'How to Survive Being a Mall Santa' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_being_a_mall_santa_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Being Sucked Into a Whirlpool_25-10-12 10:03 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Being Sucked Into a Whirlpool_25-10-12 10:03 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive Being Sucked Into a Whirlpool' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_being_sucked_into_a_whirlpool_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Without Sleep_25-10-12 08:53 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Without Sleep_25-10-12 08:53 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive Without Sleep' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_without_sleep_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive an Opening Sinkhole_25-10-12 09:01 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive an Opening Sinkhole_25-10-12 09:01 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive an Opening Sinkhole' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_an_opening_sinkhole_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive the World’s Deadliest Quicksand Pits_25-10-12 10:29 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive the World’s Deadliest Quicksand Pits_25-10-12 10:29 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive the World’s Deadliest Quicksand Pits' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_the_worlds_deadliest_quicksand_pits_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Walking on Lava_25-10-12 09:02 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Walking on Lava_25-10-12 09:02 PM.json: 5 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 5 chunks for 'How to Survive Walking on Lava' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_walking_on_lava_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: AI Predicts a Massive Asteroid Strike on Earth_25-10-18 11:00 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/AI Predicts a Massive Asteroid Strike on Earth_25-10-18 11:00 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'AI Predicts a Massive Asteroid Strike on Earth' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/ai_predicts_a_massive_asteroid_strike_on_earth_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive an Earthquake,  According To Science_25-10-12 10:02 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive an Earthquake,  According To Science_25-10-12 10:02 PM.json: 4 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 4 chunks for 'How to Survive an Earthquake,  According To Science' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_an_earthquake_according_to_science_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Hypothermia_25-10-12 08:55 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Hypothermia_25-10-12 08:55 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive Hypothermia' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_hypothermia_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: The Worst Things To Do in an Earthquake_25-10-12 10:29 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/The Worst Things To Do in an Earthquake_25-10-12 10:29 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'The Worst Things To Do in an Earthquake' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/the_worst_things_to_do_in_an_earthquake_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How Long Could You Survive Mpox (Monkeypox)-_25-10-12 08:58 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How Long Could You Survive Mpox (Monkeypox)-_25-10-12 08:58 PM.json: 2 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 2 chunks for 'How Long Could You Survive Mpox (Monkeypox)?' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_long_could_you_survive_mpox_monkeypox_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Mudslide_25-10-12 10:02 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Mudslide_25-10-12 10:02 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive a Mudslide' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_mudslide_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Collapsing Sand Dune_25-10-12 08:59 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Collapsing Sand Dune_25-10-12 08:59 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive a Collapsing Sand Dune' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_collapsing_sand_dune_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Only on Water for a Week_25-10-12 08:56 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Only on Water for a Week_25-10-12 08:56 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive Only on Water for a Week' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_only_on_water_for_a_week_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: The Black Market of Butt Injections_25-10-12 08:57 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/The Black Market of Butt Injections_25-10-12 08:57 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'The Black Market of Butt Injections' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/the_black_market_of_butt_injections_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Choking When Alone_25-10-12 03:49 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Choking When Alone_25-10-12 03:49 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive Choking When Alone' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_choking_when_alone_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Supervolcano_25-10-12 10:30 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Supervolcano_25-10-12 10:30 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive a Supervolcano' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_supervolcano_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: The Worst Things To Do in a Tsunami_25-10-12 10:03 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/The Worst Things To Do in a Tsunami_25-10-12 10:03 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'The Worst Things To Do in a Tsunami' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/the_worst_things_to_do_in_a_tsunami_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: Top 5 People Who Survived the Impossible_25-10-12 08:55 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/Top 5 People Who Survived the Impossible_25-10-12 08:55 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'Top 5 People Who Survived the Impossible' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/top_5_people_who_survived_the_impossible_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: The True Scale of Tsunamis_25-10-12 10:30 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/The True Scale of Tsunamis_25-10-12 10:30 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'The True Scale of Tsunamis' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/the_true_scale_of_tsunamis_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Choking_25-10-12 03:46 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Choking_25-10-12 03:46 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive Choking' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_choking_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive The 7 Most Dangerous Childbirth Complications_25-10-12 08:57 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive The 7 Most Dangerous Childbirth Complications_25-10-12 08:57 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive The 7 Most Dangerous Childbirth Complications' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_the_7_most_dangerous_childbirth_complications_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Mount Everest_25-10-12 03:48 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Mount Everest_25-10-12 03:48 PM.json: 8 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 8 chunks for 'How to Survive Mount Everest' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_mount_everest_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Fire, According to Science_25-10-12 09:03 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Fire, According to Science_25-10-12 09:03 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive a Fire, According to Science' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_fire_according_to_science_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Bullet Wound_25-10-12 03:50 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Bullet Wound_25-10-12 03:50 PM.json: 8 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 8 chunks for 'How to Survive a Bullet Wound' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_bullet_wound_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive 2021_25-10-12 08:52 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive 2021_25-10-12 08:52 PM.json: 2 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 2 chunks for 'How to Survive 2021' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_2021_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Nuclear Meltdown_25-10-12 08:54 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Nuclear Meltdown_25-10-12 08:54 PM.json: 5 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 5 chunks for 'How to Survive a Nuclear Meltdown' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_nuclear_meltdown_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Heat Wave, According to Science_25-10-12 10:02 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Heat Wave, According to Science_25-10-12 10:02 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive a Heat Wave, According to Science' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_heat_wave_according_to_science_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive an Exploding Phone_25-10-12 03:49 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive an Exploding Phone_25-10-12 03:49 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive an Exploding Phone' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_an_exploding_phone_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: The Deadliest Earthquake In Human History_25-10-12 08:58 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/The Deadliest Earthquake In Human History_25-10-12 08:58 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'The Deadliest Earthquake In Human History' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/the_deadliest_earthquake_in_human_history_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive Falling Through Ice_25-10-12 10:29 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive Falling Through Ice_25-10-12 10:29 PM.json: 5 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 5 chunks for 'How to Survive Falling Through Ice' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_falling_through_ice_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Brain-Eating Amoeba_25-10-12 08:56 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive a Brain-Eating Amoeba_25-10-12 08:56 PM.json: 6 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 6 chunks for 'How to Survive a Brain-Eating Amoeba' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_brain_eating_amoeba_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive- The Safest Places to Hide During an Undead Apocalypse_25-10-12 08:59 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/How to Survive- The Safest Places to Hide During an Undead Apocalypse_25-10-12 08:59 PM.json: 7 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 7 chunks for 'How to Survive: The Safest Places to Hide During an Undead Apocalypse' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_the_safest_places_to_hide_during_an_undead_apocalypse_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: Household Items That Could Save You in a Nuclear War_25-10-12 08:57 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_ingested_transcripts/Household Items That Could Save You in a Nuclear War_25-10-12 08:57 PM.json: 9 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 9 chunks for 'Household Items That Could Save You in a Nuclear War' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/household_items_that_could_save_you_in_a_nuclear_war_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive a Week in a Bathtub_25-10-18 11:03 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_asr_transcripts/How to Survive a Week in a Bathtub_25-10-18 11:03 PM.json: 5 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 5 chunks for 'How to Survive a Week in a Bathtub' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_a_week_in_a_bathtub_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive an Avalanche, According to Science_25-10-18 11:04 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_asr_transcripts/How to Survive an Avalanche, According to Science_25-10-18 11:04 PM.json: 1 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 1 chunks for 'How to Survive an Avalanche, According to Science' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_an_avalanche_according_to_science_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Processing: How to Survive in the Arctic Without Clothes_25-10-18 11:01 PM.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Processed /home/sidd4ml/capstoneproject-2025-llmz/data/raw_asr_transcripts/How to Survive in the Arctic Without Clothes_25-10-18 11:01 PM.json: 8 chunks created
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Saved 8 chunks for 'How to Survive in the Arctic Without Clothes' to /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data/how_to_survive_in_the_arctic_without_clothes_20251019_001127.json
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Chunking process completed!
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Files processed: 104
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Total chunks created: 644
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - Chunks saved to: /home/sidd4ml/capstoneproject-2025-llmz/data/chunked_data
+2025-10-19 00:11:27 - ingestion.transcript_chunking - INFO - 
+Deleting 104 processed source files...
+2025-10-19 00:11:27 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-19 00:11:27 - __main__ - INFO - ✅ Chunking completed: 104 transcript chunked
+2025-10-19 00:11:27 - __main__ - INFO - 📋 Step 2: Executing embedding and Qdrant upsert...
+2025-10-19 00:11:27 - ingestion.chunk_embedding_upserting - INFO - 🎯 Starting Survival Strategies Chunk Embedding & Upsert Process
+2025-10-19 00:11:27 - ingestion.chunk_embedding_upserting - ERROR - ❌ Chunked data directory not found: /home/sidd4ml/data/chunked_data
+2025-10-19 00:11:27 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-19 00:11:27 - __main__ - ERROR - 💥 Embedding/upsert failed
+2025-10-19 00:11:27 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8546/api/flow_runs/0e6b5262-8a56-4760-8960-566ede95e524/set_state "HTTP/1.1 201 Created"
+2025-10-19 00:11:27 - prefect.flow_runs - INFO - Finished in state Completed()
+2025-10-19 00:11:27 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8546/api/csrf-token?client=73ca8060-fd05-4f1a-9257-5bef8503c9b8 "HTTP/1.1 422 Unprocessable Entity"
+2025-10-19 00:11:27 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8546/api/logs/ "HTTP/1.1 201 Created"
+2025-10-19 00:11:27 - prefect - INFO - Stopping temporary server on http://127.0.0.1:8546

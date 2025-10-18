@@ -1,0 +1,153 @@
+2025-10-18 22:24:32 - prefect - INFO - Starting temporary server on http://127.0.0.1:8988
+See https://docs.prefect.io/v3/concepts/server#how-to-guides for more information on running a dedicated Prefect server.
+2025-10-18 22:24:40 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8988/api/health "HTTP/1.1 200 OK"
+2025-10-18 22:24:40 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8988/api/admin/version "HTTP/1.1 200 OK"
+2025-10-18 22:24:40 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8988/api/csrf-token?client=c78fa41e-37ba-4ed2-b216-eba5efae99df "HTTP/1.1 422 Unprocessable Entity"
+2025-10-18 22:24:40 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8988/api/flows/ "HTTP/1.1 200 OK"
+2025-10-18 22:24:40 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8988/api/flow_runs/ "HTTP/1.1 201 Created"
+2025-10-18 22:24:40 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8988/api/flow_runs/af325d6b-ce95-42fd-9f38-95cb2c39ed56/set_state "HTTP/1.1 201 Created"
+2025-10-18 22:24:41 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8988/api/flow_runs/af325d6b-ce95-42fd-9f38-95cb2c39ed56 "HTTP/1.1 200 OK"
+2025-10-18 22:24:41 - prefect.flow_runs - INFO - Beginning flow run 'screeching-labradoodle' for flow 'orchestrated-youtube-playlist-content-ingestion-pipeline'
+2025-10-18 22:24:41 - __main__ - INFO - 🚀 Starting Content Ingestion Pipeline
+2025-10-18 22:24:41 - __main__ - INFO - 📥 Step 1: Loading existing content catalog...
+2025-10-18 22:24:41 - ingestion.content_catalog - INFO - 📂 Loading existing catalog: /home/sidd4ml/capstoneproject-2025-llmz/data/content_catalog/content_catalog_20251013_215927.csv
+2025-10-18 22:24:41 - ingestion.content_catalog - INFO - ✅ Successfully loaded 98 videos from existing catalog
+2025-10-18 22:24:41 - ingestion.content_catalog - INFO - 🗑️  Deleted previous catalog file: /home/sidd4ml/capstoneproject-2025-llmz/data/content_catalog/content_catalog_20251013_215927.csv
+2025-10-18 22:24:41 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-18 22:24:41 - __main__ - INFO - 🔄 Step 2: Creating current content catalog...
+2025-10-18 22:24:41 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8988/api/flows/83a940f8-0e70-4577-bb9e-a302bd69d983 "HTTP/1.1 200 OK"
+2025-10-18 22:24:41 - ingestion.content_catalog - INFO - 📁 Looking for properties file: /home/sidd4ml/capstoneproject-2025-llmz/playlists.properties
+2025-10-18 22:24:41 - ingestion.content_catalog - INFO - 📁 File exists: True
+2025-10-18 22:24:41 - ingestion.content_catalog - INFO - 📋 Read 2 playlist URLs from /home/sidd4ml/capstoneproject-2025-llmz/playlists.properties
+2025-10-18 22:24:41 - prefect.task_runs - INFO - Finished in state Completed()
+2025-10-18 22:24:42 - ingestion.content_catalog - ERROR - ❌ Failed to get access token: 400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token
+2025-10-18 22:24:42 - prefect.task_runs - ERROR - Task run failed with exception: HTTPError('400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token')
+Traceback (most recent call last):
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 871, in run_context
+    yield self
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 1512, in run_task_sync
+    engine.call_task_fn(txn)
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 888, in call_task_fn
+    result = call_with_parameters(self.task.fn, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/utilities/callables.py", line 210, in call_with_parameters
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/capstoneproject-2025-llmz/ingestion/content_catalog.py", line 69, in get_access_token
+    r.raise_for_status()
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token
+2025-10-18 22:24:42 - prefect.task_runs - ERROR - Finished in state Failed('Task run encountered an exception HTTPError: 400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token')
+2025-10-18 22:24:42 - prefect.task_runs - ERROR - Task run failed with exception: HTTPError('400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token')
+Traceback (most recent call last):
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 871, in run_context
+    yield self
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 1512, in run_task_sync
+    engine.call_task_fn(txn)
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 888, in call_task_fn
+    result = call_with_parameters(self.task.fn, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/utilities/callables.py", line 210, in call_with_parameters
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/capstoneproject-2025-llmz/ingestion/content_catalog.py", line 196, in create_current_catalog
+    token = get_access_token()
+            ^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/tasks.py", line 1139, in __call__
+    return run_task(
+           ^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 1739, in run_task
+    return run_task_sync(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 1514, in run_task_sync
+    return engine.state if return_type == "state" else engine.result()
+                                                       ^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 493, in result
+    raise self._raised
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 871, in run_context
+    yield self
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 1512, in run_task_sync
+    engine.call_task_fn(txn)
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 888, in call_task_fn
+    result = call_with_parameters(self.task.fn, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/utilities/callables.py", line 210, in call_with_parameters
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/capstoneproject-2025-llmz/ingestion/content_catalog.py", line 69, in get_access_token
+    r.raise_for_status()
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token
+2025-10-18 22:24:42 - prefect.task_runs - ERROR - Finished in state Failed('Task run encountered an exception HTTPError: 400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token')
+2025-10-18 22:24:42 - prefect.flow_runs - ERROR - Encountered exception during execution: HTTPError('400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token')
+Traceback (most recent call last):
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/flow_engine.py", line 781, in run_context
+    yield self
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/flow_engine.py", line 1395, in run_flow_sync
+    engine.call_flow_fn()
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/flow_engine.py", line 801, in call_flow_fn
+    result = call_with_parameters(self.flow.fn, self.parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/utilities/callables.py", line 210, in call_with_parameters
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/capstoneproject-2025-llmz/orchestration/orchestrated_content_ingestion.py", line 130, in content_ingestion_pipeline
+    current_catalog= create_current_catalog()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/tasks.py", line 1139, in __call__
+    return run_task(
+           ^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 1739, in run_task
+    return run_task_sync(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 1514, in run_task_sync
+    return engine.state if return_type == "state" else engine.result()
+                                                       ^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 493, in result
+    raise self._raised
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 871, in run_context
+    yield self
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 1512, in run_task_sync
+    engine.call_task_fn(txn)
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 888, in call_task_fn
+    result = call_with_parameters(self.task.fn, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/utilities/callables.py", line 210, in call_with_parameters
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/capstoneproject-2025-llmz/ingestion/content_catalog.py", line 196, in create_current_catalog
+    token = get_access_token()
+            ^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/tasks.py", line 1139, in __call__
+    return run_task(
+           ^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 1739, in run_task
+    return run_task_sync(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 1514, in run_task_sync
+    return engine.state if return_type == "state" else engine.result()
+                                                       ^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 493, in result
+    raise self._raised
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 871, in run_context
+    yield self
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 1512, in run_task_sync
+    engine.call_task_fn(txn)
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/task_engine.py", line 888, in call_task_fn
+    result = call_with_parameters(self.task.fn, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/prefect/utilities/callables.py", line 210, in call_with_parameters
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/sidd4ml/capstoneproject-2025-llmz/ingestion/content_catalog.py", line 69, in get_access_token
+    r.raise_for_status()
+  File "/home/sidd4ml/.pyenv/versions/3.11.5/lib/python3.11/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token
+2025-10-18 22:24:42 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8988/api/flow_runs/af325d6b-ce95-42fd-9f38-95cb2c39ed56/set_state "HTTP/1.1 201 Created"
+2025-10-18 22:24:42 - prefect.flow_runs - INFO - Finished in state Failed('Flow run encountered an exception: HTTPError: 400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token')
+2025-10-18 22:24:42 - httpx - INFO - HTTP Request: GET http://127.0.0.1:8988/api/csrf-token?client=0f873954-d331-4af6-bad7-408dd5896157 "HTTP/1.1 422 Unprocessable Entity"
+2025-10-18 22:24:42 - httpx - INFO - HTTP Request: POST http://127.0.0.1:8988/api/logs/ "HTTP/1.1 201 Created"
+2025-10-18 22:24:42 - prefect - INFO - Stopping temporary server on http://127.0.0.1:8988
