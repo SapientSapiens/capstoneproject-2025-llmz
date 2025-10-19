@@ -1,8 +1,8 @@
 jupyter
 ipykernel
-tqdm 
+tqdm
 setuptools
-numpy 
+numpy
 pandas
 requests
 prefect
@@ -10,3 +10,6 @@ yt_dlp
 youtube_transcript_api
 faster-whisper
 qdrant-client[fastembed]>=1.14.2
+openai
+fastapi[standard]
+streamlit
