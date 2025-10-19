@@ -10,7 +10,7 @@ def generate_response(
         llm_client,
         model: str = "gpt-4o-mini",
         context_char_limit: int = 80000,
-        temperature: float = 0.0,
+        temperature: float = 0.2,
    ):
 
     # 1) Sort/prepare chunks (simple ordering by provided score — not a neural re-ranker)
@@ -37,9 +37,9 @@ def generate_response(
 
     # 3) Strict system prompt (grounding)
     system_prompt = (
-        "You are a Survival Guidance assistant that extracts ONLY factual information and procedural knowledge "
+        "You are a Survival Guidance assistant that intelligently extracts the factual information and procedural knowledge "
         "from the supplied Context. Use ONLY the text in Context. Do NOT use external knowledge or assumptions. "
-        f"If the answer cannot be fully derived from the Context, respond EXACTLY with:{NOT_IN_CONTEXT}\n"
+        f"If the answer cannot be derived from the Context, respond EXACTLY with: {NOT_IN_CONTEXT}\n"
         "No speculation, no narration, preserve substantive instructions, provide structured outputs when asked."
     )
 
@@ -48,8 +48,8 @@ def generate_response(
         f"Question:\n{user_query}\n\n"
         f"Context (each block has provenance):\n\n{context}\n\n"
         "Task:\nUsing ONLY the Context above, answer the question. "
-        f"If the required information is missing or not fully present, reply EXACTLY:{NOT_IN_CONTEXT}\n"
-        "Be concise and factual with the required information for the user. No extra commentary."
+        f"If the required information is missing or not at all present, reply EXACTLY:{NOT_IN_CONTEXT}\n"
+        "Be concise and factual with all the required information for the user from the supplied context"
     )
 
     # Debug prints (single set)
@@ -94,7 +94,7 @@ def generate_response(
         return INFORMATION_NOT_FOUND_MSG
 
     text = raw.strip()
-    print(f"\n----- PROMPT SENT TO LLM -----\n{user_prompt}\n------------------------------\n")
+    # print(f"\n----- PROMPT SENT TO LLM -----\n{user_prompt}\n------------------------------\n")
     print(f"LLM RAW RESPONSE: {text}\n")
 
     # 7) Enforce exact failure token

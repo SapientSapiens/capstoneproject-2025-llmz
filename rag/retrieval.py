@@ -1,4 +1,5 @@
 # set confidence threshold for avoiding chunks with lesser relevance to the user question
+# CONFIDENCE_THRESHOLD = 0.60
 CONFIDENCE_THRESHOLD = 0.68
 
 COLLECTION_NAME = "survival_strategies"
@@ -23,9 +24,11 @@ def determine_query_type(query, chunks_retrieved):
                    last_assistant_answer is not None)
     
     if not has_history:
-        return "NOT_IN_CONTEXT" if not chunks_retrieved else "FIRST_QUERY"
-    else:
-        return "NOT_IN_CONTEXT" if not chunks_retrieved else "FOLLOW_UP"
+        # return "NOT_IN_CONTEXT" if not chunks_retrieved else "FIRST_QUERY"
+        return "FIRST_QUERY" if chunks_retrieved else "NOT_IN_CONTEXT"
+    # else:
+        # return "NOT_IN_CONTEXT" if not chunks_retrieved else "FOLLOW_UP"
+    return "FOLLOW_UP" if not chunks_retrieved else "FIRST_QUERY"
     
 def format_chunks_for_prompt(chunks):
     """Format retrieved chunks for LLM prompt"""
@@ -45,6 +48,7 @@ def format_chunks_for_prompt(chunks):
     return "\n".join(formatted_chunks)
 
 def retrieve_chunks(query, qdrant_client, embedding_model, top_k=5):
+    print(f"**********Question for chunk retrival {query} **************")
     query_embedding = list(embedding_model.embed([query]))[0]
     results = qdrant_client.query_points(
         collection_name=COLLECTION_NAME,
@@ -61,4 +65,6 @@ def retrieve_chunks(query, qdrant_client, embedding_model, top_k=5):
                 "score": p.score,
                 "payload": p.payload
             })
+    
+    print(f"**********Retrieved chunks of length {len(filtered_results)} **************")
     return filtered_results
