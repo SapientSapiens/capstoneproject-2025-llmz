@@ -1,4 +1,3 @@
-# interface_app/Dockerfile (minimal)
 FROM python:3.11-slim
 
 WORKDIR /app
@@ -10,13 +9,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 # copy and install requirements
-COPY requirements.txt /tmp/requirements.txt
-RUN pip install --no-cache-dir -r /tmp/requirements.txt
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# copy only the interface app
-COPY interface_app/ /app/interface_app/
+# copy the interface app
+COPY . .
 
 EXPOSE 8501
 
-# pass address/port via flags (no extra STREAMLIT env needed)
-CMD ["streamlit", "run", "interface_app/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
