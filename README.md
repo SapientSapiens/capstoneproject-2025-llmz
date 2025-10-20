@@ -82,8 +82,8 @@ This project solves that by building an intelligent retrieval system that:
                                         │
                                         ▼
                         ┌─────────────────────────────────────────────────┐
-                        │          All Transcripts (JSON)                │
-                        │  - Original + ASR generated transcripts        │
+                        │          All Transcripts (JSON)                 │
+                        │  - Original + ASR generated transcripts         │
                         └───────────────┬─────────────────────────────────┘
                                         │
                                         ▼
