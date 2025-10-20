@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  rag_api:
+    build:
+      context: .
+      dockerfile: rag/Dockerfile
+    container_name: rag_api
+    ports:
+      - "8010:8010"
+    environment:
+      - QDRANT_URL=${QDRANT_URL}
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - LLM_API_KEY=${LLM_API_KEY}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8010/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - project-network
+
+  streamlit_app:
+    build:
+      context: .
+      dockerfile: interface_app/Dockerfile
+    container_name: streamlit_app
+    ports:
+      - "8501:8501"
+    depends_on:
+      rag_api:
+        condition: service_healthy
+    environment:
+      # monitoring.py expects DATABASE_HOST and DATABASE_PASSWORD
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_NAME=${DATABASE_NAME:-feedback_db}
+      - RAG_API_URL=http://rag_api:8010
+      - GRAFANA_URL=${GRAFANA_URL}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    networks:
+      - project-network
+
+networks:
+  project-network:
+    driver: bridge

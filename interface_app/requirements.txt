@@ -1,0 +1,16 @@
+jupyter
+ipykernel
+tqdm
+setuptools
+numpy
+pandas
+requests
+prefect
+yt_dlp
+youtube_transcript_api
+faster-whisper
+qdrant-client[fastembed]>=1.14.2
+openai
+fastapi[standard]
+streamlit
+psycopg2-binary
