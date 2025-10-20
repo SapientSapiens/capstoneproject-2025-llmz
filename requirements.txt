@@ -13,3 +13,4 @@ qdrant-client[fastembed]>=1.14.2
 openai
 fastapi[standard]
 streamlit
+psycopg2-binary

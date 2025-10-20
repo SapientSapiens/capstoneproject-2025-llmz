@@ -11,15 +11,16 @@ st.set_page_config(
 
 API_URL = "http://localhost:8010/query"
 
-# Initialize database tables
-monitoring.init_tables()
+# Initialize database tables for the very first times
+# monitoring.init_tables()
 
 # ---- UI Header ----
 st.title("🧭 Survival Guidance Assistant")
 st.caption("Ask about survival — storms, jungles, quicksand, disasters, health, diseases or epidemics. Get data-driven answers.")
 
 # Create two columns for the layout
-col1, col2 = st.columns([3, 2])  # 3:2 ratio as requested
+# col1, col2 = st.columns([3, 2])  # 3:2 ratio as requested
+col1, spacer, col2 = st.columns([3.5, 0.5, 1.5])
 
 with col1:
     # ---- Session State Initialization ----

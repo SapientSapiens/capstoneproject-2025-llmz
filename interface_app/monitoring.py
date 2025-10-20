@@ -11,11 +11,11 @@ def get_db_connection():
     try:
         # You'll need to set these environment variables with your cloud PostgreSQL credentials
         conn = psycopg2.connect(
-            host=os.getenv('DB_HOST', 'localhost'),
-            database=os.getenv('DB_NAME', 'survival_app'),
-            user=os.getenv('DB_USER', 'postgres'),
-            password=os.getenv('DB_PASSWORD', 'password'),
-            port=os.getenv('DB_PORT', '5432')
+            host=os.getenv('DATABASE_HOST'),
+            user="postgres",
+            password=os.getenv('DATABASE_PASSWORD'),
+            dbname="feedback_db",
+            sslmode="require"
         )
         return conn
     except Exception as e:
@@ -30,7 +30,7 @@ def init_tables():
         
         # Create Sentiment Distribution table
         cur.execute("""
-            CREATE TABLE IF NOT EXISTS "Sentiment Distribution" (
+            CREATE TABLE IF NOT EXISTS "sentiment_distribution" (
                 feedback_id SERIAL PRIMARY KEY,
                 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 senti_text VARCHAR(50) NOT NULL
@@ -39,7 +39,7 @@ def init_tables():
         
         # Create Positive Negative table
         cur.execute("""
-            CREATE TABLE IF NOT EXISTS "Positive Negative" (
+            CREATE TABLE IF NOT EXISTS "positive_negative" (
                 feedback_id SERIAL PRIMARY KEY,
                 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 pos_neg VARCHAR(10) NOT NULL CHECK (pos_neg IN ('Positive', 'Negative'))
@@ -48,7 +48,7 @@ def init_tables():
         
         # Create Satisfaction Level table
         cur.execute("""
-            CREATE TABLE IF NOT EXISTS "Satisfaction Level" (
+            CREATE TABLE IF NOT EXISTS "satisfaction_level" (
                 feedback_id SERIAL PRIMARY KEY,
                 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 satis_levl INTEGER NOT NULL CHECK (satis_levl BETWEEN 1 AND 5)
@@ -64,45 +64,42 @@ def init_tables():
         logger.error(f"Error initializing tables: {e}")
         raise
 
-def insert_feedback(senti_text, pos_neg, satis_levl):
-    """Insert feedback into all three tables - ONLY INSERT, NO UPDATE"""
+def insert_feedback(senti_text, pos_neg, satis_level):
+    """Insert feedback into all three tables"""
     try:
         conn = get_db_connection()
         cur = conn.cursor()
-        
-        # Insert into Sentiment Distribution table (feedback_id and timestamp are auto-generated)
-        cur.execute("""
-            INSERT INTO "Sentiment Distribution" (senti_text) 
-            VALUES (%s)
-        """, (senti_text,))
-        
-        # Insert into Positive Negative table (feedback_id and timestamp are auto-generated)
-        cur.execute("""
-            INSERT INTO "Positive Negative" (pos_neg) 
-            VALUES (%s)
-        """, (pos_neg,))
-        
-        # Insert into Satisfaction Level table (feedback_id and timestamp are auto-generated)
-        cur.execute("""
-            INSERT INTO "Satisfaction Level" (satis_levl) 
-            VALUES (%s)
-        """, (satis_levl,))
-        
+
+        cur.execute(
+            'INSERT INTO sentiment_distribution (senti_text) VALUES (%s)',
+            (senti_text,)
+        )
+
+        cur.execute(
+            'INSERT INTO positive_negative (pos_neg) VALUES (%s)',
+            (pos_neg,)
+        )
+
+        cur.execute(
+            'INSERT INTO satisfaction_level (satis_levl) VALUES (%s)',
+            (satis_level,)
+        )
+
         conn.commit()
         cur.close()
         conn.close()
-        
         logger.info("Feedback inserted successfully into all three tables")
-        
+
     except Exception as e:
         logger.error(f"Error inserting feedback: {e}")
         raise
+
 
 # Test function (optional)
 def test_connection():
     """Test database connection and table creation"""
     try:
-        init_tables()
+        # init_tables()
         print("Database setup completed successfully")
         return True
     except Exception as e:
