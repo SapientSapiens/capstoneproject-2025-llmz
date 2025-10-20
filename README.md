@@ -244,7 +244,7 @@ This project solves that by building an intelligent retrieval system that:
 
 | **Layer** | **Technology** |
 |:-----------|:---------------|
-| LLM & RAG | Gemini API + FastEmbed / Sentence-Transformers |
+| LLM & RAG | OpenAI API + FastEmbed |
 | Vector DB | Qdrant Cloud |
 | API Framework | FastAPI |
 | Frontend | Streamlit |
