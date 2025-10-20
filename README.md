@@ -219,9 +219,9 @@ This project solves that by building an intelligent retrieval system that:
 | **Stage** | **Description** |
 |:-----------|:----------------|
 | **Ingestion & Chunking** | Extract and chunk transcripts into semantically meaningful segments with metadata (title, chapter, timestamp). |
-| **Embedding & Storage** | Convert chunks to vector embeddings and store them in **Qdrant Cloud** for semantic retrieval. |
+| **Embedding & Storage** | Convert chunks to vector embeddings with **FastEmbed** and store them in **Qdrant Cloud** for semantic retrieval. |
 | **Orchestration** | **Prefect** as the orchestrator for deploying cron-scheduled workflows of the Ingestion and the Chunk-Embed-Upsert pipelines. |
-| **Retrieval-Augmented Generation** | FastAPI service retrieves top-matching chunks and crafts context-aware prompts for **OpenAI API**. |
+| **Retrieval-Augmented Generation** | **FastAPI** service retrieves top-matching chunks and crafts context-aware prompts for **OpenAI API**. |
 | **Feedback Loop** | User feedback (sentiment, clarity, satisfaction) logged to **PostgreSQL** and visualized via **Grafana Cloud**. |
 | **Deployment** | Two lightweight containers — `rag_api` (FastAPI) and `streamlit_app` (UI) — orchestrated via **Docker Compose**. |
 
@@ -231,7 +231,7 @@ This project solves that by building an intelligent retrieval system that:
 
 - ⚙️ Semantic retrieval pipeline built on **Qdrant + embeddings**  
 - 🧾 Source-cited answers with **references and timestamps**  
-- 🗣️ Context-aware LLM integration using **Gemini API**  
+- 🗣️ Context-aware LLM integration using **OpenAI API**  
 - 📊 Real-time user feedback stored in **AWS RDS** and visualized in [**Grafana Cloud**](https://sapientsapiens.grafana.net/public-dashboards/87d99596e7654e7aaef8d5c4535de037)  
 - 🧰 Lightweight and portable architecture via **Docker Compose**  
 - ☁️ Cloud-managed services for Qdrant, Postgres, and Grafana  
@@ -250,17 +250,6 @@ This project solves that by building an intelligent retrieval system that:
 | Monitoring | Grafana Cloud |
 | Containerization | Docker & Docker Compose |
 
----
-
-## 🧪 Evaluation & Provenance  
-
-| **Criterion** | **Points** | **Justification** |
-|:---------------|:-----------:|:------------------|
-| **Problem Description** | 🟢 2 / 2 | The problem — fragmented and unreliable survival information — is clearly defined, and the solution’s scope (retrieval, reasoning, monitoring) is explicit. |
-| **Provenance** | ✅ | Each generated answer includes video titles, URLs, and publication dates for transparent source attribution. |
-| **Functional Checks** | ✅ | Retrieval accuracy, chunk validation, and prompt grounding tested under `/notebooks/`. |
-
----
 
 ## 🚀 Quick Start  
 
