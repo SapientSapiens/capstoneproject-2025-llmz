@@ -231,7 +231,7 @@ This project solves that by building an intelligent retrieval system that:
 - ⚙️ Semantic retrieval pipeline built on **Qdrant + embeddings**  
 - 🧾 Source-cited answers with **references and timestamps**  
 - 🗣️ Context-aware LLM integration using **Gemini API**  
-- 📊 Real-time user feedback stored in **AWS RDS** and visualized in **Grafana Cloud**  
+- 📊 Real-time user feedback stored in **AWS RDS** and visualized in [**Grafana Cloud**](https://sapientsapiens.grafana.net/public-dashboards/87d99596e7654e7aaef8d5c4535de037)  
 - 🧰 Lightweight and portable architecture via **Docker Compose**  
 - ☁️ Cloud-managed services for Qdrant, Postgres, and Grafana  
 
