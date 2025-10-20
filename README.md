@@ -220,7 +220,8 @@ This project solves that by building an intelligent retrieval system that:
 |:-----------|:----------------|
 | **Ingestion & Chunking** | Extract and chunk transcripts into semantically meaningful segments with metadata (title, chapter, timestamp). |
 | **Embedding & Storage** | Convert chunks to vector embeddings and store them in **Qdrant Cloud** for semantic retrieval. |
-| **Retrieval-Augmented Generation** | FastAPI service retrieves top-matching chunks and crafts context-aware prompts for **Gemini API**. |
+| **Orchestration** | **Prefect** as the orchestrator for deploying cron-scheduled workflows of the Ingestion and the Chunk-Embed-Upsert pipelines. |
+| **Retrieval-Augmented Generation** | FastAPI service retrieves top-matching chunks and crafts context-aware prompts for **OpenAI API**. |
 | **Feedback Loop** | User feedback (sentiment, clarity, satisfaction) logged to **PostgreSQL** and visualized via **Grafana Cloud**. |
 | **Deployment** | Two lightweight containers — `rag_api` (FastAPI) and `streamlit_app` (UI) — orchestrated via **Docker Compose**. |
 
