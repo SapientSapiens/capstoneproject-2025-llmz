@@ -223,6 +223,7 @@ This project solves that by building an intelligent retrieval system that:
 | **Embedding & Storage** | Convert chunks to vector embeddings with **FastEmbed** and store them in **Qdrant Cloud** for semantic retrieval. |
 | **Orchestration** | **Prefect** as the orchestrator for deploying cron-scheduled workflows of the Ingestion and the Chunk-Embed-Upsert pipelines. |
 | **Retrieval-Augmented Generation** | **FastAPI** service retrieves top-matching chunks and crafts context-aware prompts for **OpenAI API**. |
+| **User Interface** | **Streamlit** app for the user interface. |
 | **Feedback Loop** | User feedback (sentiment, clarity, satisfaction) logged to **PostgreSQL** and visualized via **Grafana Cloud**. |
 | **Deployment** | Two lightweight containers — `rag_api` (FastAPI) and `streamlit_app` (UI) — orchestrated via **Docker Compose**. |
 
