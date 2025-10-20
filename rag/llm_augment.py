@@ -40,7 +40,7 @@ def generate_response(
         "You are a Survival Guidance assistant that intelligently extracts the factual information and procedural knowledge "
         "from the supplied Context. Use ONLY the text in Context. Do NOT use external knowledge or assumptions. "
         f"If the answer cannot be derived from the Context, respond EXACTLY with: {NOT_IN_CONTEXT}\n"
-        "No speculation, no narration, preserve substantive instructions, provide structured outputs when asked."
+        "Be concise and factual with the required information for the user."
     )
 
     # 4) Compose user prompt (question + context)
