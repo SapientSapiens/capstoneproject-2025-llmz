@@ -1,8 +1,6 @@
 import os
 import psycopg2
-from psycopg2.extras import RealDictCursor
 import logging
-from datetime import datetime
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -32,7 +30,7 @@ def init_tables():
         
         # Create Sentiment Distribution table
         cur.execute("""
-            CREATE TABLE IF NOT EXISTS sentiment_distribution (
+            CREATE TABLE IF NOT EXISTS "Sentiment Distribution" (
                 feedback_id SERIAL PRIMARY KEY,
                 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 senti_text VARCHAR(50) NOT NULL
@@ -41,7 +39,7 @@ def init_tables():
         
         # Create Positive Negative table
         cur.execute("""
-            CREATE TABLE IF NOT EXISTS positive_negative (
+            CREATE TABLE IF NOT EXISTS "Positive Negative" (
                 feedback_id SERIAL PRIMARY KEY,
                 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 pos_neg VARCHAR(10) NOT NULL CHECK (pos_neg IN ('Positive', 'Negative'))
@@ -50,10 +48,10 @@ def init_tables():
         
         # Create Satisfaction Level table
         cur.execute("""
-            CREATE TABLE IF NOT EXISTS satisfaction_level (
+            CREATE TABLE IF NOT EXISTS "Satisfaction Level" (
                 feedback_id SERIAL PRIMARY KEY,
                 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                satis_level INTEGER NOT NULL CHECK (satis_level BETWEEN 1 AND 5)
+                satis_levl INTEGER NOT NULL CHECK (satis_levl BETWEEN 1 AND 5)
             )
         """)
         
@@ -66,41 +64,35 @@ def init_tables():
         logger.error(f"Error initializing tables: {e}")
         raise
 
-def insert_feedback(senti_text, pos_neg, satis_level):
-    """Insert feedback into all three tables"""
+def insert_feedback(senti_text, pos_neg, satis_levl):
+    """Insert feedback into all three tables - ONLY INSERT, NO UPDATE"""
     try:
         conn = get_db_connection()
         cur = conn.cursor()
         
-        # Since we're using SERIAL primary keys, they will auto-generate
-        # We'll get the next feedback_id by inserting and returning
-        
-        # Insert into sentiment_distribution and get the feedback_id
+        # Insert into Sentiment Distribution table (feedback_id and timestamp are auto-generated)
         cur.execute("""
-            INSERT INTO sentiment_distribution (senti_text) 
-            VALUES (%s) 
-            RETURNING feedback_id
+            INSERT INTO "Sentiment Distribution" (senti_text) 
+            VALUES (%s)
         """, (senti_text,))
-        sentiment_feedback_id = cur.fetchone()[0]
         
-        # Insert into positive_negative with the same feedback_id
+        # Insert into Positive Negative table (feedback_id and timestamp are auto-generated)
         cur.execute("""
-            INSERT INTO positive_negative (feedback_id, pos_neg) 
-            VALUES (%s, %s)
-        """, (sentiment_feedback_id, pos_neg))
+            INSERT INTO "Positive Negative" (pos_neg) 
+            VALUES (%s)
+        """, (pos_neg,))
         
-        # Insert into satisfaction_level with the same feedback_id
+        # Insert into Satisfaction Level table (feedback_id and timestamp are auto-generated)
         cur.execute("""
-            INSERT INTO satisfaction_level (feedback_id, satis_level) 
-            VALUES (%s, %s)
-        """, (sentiment_feedback_id, satis_level))
+            INSERT INTO "Satisfaction Level" (satis_levl) 
+            VALUES (%s)
+        """, (satis_levl,))
         
         conn.commit()
         cur.close()
         conn.close()
         
-        logger.info(f"Feedback inserted successfully with ID: {sentiment_feedback_id}")
-        return sentiment_feedback_id
+        logger.info("Feedback inserted successfully into all three tables")
         
     except Exception as e:
         logger.error(f"Error inserting feedback: {e}")
