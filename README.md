@@ -96,14 +96,14 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
  | **Stage** | **Description** |
  |:-----------|:----------------|
- | **Content Catalog Generation** | Generate [content catalog](ingestion/content_catalog.py) from the metadata of videos from playlists in input properties file with *YouTube Data API* |
+ | **Content Catalog Generation** | Generate [content catalog](ingestion/content_catalog.py) from the metadata of videos from playlists in input [properties file](playlists.properties) with *YouTube Data API* |
  | **Identify New Videos** | Compares the previous content catalog and the newly generated one to identify new videos to extract transcripts from or download audio tracks with *yt_dlp* for those without any transcript options|
  | **Transcript Ingestion** |  [Extract transcripts](ingestion/transcript_ingestion.py) from the identified videos with *YouTubeTranscriptApi* |
  | **ASR**  | Video without transcripts and those failing transcript extraction are lined up for [ASR](ingestion/asr_operation.py) and processed throught **Faster Whisper** |
  | **Chunking, Embedding & Storage** | [ Chunk transcripts](ingestion/transcript_chunking.py) into semantically meaningful segments with metadata (title, chapter, timestamp).& convert them to vector embeddings with **FastEmbed** and [store them](ingestion/chunk_embedding_upserting.py) in **Qdrant Cloud** for semantic retrieval. |
- | **Orchestration** | **Prefect** as the orchestrator for deploying cron-scheduled workflows of the [Ingestion](orchestration/orchestrated_content_ingestion.py) and the [Chunk-Embed-Upsert](orchestration/orchestrated_chunking_embedding_upsert.py) pipelines. |
+ | **Orchestration** | **Prefect** as the [orchestrator](images/final-orchestrated-ingestion-pipeline-1.png) for [deploying cron-scheduled workflows](images/Prefect-perfect-deployments.png) of the [Ingestion](orchestration/orchestrated_content_ingestion.py) and the [Chunk-Embed-Upsert](orchestration/orchestrated_chunking_embedding_upsert.py) pipelines. |
  | **Retrieval** | [**FastAPI** service](rag/rag_service_serve.py) now [retrieves](rag/retrieval.py) top-matching chunks and sorts them in descending order of their cosine similarity |
- | **Augmented Generation** | These chunks are then used as context in the prompt-templates for dynamic generation of prompts to be [sent to an LLM](rag/llm_augment.py) with **OpenAI API**  |
+ | **Augmented Generation** | These chunks are then used as context in the prompt-templates for dynamic generation of prompts to be [sent to the LLM](rag/llm_augment.py) with **OpenAI API**  |
  | **User Interface** | **Streamlit** [app](interface_app/app.py) for the user interface complete with User Feedback mechanism for [monitoring](interface_app/monitoring.py) |
  | **Feedback Loop** | User feedback (sentiment, clarity, satisfaction) logged to **PostgreSQL** and visualized via [**Grafana Cloud**](https://sapientsapiens.grafana.net/public-dashboards/87d99596e7654e7aaef8d5c4535de037). |
  | **Deployment** | Two lightweight containers — [`rag_api`](rag/Dockerfile) (FastAPI) and [`streamlit_app`](interface_app/Dockerfile) (UI) — orchestrated via [**Docker Compose**](docker-compose.yml) |
@@ -327,14 +327,14 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 | 🌟 **Criteria** | ✨ **Compliance Evidence** |
 |:----------------|:---------------------------|
 | 🧩 **Problem Description** | Problem describing the availability of rich but unstructured data in video/audio and how this solution addresses it. |
-| 🔍 **Retrieval Flow** | **Qdrant** vector database (knowledge base) + **OpenAI LLM** in a fully integrated retrieval pipeline. |
+| 🔍 **Retrieval Flow** | **Qdrant** vector database ([knowledge base](images/chunk-embed-upsert-4.png)) + **OpenAI LLM** in a fully integrated retrieval pipeline. |
 | 💻 **Interface** | **Streamlit UI** + **FastAPI** backend with full user interaction and seamless responses. |
 | ⚙️ **Ingestion Pipeline** | Automated **Prefect**-orchestrated pipeline for scalable content ingestion and processing. |
 | 📈 **Monitoring** | Real-time **User Feedback Collection** in **AWS RDS PostgreSQL** + **Grafana Cloud** dashboard with 5 analytical charts. |
-| 🐳 **Containerization** | Complete **Docker Compose** setup orchestrating all microservices with isolated environments. |
+| 🐳 **Containerization** | Complete [**Docker Compose**](images/docker-compose-running-multi-containers.png) setup orchestrating all services/containers with isolated environments. |
 | ♻️ **Reproducibility** | Clear instructions, accessible data, and **fully versioned, reproducible** environment setup |
-| 🧠 **Best Practices** | **↳ Query Rewriting:** Implemented intelligent query rewriting for context-aware retrieval and better conversation flow. |
-| ☁️ **Bonus Points** | **↳ Cloud Deployment:** Fully containerized **multicloud architecture** deployed to **AWS EC2**, **Streamlit Cloud**, **Qdrant Cloud**, **AWS RDS PostgreSQL**, and **Grafana Cloud**. |
+| 🧠 **Best Practices** | **↳ Query Rewriting:** Implemented intelligent [query rewriting](rag/rag_control.py) for context-aware retrieval and [conversation history and better flow](images/Query-Rewriting.png). |
+| ☁️ **Bonus Points** | **↳ Cloud Deployment:** Fully containerized **multicloud architecture** deployed to [**AWS EC2**](images/rag-api-containerized-deploy-step3.png), [**Streamlit Cloud**](https://survivor-savant.streamlit.app/), [**Qdrant Cloud**](images/qdrant-cluster-overview.png), [**AWS RDS PostgreSQL**](images/monitoring_feedback_db_creation.png), and [**Grafana Cloud**](https://sapientsapiens.grafana.net/public-dashboards/87d99596e7654e7aaef8d5c4535de037). |
 
 ---
 ## ☁️ Operating the Cloud Deployed Survival Guidance RAG  
