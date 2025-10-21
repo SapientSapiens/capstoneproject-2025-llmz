@@ -14,12 +14,13 @@ st.set_page_config(
 try:
     # For Streamlit Cloud - from secrets
     API_BASE_URL = st.secrets["rag_api"]["url"]
+    st.info("f*******{API_BASE_URL}************")
 except (KeyError, FileNotFoundError):
     # For local development - from environment variable or default
     API_BASE_URL = os.getenv("RAG_API_URL", "http://localhost:8010")
 
 API_URL = f"{API_BASE_URL}/query"
-st.info("f*******{API_BASE_URL}************")
+
 # Initialize database tables for the very first time
 # monitoring.init_tables()
 
