@@ -8,9 +8,11 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 try:
-    DB_CONFIG = st.secrets["DATABASE"]
-    os.environ['DATABASE_HOST'] = DB_CONFIG["HOST"]  # ← Only runs in Streamlit Cloud
-    os.environ['DATABASE_PASSWORD'] = DB_CONFIG["PASSWORD"]
+    # Only runs in Streamlit Cloud
+    # DB_CONFIG_HOST = st.secrets["db_host"]
+    # DB_CONFIG_PASSWORD = st.secrets["db_password"]
+    os.environ['DATABASE_HOST'] = st.secrets["db_host"]  
+    os.environ['DATABASE_PASSWORD'] = st.secrets["db_password"]
 except (KeyError, FileNotFoundError):
     pass  # ← Locally, .env file or system env vars are already set
 
