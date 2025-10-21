@@ -320,22 +320,6 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
   Streamlit App:       http://localhost:8501
 ```
 
-📊 Results ---->>
-
-✅ Fact-grounded survival advice with verified references
-
-📈 Grafana dashboards visualize user sentiment & satisfaction trends
-
-💬 Real feedback loop supports RAG evaluation for continuous improvement
-
-
-📈 Next Steps ---->>
-
-🔍 Retrieval evaluation & LLM evaluation
- 
- 🧬 Hybrid search with both dense and sparse vectors
-
- 📑 Document Re-ranking
 
 
 ## 📊 Project Evaluation Rubric Compliance
@@ -359,5 +343,19 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
 
 ### Please also check my component-wise project developement and execution [images](images/)
+---
 
+## 🚀 Planned Enhancements
+
+ ### 🔍 Retrieval & LLM Evaluation
+ - Implement comprehensive evaluation metrics for retrieval performance
+ - Compare multiple LLM approaches and prompt strategies
+
+ ### 🧬 Hybrid Search Implementation
+ - Combine dense vector embeddings with sparse lexical search
+ - Integrate BM25 with semantic vector search
+
+ ### 📑 Document Re-ranking Pipeline
+
+---
 ### Thank You
