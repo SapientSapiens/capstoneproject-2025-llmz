@@ -19,6 +19,17 @@ except (KeyError, FileNotFoundError):
 def get_db_connection():
     """Create and return a database connection"""
     try:
+         # Debug: Check if we're getting secrets
+        try:
+            st.info("**********************Inside*********************************")
+            db_host = st.secrets["db_host"]
+            db_password = st.secrets["db_password"]
+            st.info(f"Database host: {db_host[:20]}...")  # Show first 20 chars for debugging
+            st.info(f"password: {db_password}...")  # Show first 20 chars for debugging
+        except KeyError as e:
+            st.error(f"Missing secret: {e}")
+            return
+        
         # Set these environment variables with your PostgreSQL credentials -->> In my case AWS cloud RDS 
         conn = psycopg2.connect(
             host=os.getenv('DATABASE_HOST'),
