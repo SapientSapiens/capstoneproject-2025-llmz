@@ -57,8 +57,6 @@ Although implemented for survival knowledge, this architecture is a reusable tem
 
 ---
 
-
-
 ## 📘 Solution Overview  
 **Survival Guidance Assistant** is a modular end-to-end RAG pipeline that transforms raw video transcripts into a **searchable, explainable and survival knowledge base**.  
 
@@ -68,13 +66,17 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
 ---
 
+ ## Data
+  Currently data readily available for each stage in the project repository for only 2 playlists from the channel [*How to Survive*](https://www.youtube.com/@HowToSurviveShow/playlists) and upserted to knowledge base on Qdrant Cloud
 
+---
 ## 🔍 Solution Summary  
 
 | **Stage** | **Description** |
 |:-----------|:----------------|
-| **Ingestion & Chunking** | Extract and chunk transcripts into semantically meaningful segments with metadata (title, chapter, timestamp). |
-| **Embedding & Storage** | Convert chunks to vector embeddings with **FastEmbed** and store them in **Qdrant Cloud** for semantic retrieval. |
+| **Content Catalog Generation** | Generate content catalog with the videos  |
+| **Ingestion & ASR** |  Extracttranscripts into semantically meaningful segments with metadata (title, chapter, timestamp). |
+| **Chunking, Embedding & Storage** | Chunk transcripts & convert them to vector embeddings with **FastEmbed** and store them in **Qdrant Cloud** for semantic retrieval. |
 | **Orchestration** | **Prefect** as the orchestrator for deploying cron-scheduled workflows of the Ingestion and the Chunk-Embed-Upsert pipelines. |
 | **Retrieval-Augmented Generation** | **FastAPI** service retrieves top-matching chunks and crafts context-aware prompts for **OpenAI API**. |
 | **User Interface** | **Streamlit** app for the user interface. |
@@ -284,8 +286,8 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 | Embedding Genration | FastEmbed |
 | Vector DB | Qdrant Cloud |
 | LLM  |  OpenAI API |
-| API Framework | FastAPI |
-| Frontend | Streamlit |
+| Webservice API Framework | FastAPI |
+| User Interface | Streamlit |
 | Feedback Storage | AWS RDS (PostgreSQL) |
 | Monitoring | Grafana Cloud |
 | Containerization | Docker & Docker Compose |
@@ -327,12 +329,13 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 | ☁️ **Bonus Points** | **↳ Cloud Deployment:** Fully containerized **multicloud architecture** deployed to **AWS EC2**, **Streamlit Cloud**, **Qdrant Cloud**, **AWS RDS PostgreSQL**, and **Grafana Cloud**. |
 
 ---
-## 📊 Operating the Cloud Deployed Survival Guidance RAG  
+## ☁️ Operating the Cloud Deployed Survival Guidance RAG  
 
  ![alt text](images/cloud-active.gif)
 
 
 ### Please also check my component-wise project developement and execution [images](images/)
+
 ---
 
 ## 🚀 Planned Enhancements
