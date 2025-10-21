@@ -142,7 +142,7 @@ This project solves that by building an intelligent retrieval system that:
                 ▼                       ▼                       ▼
 ┌─────────────────────────┐  ┌─────────────────────────┐  ┌─────────────────────────┐
 │     Query Processor     │  │    Vector Retriever     │  │    Response Generator   │
-│- User query vector embed│  │  - Coscine similarity   │  │  - OpenAI integration   │
+│- User query vector embed│  │  - Cosine similarity    │  │  - OpenAI integration   │
 │- Conditional Query      |  |  - Top-k retrieval      |  |  - Prompt engineering   |  
 |  re-writing with LLM    │  │                         │  |                         │     
 └─────────────────────────┘  └─────────────────────────┘  └─────────────────────────┘
@@ -152,7 +152,8 @@ This project solves that by building an intelligent retrieval system that:
                                         ▼
                         ┌─────────────────────────────────────────────────┐
                         │                  OPENAI API                     │
-                        │  - LLM for response generation                  │
+                        │  - LLM for response generation                  |
+                        |  - LLM for Qyery Re-writing                     │
                         │  - Context-aware answers                        │
                         └─────────────────────────────────────────────────┘
 
@@ -165,8 +166,8 @@ This project solves that by building an intelligent retrieval system that:
                         ┌─────────────────────────────────────────────────┐
                         │            Streamlit Application                │
                         │  - User interface                               │
-                        │  - Chat history management /Query rewrite       │
-                        │  - Response display                             |
+                        │  - User Query Response                          │
+                        │  -Chat history management /Query rewrite        |
                         |  - User experience feedback collection          │
                         └───────────────┬─────────────────────────────────┘
                                         │
@@ -186,29 +187,28 @@ This project solves that by building an intelligent retrieval system that:
                                                         ┌─────────────────────────────────┐
                                                         │   FEEDBACK DATABASE             │
                                                         │   AWS RDS PostgreSQL            │
-                                                        │  - Upvote (+) Downvote (-)      │
+                                                        │  - Upvote (+) Downvote (-)      | 
+                                                        |  - Qunatitative User            |        
+                                                        |    Satisfaction Level           │
                                                         │  - Categorised Usage            |
-                                                        |    Sentiment 0n Response Quality│
+                                                        |    Sentiment on Response Quality│
                                                         └─────────────┬───────────────────┘
-                                                                        │
-                                                                        ▼
+                                                                      │
+                                                                      ▼
 ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
 │                              MONITORING & ANALYTICS                                             │
 └─────────────────────────────────────────────────────────────────────────────────────────────────┘
 
-                        ┌─────────────────────────────────────────────────┐
-                        │            Grafana Cloud                        │
-                        │  - Performance dashboards                       │
-                        │  - User feedback analytics                      │
-                        │  - System metrics                               │
-                        └───────────────┬─────────────────────────────────┘
-                                        │
-                        ┌───────────────┴───────────────────┐
-                        │          DATA SOURCES             │
-                        └───────────────┬───────────────────┘
-                                        │
+                        ┌──────────────────────────────┐
+                        │            Grafana Cloud     |
+                        │  - Performance dashboards    │
+                        │  - User feedback analytics   │
+                        │  - System metrics            │
+                        └─────────────── ──────────────┘
+                                        ▲
+                                        │             
                                         |
-                                        ▼                      
+                                        |                      
                           ┌────────────────────────────┐
                           │     AWS RDS PostgreSQL     │
                           │    (Feedback Data)         |
