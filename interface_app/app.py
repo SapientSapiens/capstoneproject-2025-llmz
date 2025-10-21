@@ -77,7 +77,7 @@ with col2:
     # Only show feedback form if there's a conversation and feedback hasn't been submitted
     if st.session_state.messages and not st.session_state.feedback_submitted:
         with st.form("feedback_form"):
-            st.subheader("Your Sentiment Regarding The Usage")
+            st.subheader("Usage Sentiment")
             sentiment_options = ["inaccurate", "unclear", "too_long", "too_short", "helpful", "irrelevant"]
             selected_sentiment = st.radio(
                 "Select sentiment:",
