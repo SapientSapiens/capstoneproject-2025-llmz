@@ -314,3 +314,5 @@ This project solves that by building an intelligent retrieval system that:
 
 
 ### Please also check my component-wise project developement and execution [images](images/)
+
+### Thank You
