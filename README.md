@@ -30,7 +30,7 @@ This project solves that by building an intelligent retrieval system that:
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                    SURVIVAL GUIDANCE ASSISTANCE YOUTUBE RAG CHATBOT SYSTEM                      │
+│                            SURVIVAL GUIDANCE ASSISTANCE SYSTEM                                  │
 └─────────────────────────────────────────────────────────────────────────────────────────────────┘
 
                                       ┌─────────────────┐
@@ -89,7 +89,7 @@ This project solves that by building an intelligent retrieval system that:
                                         │
                                         ▼
 ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                      PREFECT ORCHESTRATED INGESTION PIPELINE - PART 1                           │
+│                      PREFECT ORCHESTRATED INGESTION PIPELINE - PART 2                           │
 └─────────────────────────────────────────────────────────────────────────────────────────────────┘
 
                         ┌─────────────────────────────────────────────────┐
@@ -99,11 +99,11 @@ This project solves that by building an intelligent retrieval system that:
                         └───────────────┬─────────────────────────────────┘
                                         │
                                         ▼
-                        ┌─────────────────────────────────────────────────┐
-                        │             Embedding Generator                 │
-                        │  - Model: FastEmbed "BGE-base-en-v1.5"          │
-                        │  - Converts chunks to vector embeddings         │
-                        └───────────────┬─────────────────────────────────┘
+                        ┌─────────────────────────────────────────────────---------------┐
+                        │             Embedding Generator                                │
+                        │  - Model: "BAAI/bge-base-en-v1.5"                              │
+                        │  - Converts chunks to vector embeddings with FastEmbed         │
+                        └───────────────┬─────────────────────────────────---------------┘
                                         │
                                         ▼
                         ┌─────────────────────────────────────────────────┐
@@ -114,7 +114,7 @@ This project solves that by building an intelligent retrieval system that:
                                         │
                                         ▼
                         ┌─────────────────────────────────────────────────┐
-                        │              QDRANT CLOUD                       │
+                        │        QDRANT CLOUD <---> RAG Pipeline          │
                         │  - Vector similarity search                     │
                         │  - Metadata storage                             │
                         │  - Collection management                        │
@@ -129,8 +129,9 @@ This project solves that by building an intelligent retrieval system that:
                         ┌─────────────────────────────────────────────────┐
                         │            FastAPI Application                  │
                         │  - REST API endpoints                           │
-                        │  - Query processing                             │
-                        │  - Vector search orchestration                  │
+                        │  - User Query embedding                         │
+                        │  - Vector search execution                      |
+                        |  - Serves User a strucutured answer from LLM    │
                         └───────────────┬─────────────────────────────────┘
                                         │
                         ┌───────────────┴─────────────────────────────────┐
@@ -141,8 +142,9 @@ This project solves that by building an intelligent retrieval system that:
                 ▼                       ▼                       ▼
 ┌─────────────────────────┐  ┌─────────────────────────┐  ┌─────────────────────────┐
 │     Query Processor     │  │    Vector Retriever     │  │    Response Generator   │
-│  - User query parsing   │  │  - Qdrant similarity    │  │  - OpenAI integration   │
-│  - Context preparation  │  │  - Top-k retrieval      │  │  - Prompt engineering   │
+│- User query vector embed│  │  - Coscine similarity   │  │  - OpenAI integration   │
+│- Conditional Query      |  |  - Top-k retrieval      |  |  - Prompt engineering   |  
+|  re-writing with LLM    │  │                         │  |                         │     
 └─────────────────────────┘  └─────────────────────────┘  └─────────────────────────┘
                 │                       │                       │
                 └───────────────────────┼───────────────────────┘
@@ -163,8 +165,9 @@ This project solves that by building an intelligent retrieval system that:
                         ┌─────────────────────────────────────────────────┐
                         │            Streamlit Application                │
                         │  - User interface                               │
-                        │  - Chat history management                      │
-                        │  - Response display                             │
+                        │  - Chat history management /Query rewrite       │
+                        │  - Response display                             |
+                        |  - User experience feedback collection          │
                         └───────────────┬─────────────────────────────────┘
                                         │
                         ┌───────────────┴─────────────────────────────────┐
