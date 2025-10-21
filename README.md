@@ -286,10 +286,12 @@ docker compose up
 
 📈 Next Steps
 
-🔍 Integrate factual consistency checks
+☁️ Deploy RAG Fast API Service Container on free tier EC2 instance or other free platforms
 
-⚙️ Improve chunk overlap & semantic alignment
+![alt text](images/streamlit-image.png )Deploy the Stramlit Chat app with feedback monitoring capabilities to Streamlit Cloud.
 
-📚 Add new data sources (text & PDFs)
+🔍 Retrieval evaluation & LLM evaluation
 
-☁️ Deploy fully on AWS ECS/Fargate for scalability
+☁️ Deploy the Orchestrated Ingestion Pipeline to a cost effective GCP Compute Engine instance and incorprate rotating proxy mechanism to bypass IP blocks by YouTube!
+
+
