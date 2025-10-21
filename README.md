@@ -69,8 +69,6 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 ---
 
 
----
-
 ## 🔍 Solution Summary  
 
 | **Stage** | **Description** |
@@ -352,7 +350,7 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 | 🐳 **Containerization** | Complete **Docker Compose** setup orchestrating all microservices with isolated environments. |
 | ♻️ **Reproducibility** | Clear instructions, accessible data, and **fully versioned, reproducible** environment setup |
 | 🧠 **Best Practices** | **↳ Query Rewriting:** Implemented intelligent query rewriting for context-aware retrieval and better conversation flow. |
-| ☁️ **Bonus Points** | **↳ Cloud Deployment:** Fully containerized **microservice architecture** deployed to **AWS EC2**, **Streamlit Cloud**, **Qdrant Cloud**, **AWS RDS PostgreSQL**, and **Grafana Cloud**. |
+| ☁️ **Bonus Points** | **↳ Cloud Deployment:** Fully containerized **multicloud architecture** deployed to **AWS EC2**, **Streamlit Cloud**, **Qdrant Cloud**, **AWS RDS PostgreSQL**, and **Grafana Cloud**. |
 
 
 ## 📊 Operating the Cloud Deployed Survival Guidance RAG  
