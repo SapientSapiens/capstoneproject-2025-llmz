@@ -279,9 +279,9 @@ docker compose up
 
 ✅ Fact-grounded survival advice with verified references
 
-📈 Grafana dashboards visualize sentiment & satisfaction trends
+📈 Grafana dashboards visualize user sentiment & satisfaction trends
 
-💬 Real feedback loop supports model evaluation & continuous improvement
+💬 Real feedback loop supports RAG evaluation for continuous improvement
 
 
 📈 Next Steps ---->>
