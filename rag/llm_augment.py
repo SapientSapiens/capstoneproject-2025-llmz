@@ -1,4 +1,3 @@
-import time
 from typing import List, Dict
 
 NOT_IN_CONTEXT = "Not in context"

@@ -1,16 +1,37 @@
-jupyter
-ipykernel
-tqdm
-setuptools
-numpy
-pandas
-requests
-prefect
-yt_dlp
-youtube_transcript_api
-faster-whisper
-qdrant-client[fastembed]>=1.14.2
-openai
+# Core data & utilities
+jupyter>=1.0.0
+ipykernel>=6.0.0
+tqdm>=4.66.0
+setuptools>=68.0.0
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Web & API
+requests>=2.31.0
+
+# Orchestration
+prefect>=2.8.0
+
+# YouTube processing
+yt_dlp>=2023.11.0
+youtube_transcript_api>=0.6.0
+
+# Audio/Whisper
+faster-whisper>=0.9.0
+
+# Vector DB & Embeddings (aligned with rag/requirements.txt)
 fastapi[standard]
-streamlit
-psycopg2-binary
+
+# LLM
+openai>=1.0.0
+
+# API Framework (aligned with rag/requirements.txt)
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.0.0
+
+# UI (aligned with interface_app/requirements.txt)
+streamlit>=1.28.0
+
+# Database
+psycopg2-binary>=2.9.0

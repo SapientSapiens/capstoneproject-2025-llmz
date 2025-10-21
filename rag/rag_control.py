@@ -1,4 +1,3 @@
-import os
 import retrieval
 from llm_augment import rewrite_query_for_qdrant, generate_response
 # from openai import OpenAI
