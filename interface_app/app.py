@@ -13,7 +13,7 @@ st.set_page_config(
 # Get RAG API URL from secrets (Streamlit Cloud) or env var (local)
 try:
     # For Streamlit Cloud - from secrets
-    API_BASE_URL = st.secrets["rag_api"]["url"]
+    API_BASE_URL = st.secrets["rag_api_url"]
     st.info("f*******{API_BASE_URL}************")
 except (KeyError, FileNotFoundError):
     # For local development - from environment variable or default

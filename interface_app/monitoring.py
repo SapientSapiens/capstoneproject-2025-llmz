@@ -11,7 +11,7 @@ try:
     # Only runs in Streamlit Cloud
     # DB_CONFIG_HOST = st.secrets["db_host"]
     # DB_CONFIG_PASSWORD = st.secrets["db_password"]
-    st.info("****************Hello*********************")
+    # st.info("****************Hello*********************")
     os.environ['DATABASE_HOST'] = st.secrets["db_host"]  
     os.environ['DATABASE_PASSWORD'] = st.secrets["db_password"]
 except (KeyError, FileNotFoundError):
