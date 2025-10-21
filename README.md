@@ -260,8 +260,8 @@ This project solves that by building an intelligent retrieval system that:
 
 ```bash
 # 1️⃣ Clone the repo
-git clone https://github.com/SapientSapiens/capstoneproject-2025-llmz.git
-cd capstoneproject-2025-llmz
+  git clone https://github.com/SapientSapiens/capstoneproject-2025-llmz.git
+  cd capstoneproject-2025-llmz
 
 # 2️⃣ Create a .env file with your credentials at the project root
   touch .env
