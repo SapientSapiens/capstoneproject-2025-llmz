@@ -1,15 +1,23 @@
 import os
 import psycopg2
+import streamlit as st
 import logging
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+try:
+    DB_CONFIG = st.secrets["DATABASE"]
+    os.environ['DATABASE_HOST'] = DB_CONFIG["HOST"]  # ← Only runs in Streamlit Cloud
+    os.environ['DATABASE_PASSWORD'] = DB_CONFIG["PASSWORD"]
+except (KeyError, FileNotFoundError):
+    pass  # ← Locally, .env file or system env vars are already set
+
 def get_db_connection():
     """Create and return a database connection"""
     try:
-        # You'll need to set these environment variables with your cloud PostgreSQL credentials
+        # Set these environment variables with your PostgreSQL credentials -->> In my case AWS cloud RDS 
         conn = psycopg2.connect(
             host=os.getenv('DATABASE_HOST'),
             user="postgres",

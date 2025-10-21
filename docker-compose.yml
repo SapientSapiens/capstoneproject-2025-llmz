@@ -3,7 +3,7 @@ version: "3.9"
 services:
   rag_api:
     build:
-      context: ./rag  # Changed context
+      context: ./rag  
       dockerfile: Dockerfile
     container_name: rag_api
     ports:
@@ -12,7 +12,7 @@ services:
       - QDRANT_API_KEY=${QDRANT_API_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8010/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8010/"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -21,7 +21,7 @@ services:
 
   streamlit_app:
     build:
-      context: ./interface_app  # Changed context
+      context: ./interface_app  
       dockerfile: Dockerfile
     container_name: streamlit_app
     ports:
@@ -30,9 +30,9 @@ services:
       rag_api:
         condition: service_healthy
     environment:
-      # Complete database connection details
       - DATABASE_HOST=${DATABASE_HOST}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - RAG_API_URL=http://rag_api:8010  # Added this for your Streamlit app to connect
     networks:
       - project-network
 

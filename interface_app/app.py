@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import requests
 import monitoring
@@ -9,9 +10,17 @@ st.set_page_config(
     layout="wide",  # Changed to wide for side-by-side layout
 )
 
-API_URL = "http://localhost:8010/query"
+# Get RAG API URL from secrets (Streamlit Cloud) or env var (local)
+try:
+    # For Streamlit Cloud - from secrets
+    API_BASE_URL = st.secrets["RAG_API"]["URL"]
+except (KeyError, FileNotFoundError):
+    # For local development - from environment variable or default
+    API_BASE_URL = os.getenv("RAG_API_URL", "http://localhost:8010")
 
-# Initialize database tables for the very first times
+API_URL = f"{API_BASE_URL}/query"
+
+# Initialize database tables for the very first time
 # monitoring.init_tables()
 
 # ---- UI Header ----
