@@ -20,7 +20,7 @@ youtube_transcript_api>=0.6.0
 faster-whisper>=0.9.0
 
 # Vector DB & Embeddings (aligned with rag/requirements.txt)
-fastapi[standard]
+qdrant-client[fastembed]>=1.14.2
 
 # LLM
 openai>=1.0.0
