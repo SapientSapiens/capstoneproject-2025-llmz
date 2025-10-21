@@ -247,7 +247,8 @@ This project solves that by building an intelligent retrieval system that:
 
 | **Layer** | **Technology** |
 |:-----------|:---------------|
-| LLM & RAG | OpenAI API + FastEmbed |
+| LLM & RAG | OpenAI API  |
+| Embedding Genration | FastEmbed |
 | Vector DB | Qdrant Cloud |
 | API Framework | FastAPI |
 | Frontend | Streamlit |
@@ -303,7 +304,7 @@ This project solves that by building an intelligent retrieval system that:
 | ⚙️ **Ingestion Pipeline** | Automated **Prefect**-orchestrated pipeline for scalable content ingestion and processing. |
 | 📈 **Monitoring** | Real-time **User Feedback Collection** in **AWS RDS PostgreSQL** + **Grafana Cloud** dashboard with 5 analytical charts. |
 | 🐳 **Containerization** | Complete **Docker Compose** setup orchestrating all microservices with isolated environments. |
-| ♻️ **Reproducibility** | Clear instructions, accessible data, and **fully versioned, reproducible** environment setup. |
+| ♻️ **Reproducibility** | Clear instructions, accessible data, and **fully versioned, reproducible** environment setup |
 | 🧠 **Best Practices** | **↳ Query Rewriting:** Implemented intelligent query rewriting for context-aware retrieval and better conversation flow. |
 | ☁️ **Bonus Points** | **↳ Cloud Deployment:** Fully containerized **microservice architecture** deployed to **AWS EC2**, **Streamlit Cloud**, **Qdrant Cloud**, **AWS RDS PostgreSQL**, and **Grafana Cloud**. |
 
