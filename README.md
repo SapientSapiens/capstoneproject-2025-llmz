@@ -2,7 +2,7 @@
 *A Retrieval-Augmented Generation System for Evidence-Based Survival Advice*
 
 ---
-
+ ![alt text](images/profile-pic.png)
 
 ## 🟠 Problem Description : The Challenge of Unlocking Structured Knowledge from Unstructured Media
 
@@ -70,7 +70,7 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
   Currently data readily available for each stage in the project repository for only [2 playlists](/playlists.properties) from the channel [*How to Survive*](https://www.youtube.com/@HowToSurviveShow/playlists) and upserted to knowledge base on Qdrant Cloud. One is [*Natural Disasters*](https://www.youtube.com/playlist?list=PLSG9IRx05GOlqnHGUm2bYVi2KPXYC_lTg) and the other is [*Health*](https://www.youtube.com/playlist?list=PLSG9IRx05GOn-ioDWMw5-92PsbPi-MHSH)
 
   > However, it is pertinent to mention that before using the data, permission might have to be taken from the content creator. For educational purposes such as this and the hugely transformative nature of process dealing with the data/content, a fair use allowance could be inferred.
-  
+
 ---
 ## 🔍 Solution Summary  
 
