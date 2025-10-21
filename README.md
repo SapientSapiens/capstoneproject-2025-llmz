@@ -275,7 +275,7 @@ docker compose up
 # - Streamlit App:       http://localhost:8501
 ```
 
-📊 Results
+📊 Results ---->>
 
 ✅ Fact-grounded survival advice with verified references
 
@@ -284,7 +284,7 @@ docker compose up
 💬 Real feedback loop supports model evaluation & continuous improvement
 
 
-📈 Next Steps
+📈 Next Steps ---->>
 
 ☁️ Deploy RAG Fast API Service Container on free tier EC2 instance or other free platforms
 
