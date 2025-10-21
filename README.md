@@ -1,4 +1,4 @@
-# 🧭 Survival Guidance RAG  
+# 🧭 Survival Guidance Assistant  
 *A Retrieval-Augmented Generation System for Evidence-Based Survival Advice*
 
 ---
