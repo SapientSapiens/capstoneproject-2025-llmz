@@ -288,7 +288,7 @@ docker compose up
 
 ☁️ Deploy RAG Fast API Service Container on free tier EC2 instance or other free platforms
 
-![alt text](images/streamlit-image.png )Deploy the Stramlit Chat app with feedback monitoring capabilities to Streamlit Cloud.
+![alt text](images/streamlit-image.png ) Deploy the Stramlit Chat app with feedback monitoring capabilities to Streamlit Cloud.
 
 🔍 Retrieval evaluation & LLM evaluation
 
