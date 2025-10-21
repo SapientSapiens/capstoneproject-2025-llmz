@@ -256,23 +256,23 @@ This project solves that by building an intelligent retrieval system that:
 | Containerization | Docker & Docker Compose |
 
 
-## 🚀 Quick Start  
+## 🚀 Quick Start  - Reproducibility
 
 ```bash
 # 1️⃣ Clone the repo
-git clone https://github.com/<your-username>/capstoneproject-2025-llmz.git
+git clone https://github.com/SapientSapiens/capstoneproject-2025-llmz.git
 cd capstoneproject-2025-llmz
 
-# 2️⃣ Create a .env file with your credentials
-cp .env.example .env
+# 2️⃣ Create a .env file with your credentials at the project root
+  touch .env
 
 # 3️⃣ Build & start both services
-docker compose build
-docker compose up
+  docker compose up --build # if running for the first time
+  docker compose up
 
 # 4️⃣ Access the interfaces
-# - FastAPI (RAG API):   http://localhost:8010/docs
-# - Streamlit App:       http://localhost:8501
+  FastAPI (RAG API):   http://localhost:8010 -->> will show status "status": "ready"
+  Streamlit App:       http://localhost:8501
 ```
 
 📊 Results ---->>
