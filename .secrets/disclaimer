@@ -1,2 +1,2 @@
 This Google OAuth secret for is only for the indicative purpose of learning and evaluation. 
-In real life project, we should never commit/push secrects or API keys, .env files, secrets. And please be very vigilant on that.
+In real life project, we should never commit/push secrects or API keys, .env files, secrets. And we need to be very vigilant on that.

@@ -9,10 +9,8 @@ services:
     ports:
       - "8010:8010"
     environment:
-      - QDRANT_URL=${QDRANT_URL}
       - QDRANT_API_KEY=${QDRANT_API_KEY}
-      - GEMINI_API_KEY=${GEMINI_API_KEY}
-      - LLM_API_KEY=${LLM_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8010/health"]
       interval: 10s
@@ -34,28 +32,9 @@ services:
     environment:
       # Complete database connection details
       - DATABASE_HOST=${DATABASE_HOST}
-      - DATABASE_PORT=${DATABASE_PORT:-5432}
-      - DATABASE_NAME=${DATABASE_NAME:-feedback_db}
-      - DATABASE_USER=${DATABASE_USER}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-      # RAG API connection
-      - RAG_API_URL=http://rag_api:8010
-      - GRAFANA_URL=${GRAFANA_URL}
-      - GEMINI_API_KEY=${GEMINI_API_KEY}
     networks:
       - project-network
-
-  # Add if you want a local database for development
-  # postgres:
-  #   image: postgres:13
-  #   environment:
-  #     POSTGRES_DB: ${DATABASE_NAME:-feedback_db}
-  #     POSTGRES_USER: ${DATABASE_USER}
-  #     POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-  #   ports:
-  #     - "5432:5432"
-  #   networks:
-  #     - project-network
 
 networks:
   project-network:
