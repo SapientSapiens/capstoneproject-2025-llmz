@@ -276,17 +276,6 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
 ---
 
-## 🧠 Key Features  
-
-- ⚙️ Semantic retrieval pipeline built on **Qdrant + embeddings**  
-- 🧾 Source-cited answers with **references and timestamps**  
-- 🗣️ Context-aware LLM integration using **OpenAI API**  
-- 📊 Real-time user feedback stored in **AWS RDS** and visualized in [**Grafana Cloud**](https://sapientsapiens.grafana.net/public-dashboards/87d99596e7654e7aaef8d5c4535de037)  
-- 🧰 Lightweight and portable architecture via **Docker Compose**  
-- ☁️ Cloud-managed services for Qdrant, Postgres, and Grafana  
-
----
-
 ## 🧱 Tech Stack  
 
 | **Layer** | **Technology** |
@@ -336,7 +325,7 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 | 🧠 **Best Practices** | **↳ Query Rewriting:** Implemented intelligent query rewriting for context-aware retrieval and better conversation flow. |
 | ☁️ **Bonus Points** | **↳ Cloud Deployment:** Fully containerized **multicloud architecture** deployed to **AWS EC2**, **Streamlit Cloud**, **Qdrant Cloud**, **AWS RDS PostgreSQL**, and **Grafana Cloud**. |
 
-
+---
 ## 📊 Operating the Cloud Deployed Survival Guidance RAG  
 
  ![alt text](images/cloud-active.gif)
@@ -355,7 +344,7 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
  - Combine dense vector embeddings with sparse lexical search
  - Integrate BM25 with semantic vector search
 
- ### 📑 Document Re-ranking Pipeline
+ ### 📑 Document Re-ranking
 
 ---
 ### Thank You
