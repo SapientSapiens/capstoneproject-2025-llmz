@@ -286,13 +286,31 @@ This project solves that by building an intelligent retrieval system that:
 
 📈 Next Steps ---->>
 
-☁️ Deploy RAG Fast API Service Container on free tier EC2 instance or other free platforms
-
-![alt text](images/streamlit-image.png ) Deploy the Stramlit Chat app with feedback monitoring capabilities to Streamlit Cloud.
-
 🔍 Retrieval evaluation & LLM evaluation
+ 
+ 🧬 Hybrid search with both dense and sparse vectors
 
-☁️ Deploy the Orchestrated Ingestion Pipeline to a cost effective GCP Compute Engine instance and incorprate rotating proxy mechanism to bypass IP blocks by YouTube!
+ 📑 Document Re-ranking
+
+
+## 📊 Project Evaluation Rubric Compliance
+
+| 🌟 **Criteria** | ✨ **Compliance Evidence** |
+|:----------------|:---------------------------|
+| 🧩 **Problem Description** | Problem definition of availability of rich subject/domain data from video/audio transcripts and how this solution addresses it. |
+| 🔍 **Retrieval Flow** | **Qdrant** vector database (knowledge base) + **OpenAI LLM** in a fully integrated retrieval pipeline. |
+| 💻 **Interface** | **Streamlit UI** + **FastAPI** backend with full user interaction and seamless responses. |
+| ⚙️ **Ingestion Pipeline** | Automated **Prefect**-orchestrated pipeline for scalable content ingestion and processing. |
+| 📈 **Monitoring** | Real-time **User Feedback Collection** in **AWS RDS PostgreSQL** + **Grafana Cloud** dashboard with 5 analytical charts. |
+| 🐳 **Containerization** | Complete **Docker Compose** setup orchestrating all microservices with isolated environments. |
+| ♻️ **Reproducibility** | Clear instructions, accessible data, and **fully versioned, reproducible** environment setup. |
+| 🧠 **Best Practices** | **↳ Query Rewriting:** Implemented intelligent query rewriting for context-aware retrieval and better conversation flow. |
+| ☁️ **Bonus Points** | **↳ Cloud Deployment:** Fully containerized **microservice architecture** deployed to **AWS EC2**, **Streamlit Cloud**, **Qdrant Cloud**, **AWS RDS PostgreSQL**, and **Grafana Cloud**. |
+
+
+## 📊 Operating the Cloud Deployed Survival Guidance RAG  
+
+ ![alt text](images/cloud-active.gif)
 
 
 ### Please also check my component-wise project developement and execution [images](images/)
