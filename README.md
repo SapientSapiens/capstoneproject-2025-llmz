@@ -1,10 +1,9 @@
 # 🧭 Survival Guidance Assistant  
 *A Retrieval-Augmented Generation System for Evidence-Based Survival Advice*
 
----
  ![alt text](images/profile-pic.png)
 
-## 🟠 Problem Description : The Challenge of Unlocking Structured Knowledge from Unstructured Media
+## 🟠 Problem Description : Unlocking Structured Knowledge from Unstructured Media
 
 ### The Information Accessibility Problem
 In today's digital landscape, valuable expert knowledge remains trapped in unstructured formats—particularly in video and audio content. While platforms like YouTube host incredible domain expertise, this knowledge is:
@@ -57,7 +56,7 @@ Although implemented for survival knowledge, this architecture is a reusable tem
 
 ---
 
-## 📘 Solution Overview  
+## 🟢 Solution Overview  
 **Survival Guidance Assistant** is a modular end-to-end RAG pipeline that transforms raw video transcripts into a **searchable, explainable and survival knowledge base**.  
 
 Users can query the system via a [**Streamlit interface**](https://survivor-savant.streamlit.app/), get **evidence-backed answers** structured by OpenAI but strictly based on a knowledge base of transripts from playlist of the popular YouTube channel *How to survive*, and submit usage feedback through the interface.
@@ -72,7 +71,7 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
   > However, it is pertinent to mention that before using the data, permission might have to be taken from the content creator. For educational purposes such as this and the hugely transformative nature of process dealing with the data/content, a fair use allowance could be inferred.
 
 ---
-## 🔍 Solution Summary  
+## ⚙️ Solution Summary  
 
 | **Stage** | **Description** |
 |:-----------|:----------------|
