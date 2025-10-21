@@ -280,9 +280,10 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
 | **Layer** | **Technology** |
 |:-----------|:---------------|
-| LLM & RAG | OpenAI API  |
+| Automatic Speech Recognition|  Faster Whisper |
 | Embedding Genration | FastEmbed |
 | Vector DB | Qdrant Cloud |
+| LLM  |  OpenAI API |
 | API Framework | FastAPI |
 | Frontend | Streamlit |
 | Feedback Storage | AWS RDS (PostgreSQL) |
