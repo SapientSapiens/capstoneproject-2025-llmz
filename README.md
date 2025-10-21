@@ -57,6 +57,7 @@ Although implemented for survival knowledge, this architecture is a reusable tem
 ---
 
 ## 🟢 Solution Overview  
+
 **Survival Guidance Assistant** is a modular end-to-end RAG pipeline that transforms raw video transcripts into a **searchable, explainable and survival knowledge base**.  
 
 Users can query the system via a [**Streamlit interface**](https://survivor-savant.streamlit.app/), get **evidence-backed answers** structured by OpenAI but strictly based on a knowledge base of transripts from playlist of the popular YouTube channel *How to survive*, and submit usage feedback through the interface.
@@ -66,38 +67,62 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 ---
 
  ## 📚 Data 
-  Currently data readily available for each stage in the project repository for only [2 playlists](/playlists.properties) from the channel [*How to Survive*](https://www.youtube.com/@HowToSurviveShow/playlists) and upserted to knowledge base on Qdrant Cloud. One is [*Natural Disasters*](https://www.youtube.com/playlist?list=PLSG9IRx05GOlqnHGUm2bYVi2KPXYC_lTg) and the other is [*Health*](https://www.youtube.com/playlist?list=PLSG9IRx05GOn-ioDWMw5-92PsbPi-MHSH)
+ 
+  Currently data readily available for each stage in the project repository for only [2 playlists](/playlists.properties) from the channel [*How to Survive*](https://www.youtube.com/@HowToSurviveShow/playlists) and upserted to knowledge base on [Qdrant Cloud](images/Qdrant-colour.mp4). One is [*Natural Disasters*](https://www.youtube.com/playlist?list=PLSG9IRx05GOlqnHGUm2bYVi2KPXYC_lTg) and the other is [*Health*](https://www.youtube.com/playlist?list=PLSG9IRx05GOn-ioDWMw5-92PsbPi-MHSH)
 
   > However, it is pertinent to mention that before using the data, permission might have to be taken from the content creator. For educational purposes such as this and the hugely transformative nature of process dealing with the data/content, a fair use allowance could be inferred.
 
 ---
-## ⚙️ Solution Summary  
 
-| **Stage** | **Description** |
-|:-----------|:----------------|
-| **Content Catalog Generation** | Generate content catalog with the videos  |
-| **Ingestion & ASR** |  Extracttranscripts into semantically meaningful segments with metadata (title, chapter, timestamp). |
-| **Chunking, Embedding & Storage** | Chunk transcripts & convert them to vector embeddings with **FastEmbed** and store them in **Qdrant Cloud** for semantic retrieval. |
-| **Orchestration** | **Prefect** as the orchestrator for deploying cron-scheduled workflows of the Ingestion and the Chunk-Embed-Upsert pipelines. |
-| **Retrieval-Augmented Generation** | **FastAPI** service retrieves top-matching chunks and crafts context-aware prompts for **OpenAI API**. |
-| **User Interface** | **Streamlit** app for the user interface. |
-| **Feedback Loop** | User feedback (sentiment, clarity, satisfaction) logged to **PostgreSQL** and visualized via **Grafana Cloud**. |
-| **Deployment** | Two lightweight containers — `rag_api` (FastAPI) and `streamlit_app` (UI) — orchestrated via **Docker Compose**. |
+## 🔧 Tech Stack  
+
+ | **Layer** | **Technology**  |
+ |:-----------|:---------------|
+ | Transcript extraction & audio track download | YouTube DATA API, YouTubeTranscriptApi, yt_dlp
+ | Automatic Speech Recognition|  Faster Whisper |
+ | Embedding Genration | FastEmbed |
+ | Vector DB | Qdrant Cloud |
+ | LLM  |  OpenAI API |
+ | Webservice API Framework | FastAPI |
+ | User Interface | Streamlit |
+ | Feedback Storage | AWS RDS (PostgreSQL) |
+ | Monitoring | Grafana Cloud |
+ | Containerization | Docker & Docker Compose |
 
 ---
 
-## 🧩 Architecture Overview  
+
+## ⚙️ Solution Summary  
+
+ | **Stage** | **Description** |
+ |:-----------|:----------------|
+ | **Content Catalog Generation** | Generate [content catalog](ingestion/content_catalog.py) from the metadata of videos from playlists in input properties file with *YouTube Data API* |
+ | **Identify New Videos** | Compares the previous content catalog and the newly generated one to identify new videos to extract transcripts from or download audio tracks with *yt_dlp* for those without any transcript options|
+ | **Transcript Ingestion** |  [Extract transcripts](ingestion/transcript_ingestion.py) from the identified videos with *YouTubeTranscriptApi* |
+ | **ASR**  | Video without transcripts and those failing transcript extraction are lined up for [ASR](ingestion/asr_operation.py) and processed throught **Faster Whisper** |
+ | **Chunking, Embedding & Storage** | [ Chunk transcripts](ingestion/transcript_chunking.py) into semantically meaningful segments with metadata (title, chapter, timestamp).& convert them to vector embeddings with **FastEmbed** and [store them](ingestion/chunk_embedding_upserting.py) in **Qdrant Cloud** for semantic retrieval. |
+ | **Orchestration** | **Prefect** as the orchestrator for deploying cron-scheduled workflows of the [Ingestion](orchestration/orchestrated_content_ingestion.py) and the [Chunk-Embed-Upsert](orchestration/orchestrated_chunking_embedding_upsert.py) pipelines. |
+ | **Retrieval** | [**FastAPI** service](rag/rag_service_serve.py) now [retrieves](rag/retrieval.py) top-matching chunks and sorts them in descending order of their cosine similarity |
+ | **Augmented Generation** | These chunks are then used as context in the prompt-templates for dynamic generation of prompts to be [sent to an LLM](rag/llm_augment.py) with **OpenAI API**  |
+ | **User Interface** | **Streamlit** [app](interface_app/app.py) for the user interface complete with User Feedback mechanism for [monitoring](interface_app/monitoring.py) |
+ | **Feedback Loop** | User feedback (sentiment, clarity, satisfaction) logged to **PostgreSQL** and visualized via [**Grafana Cloud**](https://sapientsapiens.grafana.net/public-dashboards/87d99596e7654e7aaef8d5c4535de037). |
+ | **Deployment** | Two lightweight containers — [`rag_api`](rag/Dockerfile) (FastAPI) and [`streamlit_app`](interface_app/Dockerfile) (UI) — orchestrated via [**Docker Compose**](docker-compose.yml) |
+
+
+---
+
+## 🧩🧱 Architecture Overview  
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
 │                            SURVIVAL GUIDANCE ASSISTANCE SYSTEM                                  │
 └─────────────────────────────────────────────────────────────────────────────────────────────────┘
 
-                                      ┌─────────────────┐
-                                      │   INPUT SOURCE  │
-                                      │ YouTube Playlist│
-                                      │      URLs       │
-                                      └─────────┬───────┘
+                                      
+                                      ┌──────────────────────────────────┐
+                                      │   INPUT SOURCE : properties file │
+                                      │       YouTube Playlist URLs      │
+                                      └─────────┬────────────────────────
                                                 │
                                                 ▼
 ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -276,24 +301,6 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
 ```
 
-
----
-
-## 🧱 Tech Stack  
-
-| **Layer** | **Technology** |
-|:-----------|:---------------|
-| Automatic Speech Recognition|  Faster Whisper |
-| Embedding Genration | FastEmbed |
-| Vector DB | Qdrant Cloud |
-| LLM  |  OpenAI API |
-| Webservice API Framework | FastAPI |
-| User Interface | Streamlit |
-| Feedback Storage | AWS RDS (PostgreSQL) |
-| Monitoring | Grafana Cloud |
-| Containerization | Docker & Docker Compose |
-
-
 ## 🚀 Quick Start  - Reproducibility
 
 ```bash
@@ -319,7 +326,7 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
 | 🌟 **Criteria** | ✨ **Compliance Evidence** |
 |:----------------|:---------------------------|
-| 🧩 **Problem Description** | Problem definition of availability of rich subject/domain data from video/audio transcripts and how this solution addresses it. |
+| 🧩 **Problem Description** | Problem describing the availability of rich but unstructured data in video/audio and how this solution addresses it. |
 | 🔍 **Retrieval Flow** | **Qdrant** vector database (knowledge base) + **OpenAI LLM** in a fully integrated retrieval pipeline. |
 | 💻 **Interface** | **Streamlit UI** + **FastAPI** backend with full user interaction and seamless responses. |
 | ⚙️ **Ingestion Pipeline** | Automated **Prefect**-orchestrated pipeline for scalable content ingestion and processing. |
@@ -350,6 +357,8 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
  - Integrate BM25 with semantic vector search
 
  ### 📑 Document Re-ranking
+
+ ### 👨‍💻 Admin account functionality for entering playlist urls from a Streamlit interface and runiing the ingestion pipeline on the new playlist(s)
 
 ---
 ### Thank You
