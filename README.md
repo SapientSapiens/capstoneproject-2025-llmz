@@ -3,26 +3,68 @@
 
 ---
 
-## 📘 Overview  
+
+## 🟠 Problem Description : The Challenge of Unlocking Structured Knowledge from Unstructured Media
+
+### The Information Accessibility Problem
+In today's digital landscape, valuable expert knowledge remains trapped in unstructured formats—particularly in video and audio content. While platforms like YouTube host incredible domain expertise, this knowledge is:
+
+- 🔒 **Temporally locked** in hour-long videos  
+- 🔗 **Structurally fragmented** across multiple content pieces  
+- 🔍 **Difficult to search** beyond basic metadata  
+- 🔄 **Lacking cross-references** between related concepts
+
+---
+
+## 🚀 The Solution: A Survival Knowledge Intelligence Platform
+This project demonstrates how to transform unstructured survival content into an **intelligent, queryable knowledge base** using the *"How to Survive"* YouTube channel as a domain case study.
+
+### The Transformation Pipeline
+We've engineered an end-to-end system that revolutionizes how we interact with media content:
+
+| Traditional Media | ➡️ | Our Intelligent System |
+|---:|:---:|:---|
+| 📺 Passive video consumption | → | 🔍 Active knowledge retrieval |
+| 🎯 Manual content searching | → | 🤖 Semantic understanding of queries |
+| 📝 Note-taking & bookmarking | → | 💾 Automated knowledge extraction |
+| ❓ Isolated information | → | 🔗 Cross-referenced insights |
+
+---
+
+## ⚡ Real-World Impact
+For survival scenarios where seconds count, our system delivers:
+
+- ⚡ **Rapid access** to precise survival procedures  
+- 📚 **Evidence-backed guidance** sourced from trusted content  
+- 🎯 **Context-aware responses** tailored to specific emergencies  
+- 🔄 **Continuous improvement** through user feedback loops
+
+---
+
+## 🌟 Beyond Survival: A Blueprint for Domain Intelligence
+Although implemented for survival knowledge, this architecture is a reusable template for building intelligent knowledge bases in any domain:
+
+- 🏥 Medical education from expert lectures  
+- 💻 Technical training from tutorial content  
+- 🏢 Corporate knowledge from internal presentations  
+- 🎓 Academic research from conference recordings
+
+---
+
+> 💡 **This isn't just another RAG system** — it's a production-grade framework for transforming any media repository into an interactive knowledge companion. Features include ingestion, RAG retrieval, LLM reasoning, monitoring, user feedback, and cloud-native deployment.  
+>
+> **The result:** a transparent, reliable assistant that makes expert knowledge instantly accessible — backed by the original sources that generated it.
+
+---
+
+
+
+## 📘 Solution Overview  
 **Survival Guidance Assistant** is a modular end-to-end RAG pipeline that transforms raw video transcripts into a **searchable, explainable and survival knowledge base**.  
 
 Users can query the system via a [**Streamlit interface**](https://survivor-savant.streamlit.app/), get **evidence-backed answers** structured by OpenAI but strictly based on a knowledge base of transripts from playlist of the popular YouTube channel *How to survive*, and submit usage feedback through the interface.
 
 > 💡 Built as a capstone project for the DataTalks.Club LLM Zoomcamp, this project demonstrates full-stack RAG application development engineered with MLOps practices — ingestion, RAG retrieval, LLM reasoning, monitoring, and containerization with Docker & Docker Compose — culminating in a multi-cloud deployment where diverse services orchestrate seamlessly to deliver a consolidated, intelligent, and production-ready retrieval experience.
-
----
-
-## 🎯 Problem Description  
-
-Online survival content (videos, blogs, forums) is **fragmented, redundant, and often inaccurate**.  
-Finding **trustworthy, context-specific survival advice** during emergencies — floods, earthquakes, wildfires, or epidemics — is difficult.
-
-This project solves that by building an intelligent retrieval system that:
-- Finds **relevant, factual content** from survival video transcripts  
-- Synthesizes concise, **source-backed answers** using an LLM  
-- Captures **user feedback** to continuously improve system quality  
-
-✅ **Result:** A transparent and reliable assistant that combines semantic search, retrieval augmentation, and real-time feedback monitoring.
 
 ---
 
