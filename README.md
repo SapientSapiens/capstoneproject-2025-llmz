@@ -305,12 +305,6 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
    #### 🏭Kindly set up the environment and configuration of the VM or your local machine (with WSL). Sequentially proceeed : ####
 
-   - Installing annaconda
-
-            wget https://repo.anaconda.com/archive/Anaconda3-2024.10-1-Linux-x86_64.sh
-
-            bash Anaconda3-2024.10-1-Linux-x86_64.sh
-
    - Install docker
 
             update apt before doing so
@@ -341,7 +335,7 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
     return to home directory and add the path to the bin directory to the PATH variable in .bashrc
 
-             cd ~
+            cd ~
 
             nano .bashrc
 
