@@ -303,25 +303,6 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
 ## ♻️⟶ 🔁 ⟶ Reporoducibility
 
-```bash
-# 1️⃣ Clone the repo
-  git clone https://github.com/SapientSapiens/capstoneproject-2025-llmz.git
-  cd capstoneproject-2025-llmz
-
-# 2️⃣ Create a .env file with your credentials at the project root
-  touch .env
-
-# 3️⃣ Build & start both services
-  docker compose up --build # if running for the first time
-  docker compose up
-
-# 4️⃣ Access the interfaces
-  FastAPI (RAG API):   http://localhost:8010 -->> will show status "status": "ready"
-  Streamlit App:       http://localhost:8501
-```
-
----
-
    #### 🏭Kindly set up the environment and configuration of the VM or your local machine (with WSL). Sequentially proceeed : ####
 
    - Installing annaconda
@@ -386,9 +367,9 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
             pip install -r requirements.txt
 
    
-    #### 🚀Run the ingestion pipeline : ####
+  #### 🚀Run the ingestion pipeline : ####
 
-    - Start the Prefect server. 
+   - Start the Prefect server. 
 
             prefect server start
 
