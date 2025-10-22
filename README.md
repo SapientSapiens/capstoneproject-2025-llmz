@@ -301,7 +301,7 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
 ```
 
-## 🚀 Quick Start  - Reproducibility
+## ♻️⟶ 🔁 ⟶ Reporoducibility
 
 ```bash
 # 1️⃣ Clone the repo
@@ -320,7 +320,107 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
   Streamlit App:       http://localhost:8501
 ```
 
+---
 
+   #### 🏭Kindly set up the environment and configuration of the VM or your local machine (with WSL). Sequentially proceeed : ####
+
+   - Installing annaconda
+
+            wget https://repo.anaconda.com/archive/Anaconda3-2024.10-1-Linux-x86_64.sh
+
+            bash Anaconda3-2024.10-1-Linux-x86_64.sh
+
+   - Install docker
+
+            update apt before doing so
+
+            sudo apt update   
+
+            sudo apt install docker.io
+
+            sudo gpasswd -a $USER docker
+
+            sudo service docker restart
+
+     loguot and re-login into the VM to this take effect
+
+  - Install docker-compose
+
+    create a directory bin in the home directory of the VM and get inside the same
+
+            mkdir bin
+
+            cd bin
+
+    download docker-compose and make it executable
+
+            wget https://github.com/docker/compose/releases/download/v2.34.0/docker-compose-linux-x86_64 -O docker-compose
+
+            chmod +x docker-compose
+
+    return to home directory and add the path to the bin directory to the PATH variable in .bashrc
+
+             cd ~
+
+            nano .bashrc
+
+            export PATH="${HOME}/bin:${PATH}"  # add this line at the end of the .bashrc file. Also add the following lines
+            export QDRANT_API_KEY="your_qdrant_api_key"
+            export YT_DATA_API_CLIENT_ID="your_YouTube_Data_API_client_id"
+            export YT_DATA_API_CLIENT_SECRET="your_YouTube_Data_API_client_secret"
+            export YT_DATA_API_REFRESH_TOKEN="your_YouTube_Data_API_refresh_token"
+            export YT_DATA_API_KEY="your_YouTube_Data_API_key"     #  Save and exit the nano editor.
+
+            source .bashrc
+
+
+   - Git clone this repository 
+
+            git clone https://github.com/SapientSapiens/capstoneproject-2025-llmz.git 
+
+
+   - Go inside the repository
+
+            cd capstoneproject-2025-llmz
+
+            pip install -r requirements.txt
+
+   
+    #### 🚀Run the ingestion pipeline : ####
+
+    - Start the Prefect server. 
+
+            prefect server start
+
+   - Now you can run the orchestrated ingestion pipeline for the first time. 
+
+            python -m orchestration.orchestrated_content_ingestion --run-now
+
+            python -m orchestration.orchestrated_chunking_embedding_upsert --run-now  # run this after the previous flow finishes
+
+   - Then you can deploy the training pipeline orchestrated workflows to Prefect. They shall execute automatically at the scheduled (set with a cron expression in the main flow) time.
+
+             python -m orchestration.orchestrated_content_ingestion
+
+             python -m orchestration.orchestrated_chunking_embedding_upsert # have to run this in a seprate tab of the terminal
+
+   
+   #### 📦 Spin up the RAG and Interface app service containers  : ####
+
+   - After the ingestion pipeline successfully runs to completion, you would have the playlist videos' transcripts (or audio tracks converted to transcripts) chunked, vectorized and upserted to your Qdrant Cloud Cluster
+
+   - Now just populate the dummy valued .env file given in the repo with your appropriate values (keys, passwords, etc).
+
+   - So now we only have to spin up the containers (one for the RAG service serving and the other for the Streamlit app) in a orchestrated way with docker-compose. 
+
+            docker compose up --build 
+
+  - Once the services/containers are up, you can invoke 
+
+            FastAPI (RAG API):   http://localhost:8010 -->> will show status "status": "ready"
+            Streamlit App:       http://localhost:8501 -->> will present you the interface app
+
+---
 
 ## 📊 Project Evaluation Rubric Compliance
 
@@ -328,7 +428,7 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 |:----------------|:---------------------------|
 | 🧩 **Problem Description** | Problem describing the availability of rich but unstructured data in video/audio and how this solution addresses it. |
 | 🔍 **Retrieval Flow** | **Qdrant** vector database ([knowledge base](images/chunk-embed-upsert-4.png)) + **OpenAI LLM** in a fully integrated retrieval pipeline. |
-| 💻 **Interface** | **Streamlit UI** + **FastAPI** backend with full user interaction and seamless responses. |
+| 💻 **Interface** | [**Streamlit UI**](images/rag-in-terminal.png) + [**FastAPI**](images/rag-in-terminal.png) backend with full user interaction and seamless responses. |
 | ⚙️ **Ingestion Pipeline** | Automated **Prefect**-orchestrated pipeline for scalable content ingestion and processing. |
 | 📈 **Monitoring** | Real-time **User Feedback Collection** in **AWS RDS PostgreSQL** + **Grafana Cloud** dashboard with 5 analytical charts. |
 | 🐳 **Containerization** | Complete [**Docker Compose**](images/docker-compose-running-multi-containers.png) setup orchestrating all services/containers with isolated environments. |
