@@ -439,7 +439,8 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
  ### 📑 Document Re-ranking
 
- ### 👨‍💻 Admin account functionality for entering playlist urls from a Streamlit interface and runiing the ingestion pipeline on the new playlist(s)
+ ### 👨‍💻 Admin fnctionality 
+ - for entering playlist urls from a Streamlit interface and runiing the ingestion pipeline on the new playlist(s)
 
 ---
 ### Thank You
