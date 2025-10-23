@@ -403,7 +403,7 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 |:----------------|:---------------------------|
 | 🧩 **Problem Description** | Problem describing the availability of rich but unstructured data in video/audio and how this solution addresses it. |
 | 🔍 **Retrieval Flow** | **Qdrant** vector database ([knowledge base](images/chunk-embed-upsert-4.png)) + **OpenAI LLM** in a fully integrated retrieval pipeline. |
-| 💻 **Interface** | [**Streamlit UI**](images/rag-in-terminal.png) + [**FastAPI**](images/rag-in-terminal.png) backend with full user interaction and seamless responses. |
+| 💻 **Interface** | [**Streamlit UI**](images/streamlit-localhost-run.png) + [**FastAPI**](images/rag-in-terminal.png) backend with full user interaction and seamless responses. |
 | ⚙️ **Ingestion Pipeline** | Automated **Prefect**-orchestrated pipeline for scalable content ingestion and processing. |
 | 📈 **Monitoring** | Real-time **User Feedback Collection** in **AWS RDS PostgreSQL** + **Grafana Cloud** dashboard with 5 analytical charts. |
 | 🐳 **Containerization** | Complete [**Docker Compose**](images/docker-compose-running-multi-containers.png) setup orchestrating all services/containers with isolated environments. |
