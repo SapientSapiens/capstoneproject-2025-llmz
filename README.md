@@ -431,7 +431,6 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
  - Combine dense vector embeddings with sparse lexical search
  - Integrate BM25 with semantic vector search
 
- ### 📑 Document Re-ranking
 
  ### 👨‍💻 Admin fnctionality 
  - for entering playlist urls from a Streamlit interface and runiing the ingestion pipeline on the new playlist(s)
