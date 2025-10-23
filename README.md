@@ -19,7 +19,7 @@ In today's digital landscape, valuable expert knowledge remains trapped in unstr
 This project demonstrates how to transform unstructured survival content into an **intelligent, queryable knowledge base** using the *"How to Survive"* YouTube channel as a domain case study.
 
 ### The Transformation Pipeline
-We've engineered an end-to-end system that revolutionizes how we interact with media content:
+I've engineered an end-to-end system that revolutionizes how we interact with media content:
 
 | Traditional Media | ➡️ | Our Intelligent System |
 |---:|:---:|:---|
