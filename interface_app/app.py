@@ -25,8 +25,23 @@ API_URL = f"{API_BASE_URL}/query"
 # monitoring.init_tables()
 
 # ---- UI Header ----
+st.markdown(
+    """
+    <div style="font-size:12px; position: absolute; top: 10px; left: 10px; color: #aaa; z-index:9999;">
+        Authored by <b>Siddhartha Gogoi</b>
+    </div>
+    <div style="height:40px;"></div>
+    """,
+    unsafe_allow_html=True
+)
 st.title("🧭 Survival Guidance Assistant")
 st.caption("Ask about survival — storms, jungles, quicksand, disasters, health, diseases or epidemics. Get data-driven answers.")
+st.markdown(
+    """
+    <div style="height:30px;"></div>
+    """,
+    unsafe_allow_html=True
+)
 
 # Create two columns for the layout
 # col1, col2 = st.columns([3, 2])  # 3:2 ratio as requested
