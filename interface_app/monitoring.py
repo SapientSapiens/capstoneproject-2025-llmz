@@ -23,10 +23,11 @@ def get_db_connection():
         # Set these environment variables with your PostgreSQL credentials -->> In my case AWS cloud RDS 
         conn = psycopg2.connect(
             host=os.getenv('DATABASE_HOST'),
+            port = 5433, # added to change the default port to 5433
             user="postgres",
             password=os.getenv('DATABASE_PASSWORD'),
-            dbname="feedback_db",
-            sslmode="require"
+            dbname="feedback_db"
+            #sslmode="require"
         )
         return conn
     except Exception as e:
