@@ -105,7 +105,7 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
  | **Retrieval** | [**FastAPI** service](rag/rag_service_serve.py) now [retrieves](rag/retrieval.py) top-matching chunks and sorts them in descending order of their cosine similarity |
  | **Augmented Generation** | These chunks are then used as context in the prompt-templates for dynamic generation of prompts to be [sent to the LLM](rag/llm_augment.py) with **OpenAI API**  |
  | **User Interface** | **Streamlit** [app](interface_app/app.py) for the user interface complete with User Feedback mechanism for [monitoring](interface_app/monitoring.py) |
- | **Feedback Loop** | User feedback (sentiment, clarity, satisfaction) logged to **PostgreSQL** and visualized via [**Grafana Cloud**](https://sapientsapiens.grafana.net/public-dashboards/87d99596e7654e7aaef8d5c4535de037). |
+ | **Feedback Loop** | User feedback (sentiment, clarity, satisfaction) logged to **PostgreSQL** and visualized via [**Grafana Cloud**](https://sapientsapien4ai.grafana.net/public-dashboards/0da5412b934d42fba542bdd5d67e2ab7). |
  | **Deployment** | Two lightweight containers — [`rag_api`](rag/Dockerfile) (FastAPI) and [`streamlit_app`](interface_app/Dockerfile) (UI) — orchestrated via [**Docker Compose**](docker-compose.yml) |
 
 
@@ -409,7 +409,7 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 | 🐳 **Containerization** | Complete [**Docker Compose**](images/docker-compose-running-multi-containers.png) setup orchestrating all services/containers with isolated environments. |
 | ♻️ **Reproducibility** | Clear instructions, accessible data, and **fully versioned, reproducible** environment setup |
 | 🧠 **Best Practices** | **↳ Query Rewriting:** Implemented intelligent [query rewriting](rag/rag_control.py) for context-aware retrieval and [conversation history and better flow](images/Query-Rewriting.png). |
-| ☁️ **Bonus Points** | **↳ Cloud Deployment:** Fully containerized **multicloud architecture** deployed to [**AWS EC2**](images/rag-api-containerized-deploy-step3.png), [**Streamlit Cloud**](https://survivor-savant.streamlit.app/), [**Qdrant Cloud**](images/qdrant-cluster-overview.png), [**AWS RDS PostgreSQL**](images/monitoring_feedback_db_creation.png), and [**Grafana Cloud**](https://sapientsapiens.grafana.net/public-dashboards/87d99596e7654e7aaef8d5c4535de037). |
+| ☁️ **Bonus Points** | **↳ Cloud Deployment:** Fully containerized **multicloud architecture** deployed to [**AWS EC2**](images/rag-api-containerized-deploy-step3.png), [**Streamlit Cloud**](https://survivor-savant.streamlit.app/), [**Qdrant Cloud**](images/qdrant-cluster-overview.png), [**AWS RDS PostgreSQL**](images/monitoring_feedback_db_creation.png), and [**Grafana Cloud**](https://sapientsapien4ai.grafana.net/public-dashboards/0da5412b934d42fba542bdd5d67e2ab7). |
 
 ---
 ## ☁️ Operating the Cloud Deployed Survival Guidance RAG  
