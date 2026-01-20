@@ -50,7 +50,7 @@ Although implemented for survival knowledge, this architecture is a reusable tem
 
 ---
 
-> 💡 **This isn't just another RAG system** — it's a production-grade framework for transforming any media repository into an interactive knowledge companion. Features include ingestion, RAG retrieval, LLM reasoning, monitoring, user feedback, and cloud-native deployment.  
+> 💡 **This isn't just another RAG system** — it's almost a production-ready prototype for transforming any media repository into an interactive knowledge companion. Features include ingestion, RAG retrieval, LLM reasoning, monitoring, user feedback, and cloud-native deployment.  
 >
 > **The result:** a transparent, reliable assistant that makes expert knowledge instantly accessible — backed by the original sources that generated it.
 
@@ -68,9 +68,9 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
  ## 📚 Data 
  
-  Currently data readily available for each stage in the project repository for only [2 playlists](/playlists.properties) from the channel [*How to Survive*](https://www.youtube.com/@HowToSurviveShow/playlists) and upserted to knowledge base on [Qdrant Cloud](images/Qdrant-colour.gif). One is [*Natural Disasters*](https://www.youtube.com/playlist?list=PLSG9IRx05GOlqnHGUm2bYVi2KPXYC_lTg) and the other is [*Health*](https://www.youtube.com/playlist?list=PLSG9IRx05GOn-ioDWMw5-92PsbPi-MHSH)
+  Currently data readily available for each stage in the project repository for only [2 playlists](/playlists.properties) from the channel [*How to Survive Show*](https://www.youtube.com/@MyChannel-i5f) and upserted to knowledge base on [Qdrant Cloud](images/Qdrant-colour.gif). One was [*Natural Disasters*](https://www.youtube.com/playlist?list=PLSG9IRx05GOlqnHGUm2bYVi2KPXYC_lTg) and the other was [*Health*](https://www.youtube.com/playlist?list=PLSG9IRx05GOn-ioDWMw5-92PsbPi-MHSH) 
 
-  > However, it is pertinent to mention that before using the data, permission might have to be taken from the content creator. For educational purposes such as this and the hugely transformative nature of process dealing with the data/content, a fair use allowance could be inferred.
+  > However, it is pertinent to mention that before using the data, permission might have to be taken from the content creator. For educational purposes such as this and the hugely transformative nature of process dealing with the data/content, a fair use allowance could be inferred. Moreover, the channel has removed the playlist option but the videos that had been categorized as the afore-mentioned playlists still exist in the channel.
 
 ---
 
