@@ -68,9 +68,9 @@ Users can query the system via a [**Streamlit interface**](https://survivor-sava
 
  ## 📚 Data 
  
-  Currently data readily available for each stage in the project repository for only [2 playlists](/playlists.properties) from the channel [*How to Survive Show*](https://www.youtube.com/@MyChannel-i5f) and upserted to knowledge base on [Qdrant Cloud](images/Qdrant-colour.gif). One was [*Natural Disasters*](https://www.youtube.com/playlist?list=PLSG9IRx05GOlqnHGUm2bYVi2KPXYC_lTg) and the other was [*Health*](https://www.youtube.com/playlist?list=PLSG9IRx05GOn-ioDWMw5-92PsbPi-MHSH) 
+  Currently data readily available for each stage in the project repository for only [2 playlists](/playlists.properties) from the channel [*How to Survive Show*](https://www.youtube.com/@howtosurviveshow) and upserted to knowledge base on [Qdrant Cloud](images/Qdrant-colour.gif). One was [*Natural Disasters*](https://www.youtube.com/playlist?list=PLSG9IRx05GOlqnHGUm2bYVi2KPXYC_lTg) and the other was [*Health*](https://www.youtube.com/playlist?list=PLSG9IRx05GOn-ioDWMw5-92PsbPi-MHSH) 
 
-  > However, it is pertinent to mention that before using the data, permission might have to be taken from the content creator. For educational purposes such as this and the hugely transformative nature of process dealing with the data/content, a fair use allowance could be inferred. Moreover, the channel has removed the playlist option but the videos that had been categorized as the afore-mentioned playlists still exist in the channel.
+  > However, it is pertinent to mention that before using the data, permission might have to be taken from the content creator. For educational purposes such as this and the hugely transformative nature of process dealing with the data/content, a fair use allowance could be inferred.
 
 ---
 
