@@ -19,7 +19,7 @@ except (KeyError, FileNotFoundError):
     # For local development - from environment variable or default
     API_BASE_URL = os.getenv("RAG_API_URL", "http://localhost:8010")
 
-API_URL = f"{API_BASE_URL}/query"
+#API_URL = f"{API_BASE_URL}/query"
 
 # Initialize database tables for the very first time
 # monitoring.init_tables()
@@ -72,7 +72,9 @@ with col1:
 
         # ---- Send to API ----
         try:
-            response = requests.post(API_URL, json={"question": user_input})
+            headers = {"X-API-Key": st.secrets["api_key"]}
+            response = requests.post(API_BASE_URL, json={"question": user_input}, headers=headers)
+            
             if response.status_code == 200:
                 data = response.json()
                 assistant_reply = data.get("answer", "⚠️ No answer returned by service.")
