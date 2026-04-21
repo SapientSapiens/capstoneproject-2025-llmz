@@ -1,105 +1,323 @@
 import retrieval
-from llm_augment import rewrite_query_for_qdrant, generate_response
-# from openai import OpenAI
-# from qdrant_client import QdrantClient
-# from fastembed import TextEmbedding
+from llm_augment import (
+    rewrite_query_for_qdrant,
+    generate_response,
+    FAILURE_MESSAGE_MAP,
+    NO_CONTEXT_CHUNKS,
+    NOT_IN_CONTEXT_TYPE,
+    UNKNOWN_RETRIEVAL_ERROR,
+    LLM_AUTH_ERROR,
+    LLM_QUOTA_ERROR,
+    LLM_RATE_LIMIT,
+    LLM_PARSE_ERROR,
+    LLM_UNKNOWN_ERROR,
+    SUCCESS,
+)
 
-INFORMATION_NOT_FOUND_MSG = "I don't have information on that survival topic in my knowledge base."
+ERROR_STATUSES = {
+    UNKNOWN_RETRIEVAL_ERROR,
+    LLM_AUTH_ERROR,
+    LLM_QUOTA_ERROR,
+    LLM_RATE_LIMIT,
+    LLM_PARSE_ERROR,
+    LLM_UNKNOWN_ERROR,
+}
 
-# Configuration
-# QDRANT_URL = "https://5ef7d200-3b5c-4874-8f95-e621d3d5d429.eu-central-1-0.aws.cloud.qdrant.io"
-# QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
-# EMBEDDING_MODEL = "BAAI/bge-base-en-v1.5"
-# EMBEDDING_DIMENSION = 768
-
-# Initialize LLM client
-# llm_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
-# Qdrant Client initializer
-# def initialize_qdrant_client():
-#    """Initialize Qdrant client and embedding model"""
-#    try:
-#        qdrant_client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY, timeout=60)
-#        embedding_model = TextEmbedding(model_name=EMBEDDING_MODEL)
-#    except Exception as e:
-#        raise RuntimeError(f"Failed initializing Qdrant/Embedding clients: {e}") from e
-#    print("✅ Clients initialized successfully")
-#    return qdrant_client, embedding_model
+MESSAGE_TO_STATUS = {message: status for status, message in FAILURE_MESSAGE_MAP.items()}
 
 
-# Initialize Qdrant Client
-# qdrant_client, embedding_model = initialize_qdrant_client()
+def _stop_with_status(status: str) -> str:
+    """
+    Return mapped user message.
+    For operational errors, only record the status.
+    Do NOT wipe the previous semantic turn.
+    """
+    try:
+        retrieval.update_turn_status(status)
+    except Exception:
+        retrieval.last_turn_status = status
+
+    return FAILURE_MESSAGE_MAP[status]
+
+
+def _return_semantic_failure(user_query: str, status: str, resolved_user_query: str = None) -> str:
+    """
+    Record the current user turn as the latest semantic turn,
+    while preserving the resolved semantic query for future rewrites.
+    """
+    try:
+        retrieval.update_conversation(
+            user_query,
+            "",
+            status,
+            resolved_user_query=resolved_user_query if resolved_user_query is not None else user_query,
+        )
+    except Exception:
+        retrieval.last_user_message = user_query
+        retrieval.last_assistant_answer = ""
+        retrieval.last_turn_status = status
+        retrieval.last_resolved_user_query = resolved_user_query if resolved_user_query is not None else user_query
+
+    return FAILURE_MESSAGE_MAP[status]
+
+
+def _retrieve_chunks_safe(query, qdrant_client, embedding_model, top_k=20):
+    """
+    Returns:
+        (None, chunks)                 on success (chunks may be empty)
+        (UNKNOWN_RETRIEVAL_ERROR, [])   on error
+    """
+    try:
+        chunks = retrieval.retrieve_chunks(query, qdrant_client, embedding_model, top_k=top_k)
+    except Exception as e:
+        print(f"[rag_control] retrieval_status={UNKNOWN_RETRIEVAL_ERROR}")
+        print(f"[rag_control] retrieval_detail={type(e).__name__}: {e}")
+        return UNKNOWN_RETRIEVAL_ERROR, []
+
+    if chunks is None:
+        print(f"[rag_control] retrieval_status={UNKNOWN_RETRIEVAL_ERROR}")
+        print("[rag_control] retrieval_detail=retrieve_chunks returned None")
+        return UNKNOWN_RETRIEVAL_ERROR, []
+
+    return None, list(chunks)
+
+
+def _conversation_history_is_usable() -> bool:
+    """
+    History is usable if we have any preserved semantic conversation state.
+    We may have:
+    - previous user only
+    - previous assistant only
+    - or both
+
+    Generic operational failure text is never stored as assistant semantic context,
+    so we do not need to reject history here.
+    """
+    last_user = (getattr(retrieval, "last_user_message", "") or "").strip()
+    last_reply = (getattr(retrieval, "last_assistant_answer", "") or "").strip()
+
+    return bool(last_user or last_reply)
+
+
+def _perform_rewrite(user_query: str, llm_client, use_history: bool):
+    """
+    Perform query rewrite.
+    Returns:
+        (True, rewritten_query)   on success
+        (False, error_message)    on failure
+    """
+    if use_history:
+        previous_user = (
+            getattr(retrieval, "last_resolved_user_query", "") or
+            getattr(retrieval, "last_user_message", "")
+        )
+        previous_reply = getattr(retrieval, "last_assistant_answer", "") or ""
+    else:
+        previous_user = ""
+        previous_reply = ""
+
+    print(f"[rag_control] rewrite_previous_user = {previous_user!r}")
+    print(f"[rag_control] rewrite_previous_reply = {previous_reply!r}")
+
+    rewrite_result = rewrite_query_for_qdrant(
+        previous_user,
+        previous_reply,
+        user_query,
+        llm_client,
+    )
+
+    rewrite_result_str = str(rewrite_result).strip()
+    rewrite_status = MESSAGE_TO_STATUS.get(rewrite_result_str)
+
+    if rewrite_status in ERROR_STATUSES:
+        return False, _stop_with_status(rewrite_status)
+
+    if not rewrite_result_str:
+        return False, _stop_with_status(LLM_PARSE_ERROR)
+
+    return True, rewrite_result_str
 
 
 def rag_pipeline(user_query, qdrant_client, embedding_model, llm_client):
-    """Main RAG pipeline from user query to final answer (corrected wiring)."""
+    """
+    Corrected flow with:
+    - original input query logging
+    - single-rewrite guard
+    - generation aligned to retrieval query
+    - semantic failures updating the latest turn state
+    - operational failures updating status only, without wiping semantic history
+    - resolved rewritten query preserved for future rewrites
+    """
 
-    # Step 1: Retrieve chunks for the raw user query
-    chunks = retrieval.retrieve_chunks(user_query, qdrant_client, embedding_model, top_k=5)
-    chunks_retrieved = len(chunks) > 0
+    # --- log original input query ---
+    print(f"[rag_control] user_query = {user_query!r}")
+    print()    
 
-    # Step 2: Determine query type (uses global last_user_message/last_assistant_answer)
-    query_type = retrieval.determine_query_type(user_query, chunks_retrieved)
+    last_user = (getattr(retrieval, "last_user_message", "") or "").strip()
+    last_reply = (getattr(retrieval, "last_assistant_answer", "") or "").strip()
+    last_status = getattr(retrieval, "last_turn_status", None)
+    last_resolved_user_query = (getattr(retrieval, "last_resolved_user_query", "") or "").strip()
 
-    # Step 3: Branch on query_type
-    if query_type == "NOT_IN_CONTEXT":
-        # No relevant chunks for a first query or follow-up -> safe failure & reset
-        retrieval.reset_conversation()
-        return INFORMATION_NOT_FOUND_MSG
+    # --- log preserved state ---
+    print(f"[rag_control] last_user_message = {last_user!r}")
+    print()
+    print(f"[rag_control] last_assistant_answer = {last_reply!r}")
+    print()
+    print(f"[rag_control] last_turn_status = {last_status!r}")
+    print()
+    print(f"[rag_control] last_resolved_user_query = {getattr(retrieval, 'last_resolved_user_query', '')!r}")
+    print()
 
-    elif query_type == "FIRST_QUERY":
-        # We have initial chunks; call generate_response with the chunks list (not formatted string).
-        # generate_response expects: (user_query, context_chunks, llm_client, ...)
-        try:
-            response = generate_response(user_query, chunks, llm_client)
-        except Exception:
-            retrieval.reset_conversation()
-            return INFORMATION_NOT_FOUND_MSG
+    has_previous_turn = not (last_user == "" and last_reply == "")
+    use_history = _conversation_history_is_usable()
 
-        retrieval.update_conversation(user_query, response)
-        return response
+    print(f"[rag_control] has_previous_turn = {has_previous_turn}")
+    print(f"[rag_control] use_history = {use_history}")
 
-    elif query_type == "FOLLOW_UP":
-        # We have conversation history: try to rewrite into a standalone retrieval query
-        # Use the simple rewrite function signature:
-        # rewrite_query_for_qdrant(latest_user_message, last_llm_reply, current_user_question, llm_client)
-        rewritten_query = rewrite_query_for_qdrant(
-            retrieval.last_user_message,            # previous user message
-            retrieval.last_assistant_answer,        # previous assistant reply
-            user_query,                   # current question that returned no/low chunks
-            llm_client
+    rewrite_attempted = False
+    generation_query = user_query
+
+    # --- decide retrieval query ---
+    if has_previous_turn:
+        print("[rag_control] Follow-up detected; rewriting before retrieval.")
+        rewrite_attempted = True
+        success, rewrite_output = _perform_rewrite(user_query, llm_client, use_history)
+        if not success:
+            return rewrite_output
+
+        retrieval_query = rewrite_output
+        generation_query = rewrite_output
+    else:
+        print("[rag_control] First turn; using raw query.")
+        retrieval_query = user_query
+        generation_query = user_query
+
+    print(f"[rag_control] retrieval_query = {retrieval_query!r}")
+    print(f"[rag_control] generation_query = {generation_query!r}")
+
+    # --- first retrieval attempt ---
+    retrieval_status, chunks = _retrieve_chunks_safe(
+        retrieval_query,
+        qdrant_client,
+        embedding_model,
+        top_k=20,
+    )
+    if retrieval_status == UNKNOWN_RETRIEVAL_ERROR:
+        return _stop_with_status(UNKNOWN_RETRIEVAL_ERROR)
+
+    # --- fallback rewrite for first-turn zero chunks ---
+    if not chunks:
+        if not has_previous_turn and not rewrite_attempted:
+            print("[rag_control] First-turn raw retrieval returned 0 chunks; attempting rewrite.")
+            rewrite_attempted = True
+            success, rewrite_output = _perform_rewrite(user_query, llm_client, use_history=False)
+            if not success:
+                return rewrite_output
+
+            retrieval_query = rewrite_output
+            generation_query = rewrite_output
+
+            print(f"[rag_control] rewritten retrieval_query = {retrieval_query!r}")
+            print(f"[rag_control] rewritten generation_query = {generation_query!r}")
+
+            retrieval_status, chunks = _retrieve_chunks_safe(
+                retrieval_query,
+                qdrant_client,
+                embedding_model,
+                top_k=20,
+            )
+            if retrieval_status == UNKNOWN_RETRIEVAL_ERROR:
+                return _stop_with_status(UNKNOWN_RETRIEVAL_ERROR)
+            if not chunks:
+                return _return_semantic_failure(
+                    user_query,
+                    NO_CONTEXT_CHUNKS,
+                    resolved_user_query=generation_query,
+                )
+        else:
+            return _return_semantic_failure(
+                user_query,
+                NO_CONTEXT_CHUNKS,
+                resolved_user_query=generation_query,
+            )
+
+    # --- generation attempt ---
+    response = generate_response(generation_query, chunks, llm_client)
+    response_str = str(response).strip()
+    returned_status = MESSAGE_TO_STATUS.get(response_str)
+
+    if returned_status is None:
+        retrieval.update_conversation(
+            user_query,
+            response_str,
+            SUCCESS,
+            resolved_user_query=generation_query,
+        )
+        return response_str
+
+    if returned_status in ERROR_STATUSES:
+        return _stop_with_status(returned_status)
+
+    # --- first-turn NOT_IN_CONTEXT gets one rewrite rescue ---
+    if returned_status == NOT_IN_CONTEXT_TYPE and not has_previous_turn and not rewrite_attempted:
+        print("[rag_control] First-turn generation returned NOT_IN_CONTEXT; attempting rewrite.")
+        rewrite_attempted = True
+        success, rewrite_output = _perform_rewrite(user_query, llm_client, use_history=False)
+        if not success:
+            return rewrite_output
+
+        retrieval_query = rewrite_output
+        generation_query = rewrite_output
+
+        print(f"[rag_control] rewritten retrieval_query = {retrieval_query!r}")
+        print(f"[rag_control] rewritten generation_query = {generation_query!r}")
+
+        retrieval_status, chunks = _retrieve_chunks_safe(
+            retrieval_query,
+            qdrant_client,
+            embedding_model,
+            top_k=20,
+        )
+        if retrieval_status == UNKNOWN_RETRIEVAL_ERROR:
+            return _stop_with_status(UNKNOWN_RETRIEVAL_ERROR)
+        if not chunks:
+            return _return_semantic_failure(
+                user_query,
+                NO_CONTEXT_CHUNKS,
+                resolved_user_query=generation_query,
+            )
+
+        response = generate_response(generation_query, chunks, llm_client)
+        response_str = str(response).strip()
+        returned_status = MESSAGE_TO_STATUS.get(response_str)
+
+        if returned_status is None:
+            retrieval.update_conversation(
+                user_query,
+                response_str,
+                SUCCESS,
+                resolved_user_query=generation_query,
+            )
+            return response_str
+
+        if returned_status in ERROR_STATUSES:
+            return _stop_with_status(returned_status)
+
+        if returned_status == NOT_IN_CONTEXT_TYPE:
+            return _return_semantic_failure(
+                user_query,
+                NOT_IN_CONTEXT_TYPE,
+                resolved_user_query=generation_query,
+            )
+
+        return _return_semantic_failure(
+            user_query,
+            NOT_IN_CONTEXT_TYPE,
+            resolved_user_query=generation_query,
         )
 
-        # If rewrite fails it should return current_user_question per your rewrite function.
-        # Now re-run retrieval with rewritten query
-        new_chunks = retrieval.retrieve_chunks(rewritten_query, qdrant_client, embedding_model, top_k=5)
-
-        if not new_chunks:
-            # Nothing found after rewriting -> safe failure and reset conversation
-            retrieval.reset_conversation()
-            return INFORMATION_NOT_FOUND_MSG
-
-        # Otherwise, generate a grounded response from the retrieved chunks
-        response = generate_response(rewritten_query, new_chunks, llm_client)
-        # Update conversation with the user's original message and the assistant's response.
-        # (Optionally you could also store rewritten_query somewhere for debugging.)
-        retrieval.update_conversation(user_query, response)
-        return response
-
-    else:
-        # defensive fallback
-        return INFORMATION_NOT_FOUND_MSG
-    
-
-if __name__ == "__main__":
-
-    user_query = "What was the recorded damages to life and property in the wake of the world's largest hurricane or tornado?"
-    # follow_up_query = "If I ever find my self near such things you just mentioned, what survival tips would you for me?"
-    print("-" * 50)
-    print(f"🧪 User: {user_query}")
-    print("-" * 50)
-    response = rag_pipeline(user_query)
-    print("-" * 50)
-    print(f"🤖 Assistant: {response}")
-    print("-" * 50)
-    
+    return _return_semantic_failure(
+        user_query,
+        NOT_IN_CONTEXT_TYPE,
+        resolved_user_query=generation_query,
+    )

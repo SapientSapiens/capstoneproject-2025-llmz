@@ -1,34 +1,36 @@
 # set confidence threshold for avoiding chunks with lesser relevance to the user question
-# CONFIDENCE_THRESHOLD = 0.60
-CONFIDENCE_THRESHOLD = 0.68
+CONFIDENCE_THRESHOLD = 0.50
+#CONFIDENCE_THRESHOLD = 0.68
 
 COLLECTION_NAME = "survival_strategies"
 
 # Global conversation state
-last_user_message = None
-last_assistant_answer = None
+last_user_message = ""
+last_assistant_answer = ""
+last_turn_status = None
+last_resolved_user_query = ""
+
 
 def reset_conversation():
-    global last_user_message, last_assistant_answer
-    last_user_message = None
-    last_assistant_answer = None
+    global last_user_message, last_assistant_answer, last_turn_status, last_resolved_user_query
+    last_user_message = ""
+    last_assistant_answer = ""
+    last_turn_status = None
+    last_resolved_user_query = ""
 
-def update_conversation(user_msg, assistant_answer):
-    global last_user_message, last_assistant_answer
+
+def update_conversation(user_msg, assistant_answer, turn_status=None, resolved_user_query=None):
+    global last_user_message, last_assistant_answer, last_turn_status, last_resolved_user_query
     last_user_message = user_msg
     last_assistant_answer = assistant_answer
+    last_turn_status = turn_status
+    last_resolved_user_query = resolved_user_query if resolved_user_query is not None else user_msg
 
-def determine_query_type(query, chunks_retrieved):
-    """Determine query type based on conversation state and retrieval results"""
-    has_history = (last_user_message is not None and 
-                   last_assistant_answer is not None)
-    
-    if not has_history:
-        # return "NOT_IN_CONTEXT" if not chunks_retrieved else "FIRST_QUERY"
-        return "FIRST_QUERY" if chunks_retrieved else "NOT_IN_CONTEXT"
-    # else:
-        # return "NOT_IN_CONTEXT" if not chunks_retrieved else "FOLLOW_UP"
-    return "FOLLOW_UP" if not chunks_retrieved else "FIRST_QUERY"
+
+def update_turn_status(turn_status):
+    global last_turn_status
+    last_turn_status = turn_status
+
     
 def format_chunks_for_prompt(chunks):
     """Format retrieved chunks for LLM prompt"""
@@ -47,7 +49,7 @@ def format_chunks_for_prompt(chunks):
     
     return "\n".join(formatted_chunks)
 
-def retrieve_chunks(query, qdrant_client, embedding_model, top_k=5):
+def retrieve_chunks(query, qdrant_client, embedding_model, top_k=20):
     print(f"**********Question for chunk retrival {query} **************")
     query_embedding = list(embedding_model.embed([query]))[0]
     results = qdrant_client.query_points(
@@ -55,9 +57,10 @@ def retrieve_chunks(query, qdrant_client, embedding_model, top_k=5):
         query=query_embedding.tolist(),
         limit=top_k
     )
-
+    print(f"**********Raw points returned from Qdrant: {len(results.points)} **************")
     filtered_results = []
     for p in results.points:
+        print(f"Chunk ID: {p.id}, Score: {p.score:.4f}")
         if p.score >= CONFIDENCE_THRESHOLD:
             filtered_results.append({
                 "id": p.id,
