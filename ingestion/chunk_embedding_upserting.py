@@ -1,4 +1,4 @@
-# Cell 1: Setup and Configuration
+# Setup and Configuration
 import json
 import os
 import sys

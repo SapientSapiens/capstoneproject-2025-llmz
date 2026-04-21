@@ -1,3 +1,7 @@
+from qdrant_client import models
+
+EMBEDDING_MODEL = "BAAI/bge-base-en-v1.5"
+
 # set confidence threshold for avoiding chunks with lesser relevance to the user question
 CONFIDENCE_THRESHOLD = 0.50
 #CONFIDENCE_THRESHOLD = 0.68
@@ -49,25 +53,38 @@ def format_chunks_for_prompt(chunks):
     
     return "\n".join(formatted_chunks)
 
-def retrieve_chunks(query, qdrant_client, embedding_model, top_k=20):
+async def retrieve_chunks(query, qdrant_client, top_k=20):   
     print(f"**********Question for chunk retrival {query} **************")
-    query_embedding = list(embedding_model.embed([query]))[0]
-    results = qdrant_client.query_points(
+
+    # Using models.Document for Qdrant client nativev embedding generation (Internally with FastEmbed)
+    # This sends a raw vector to Qdrant server, avoiding server-side named vector issues.
+    response = await qdrant_client.query_points(
         collection_name=COLLECTION_NAME,
-        query=query_embedding.tolist(),
-        limit=top_k
+        query=models.Document(
+            text=query,
+            model=EMBEDDING_MODEL,
+        ),
+        limit=top_k,
+        with_payload=True,
     )
-    print(f"**********Raw points returned from Qdrant: {len(results.points)} **************")
+
+    results = response.points
+
+    print(f"**********Raw points returned from Qdrant: {len(results)} **************")
+    print()
+
     filtered_results = []
-    for p in results.points:
+    for p in results:
         print(f"Chunk ID: {p.id}, Score: {p.score:.4f}")
         if p.score >= CONFIDENCE_THRESHOLD:
             filtered_results.append({
                 "id": p.id,
-                "text": p.payload.get("text", ""),
+                "text": (p.payload or {}).get("text", ""),
                 "score": p.score,
-                "payload": p.payload
+                "payload": p.payload or {},
             })
-    
+
     print(f"**********Retrieved chunks of length {len(filtered_results)} **************")
+    print()
+
     return filtered_results
