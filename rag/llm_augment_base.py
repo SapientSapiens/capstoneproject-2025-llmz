@@ -20,17 +20,15 @@ LLM_PARSE_ERROR = "llm_parse_error"
 LLM_UNKNOWN_ERROR = "llm_unknown_error"
 SUCCESS = "success"
 
-OP_ERROR_SUFFIX = " Conversational history state was not persisted for the current user question."
-
 FAILURE_MESSAGE_MAP = {
-    NO_CONTEXT_CHUNKS: "No relevant information was retrieved from the selected YouTube-playlists knowledge base for that query.",
+    NO_CONTEXT_CHUNKS: "No relevant information was found in our knowledge base since none was there in any video in the selected YouTube playlists.",
     NOT_IN_CONTEXT_TYPE: "The retrieved context does not contain enough information to answer that question.",
-    UNKNOWN_RETRIEVAL_ERROR: "The knowledge retrieval step failed unexpectedly. Please try again." + OP_ERROR_SUFFIX,
-    LLM_AUTH_ERROR: "Service configuration error." + OP_ERROR_SUFFIX,
-    LLM_QUOTA_ERROR: "Service unavailable: usage limit reached. Try again later." + OP_ERROR_SUFFIX,
-    LLM_RATE_LIMIT: "Too many requests. Please slow down and retry." + OP_ERROR_SUFFIX,
-    LLM_PARSE_ERROR: "The language model returned an unreadable response. Please try again." + OP_ERROR_SUFFIX,
-    LLM_UNKNOWN_ERROR: "The language model is temporarily unavailable. Please try again." + OP_ERROR_SUFFIX,
+    UNKNOWN_RETRIEVAL_ERROR: "The knowledge retrieval step failed unexpectedly. Please try again.",
+    LLM_AUTH_ERROR: "Service configuration error.",
+    LLM_QUOTA_ERROR: "Service unavailable: usage limit reached. Try again later.",
+    LLM_RATE_LIMIT: "Too many requests. Please slow down and retry.",
+    LLM_PARSE_ERROR: "The language model returned an unreadable response. Please try again.",
+    LLM_UNKNOWN_ERROR: "The language model is temporarily unavailable. Please try again.",
 }
 
 SEED = 42
@@ -336,29 +334,19 @@ def rewrite_query_for_qdrant(
     """
 
     system = (
-        "You are a query rewriter for the retrieval step of a RAG system. "
-        "The previous resolved user query and previous assistant reply may be empty if this is the first question in the conversation. "
-        "First decide whether CURRENT_USER_QUESTION continues the same topic as the immediately previous turn. "
-        "If the topic continues, use previous-turn context only to resolve pronouns, ellipsis, omitted nouns, shorthand, or likely typos. "
-        "If the topic changes, ignore the previous-turn context completely and rewrite only from CURRENT_USER_QUESTION. "
-        "Do not carry over entities, hazards, objects, diseases, eruptions, events, or facts from the previous topic into a new topic. "
-        "A topic change must still be detected even if the question begins with words like 'and', 'what type', 'what kind', 'here', 'there', 'what about', or similar follow-up wording. "
-        "If CURRENT_USER_QUESTION contains vague references such as 'it', 'them', 'that', 'these', 'those', or similar incomplete expressions, and the topic continues, resolve them using the concrete topic from the previous turn. "
-        "Never replace a missing topic with vague placeholder words such as 'information', 'details', 'facts', 'content', 'things', or similar generic filler words. "
-        "Always produce exactly one standalone retrieval query sentence with explicit keyword nouns. "
-        "Preserve all semantic constraints from the original question, including inclusion criteria, exclusion criteria, category restrictions, and scope. "
-        "Do not carry over presentation-only instructions such as table format, bullet format, or desired answer length unless they are necessary to preserve the meaning of the query. "
-        "If PREVIOUS_ASSISTANT_REPLY is empty or is only a generic failure/control message and does not contain topic-specific content, ignore it completely. "
-        "If no rewrite is needed, restate the current question as a standalone retrieval query anyway. "
-        "Return a JSON object matching the schema. "
-        "Always set status='success'."
+        "You are a concise query rewriter for vector search in a RAG system. "
+        "The previous user message and previous assistant reply may be empty if this is the first question in the conversation. "
+        "Use previous-turn context only when it is genuinely helpful; otherwise rely on the current user question alone. "
+        "If the current user question is vague, uses pronouns, shorthand, or likely typos, rewrite it into ONE standalone, concrete, "
+        "human-language search query with explicit keyword nouns suitable for retrieval. "
+        "Do NOT invent facts. Return only one single-sentence rewritten query."
     )
 
     user_prompt = (
-        f"PREVIOUS_RESOLVED_USER_QUERY:\n{(latest_user_message or '').strip()}\n\n"
+        f"PREVIOUS_USER_MESSAGE:\n{(latest_user_message or '').strip()}\n\n"
         f"PREVIOUS_ASSISTANT_REPLY:\n{(last_llm_reply or '').strip()}\n\n"
         f"CURRENT_USER_QUESTION:\n{(current_user_question or '').strip()}\n\n"
-        "Return only the JSON object."
+        "Return only the rewritten retrieval query in one sentence."
     )
 
     try:
@@ -369,28 +357,7 @@ def rewrite_query_for_qdrant(
                 {"role": "user", "content": user_prompt},
             ],
             temperature=0.0,
-            seed=seed,
-            response_format={
-                "type": "json_schema",
-                "json_schema": {
-                    "name": "rewritten_query",
-                    "strict": True,
-                    "schema": {
-                        "type": "object",
-                        "additionalProperties": False,
-                        "properties": {
-                            "status": {
-                                "type": "string",
-                                "enum": ["success"],
-                            },
-                            "rewritten_query": {
-                                "type": "string",
-                            },
-                        },
-                        "required": ["status", "rewritten_query"],
-                    },
-                },
-            },
+            seed=seed
         )
 
         if inspect.isawaitable(resp):
@@ -401,25 +368,25 @@ def rewrite_query_for_qdrant(
         _log_event(status, f"rewrite_query_for_qdrant failed: {type(e).__name__}: {e}")
         return _map_failure_to_user_message(status)
 
-    payload = _extract_structured_payload(resp)
+    raw = _extract_response_text(resp)
 
-    if payload is None:
+    if not raw:
         status = LLM_PARSE_ERROR
-        _log_event(status, "rewrite_query_for_qdrant structured response could not be parsed as JSON.")
+        _log_event(status, "rewrite_query_for_qdrant received empty or unreadable model output.")
         return _map_failure_to_user_message(status)
 
-    status_value = str(payload.get("status", "")).strip().lower()
-    rewritten_query = str(payload.get("rewritten_query", "")).strip()
+    for line in raw.splitlines():
+        line = line.strip()
+        if not line:
+            continue
 
-    if status_value != "success":
-        status = LLM_PARSE_ERROR
-        _log_event(status, f"rewrite_query_for_qdrant returned unexpected status: {status_value!r}")
-        return _map_failure_to_user_message(status)
+        if (line.startswith('"') and line.endswith('"')) or (line.startswith("'") and line.endswith("'")):
+            line = line[1:-1].strip()
 
-    if not rewritten_query:
-        status = LLM_PARSE_ERROR
-        _log_event(status, "rewrite_query_for_qdrant returned empty rewritten_query.")
-        return _map_failure_to_user_message(status)
+        final_rewritten_query = " ".join(line.split())
+        logger.info("Rewritten query: %s", final_rewritten_query)
+        return final_rewritten_query
 
-    logger.info("Rewritten query: %s", rewritten_query)
-    return rewritten_query
+    status = LLM_PARSE_ERROR
+    _log_event(status, "rewrite_query_for_qdrant produced no usable line after cleaning.")
+    return _map_failure_to_user_message(status)
