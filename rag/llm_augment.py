@@ -1,6 +1,4 @@
 from typing import List, Dict, Any, Optional
-import inspect
-import asyncio
 import hashlib
 import logging
 import json
@@ -149,7 +147,7 @@ def _extract_structured_payload(resp: Any) -> Optional[Dict[str, Any]]:
     return parsed if isinstance(parsed, dict) else None
 
 
-def generate_response(
+async def generate_response(
     user_query: str,
     context_chunks: List[Dict],
     llm_client,
@@ -241,7 +239,7 @@ def generate_response(
     )
 
     try:
-        resp = llm_client.chat.completions.create(
+        resp = await llm_client.chat.completions.create(
             model=model,
             messages=[
                 {"role": "system", "content": system_prompt},
@@ -271,9 +269,6 @@ def generate_response(
                 },
             },
         )
-
-        if inspect.isawaitable(resp):
-            resp = asyncio.run(resp)
 
         logger.info(
             "LLM response | system_fingerprint=%s | response_id=%s | model=%s",
@@ -321,7 +316,7 @@ def generate_response(
     return message
 
 
-def rewrite_query_for_qdrant(
+async def rewrite_query_for_qdrant(
     latest_user_message: str,
     last_llm_reply: str,
     current_user_question: str,
@@ -362,7 +357,7 @@ def rewrite_query_for_qdrant(
     )
 
     try:
-        resp = llm_client.chat.completions.create(
+        resp = await llm_client.chat.completions.create(
             model=model,
             messages=[
                 {"role": "system", "content": system},
@@ -392,9 +387,6 @@ def rewrite_query_for_qdrant(
                 },
             },
         )
-
-        if inspect.isawaitable(resp):
-            resp = asyncio.run(resp)
 
     except Exception as e:
         status = _classify_llm_exception(e)

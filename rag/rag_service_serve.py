@@ -2,8 +2,7 @@ import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 from openai import AsyncOpenAI
-from qdrant_client import QdrantClient
-from fastembed import TextEmbedding
+from qdrant_client import AsyncQdrantClient
 import rag_control
 
 
@@ -18,16 +17,15 @@ app = FastAPI(title="RAG Survival Service")
 QDRANT_URL = "https://5ef7d200-3b5c-4874-8f95-e621d3d5d429.eu-central-1-0.aws.cloud.qdrant.io"
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-EMBEDDING_MODEL = "BAAI/bge-base-en-v1.5"
-EMBEDDING_DIMENSION = 768
+# EMBEDDING_MODEL = "BAAI/bge-base-en-v1.5"
 
 if not OPENAI_API_KEY or not QDRANT_API_KEY:
     raise RuntimeError("OPENAI_API_KEY and QDRANT_API_KEY must be set in environment")
 
 # Initialize once (persistent)
 llm_client = AsyncOpenAI(api_key=OPENAI_API_KEY)
-qdrant_client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY, timeout=60)
-embedding_model = TextEmbedding(model_name=EMBEDDING_MODEL)
+qdrant_client = AsyncQdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY, timeout=60)
+# qdrant_client.set_model(EMBEDDING_MODEL)
 
 # --- health endpoint ---
 @app.get("/")
@@ -43,16 +41,11 @@ async def query(request: QueryRequest):
         return {"error": "empty question"}
 
     try:
-        # Call rag_control (synchronous, so run in a thread pool to avoid blocking)
-        from asyncio import to_thread
-        try:
-            response = await to_thread(
-                rag_control.rag_pipeline,
-                question, qdrant_client, embedding_model, llm_client
-            )
-        except TypeError:
-            response = await to_thread(rag_control.rag_pipeline, question)
-
+        response = await rag_control.rag_pipeline(
+            question,
+            qdrant_client,
+            llm_client,
+        )
         return {"answer": response, "status": "ok"}
     except Exception as e:
         return {"error": str(e), "status": "error"}
