@@ -26,37 +26,38 @@ ERROR_STATUSES = {
 MESSAGE_TO_STATUS = {message: status for status, message in FAILURE_MESSAGE_MAP.items()}
 
 
-def _stop_with_status(status: str) -> str:
+def _stop_with_status(session_state, status: str) -> str:
     """
     Return mapped user message.
     For operational errors, only record the status.
     Do NOT wipe the previous semantic turn.
     """
     try:
-        retrieval.update_turn_status(status)
+        retrieval.update_turn_status(session_state, status)
     except Exception:
-        retrieval.last_turn_status = status
+        session_state.last_turn_status = status
 
     return FAILURE_MESSAGE_MAP[status]
 
 
-def _return_semantic_failure(user_query: str, status: str, resolved_user_query: str = None) -> str:
+def _return_semantic_failure(session_state, user_query: str, status: str, resolved_user_query: str = None) -> str:
     """
     Record the current user turn as the latest semantic turn,
     while preserving the resolved semantic query for future rewrites.
     """
     try:
         retrieval.update_conversation(
+            session_state,
             user_query,
             "",
             status,
             resolved_user_query=resolved_user_query if resolved_user_query is not None else user_query,
         )
     except Exception:
-        retrieval.last_user_message = user_query
-        retrieval.last_assistant_answer = ""
-        retrieval.last_turn_status = status
-        retrieval.last_resolved_user_query = resolved_user_query if resolved_user_query is not None else user_query
+        session_state.last_user_message = user_query
+        session_state.last_assistant_answer = ""
+        session_state.last_turn_status = status
+        session_state.last_resolved_user_query = resolved_user_query if resolved_user_query is not None else user_query
 
     return FAILURE_MESSAGE_MAP[status]
 
@@ -65,7 +66,7 @@ async def _retrieve_chunks_safe(query, qdrant_client, top_k=20):
     """
     Returns:
         (None, chunks)                 on success (chunks may be empty)
-        (UNKNOWN_RETRIEVAL_ERROR, [])   on error
+        (UNKNOWN_RETRIEVAL_ERROR, [])  on error
     """
     try:
         chunks = await retrieval.retrieve_chunks(query, qdrant_client, top_k=top_k)
@@ -82,24 +83,17 @@ async def _retrieve_chunks_safe(query, qdrant_client, top_k=20):
     return None, list(chunks)
 
 
-def _conversation_history_is_usable() -> bool:
+def _conversation_history_is_usable(session_state) -> bool:
     """
     History is usable if we have any preserved semantic conversation state.
-    We may have:
-    - previous user only
-    - previous assistant only
-    - or both
-
-    Generic operational failure text is never stored as assistant semantic context,
-    so we do not need to reject history here.
     """
-    last_user = (getattr(retrieval, "last_user_message", "") or "").strip()
-    last_reply = (getattr(retrieval, "last_assistant_answer", "") or "").strip()
+    last_user = (getattr(session_state, "last_user_message", "") or "").strip()
+    last_reply = (getattr(session_state, "last_assistant_answer", "") or "").strip()
 
     return bool(last_user or last_reply)
 
 
-async def _perform_rewrite(user_query: str, llm_client, use_history: bool):
+async def _perform_rewrite(session_state, user_query: str, llm_client, use_history: bool):
     """
     Perform query rewrite.
     Returns:
@@ -108,10 +102,10 @@ async def _perform_rewrite(user_query: str, llm_client, use_history: bool):
     """
     if use_history:
         previous_user = (
-            getattr(retrieval, "last_resolved_user_query", "") or
-            getattr(retrieval, "last_user_message", "")
+            getattr(session_state, "last_resolved_user_query", "") or
+            getattr(session_state, "last_user_message", "")
         )
-        previous_reply = getattr(retrieval, "last_assistant_answer", "") or ""
+        previous_reply = getattr(session_state, "last_assistant_answer", "") or ""
     else:
         previous_user = ""
         previous_reply = ""
@@ -130,15 +124,15 @@ async def _perform_rewrite(user_query: str, llm_client, use_history: bool):
     rewrite_status = MESSAGE_TO_STATUS.get(rewrite_result_str)
 
     if rewrite_status in ERROR_STATUSES:
-        return False, _stop_with_status(rewrite_status)
+        return False, _stop_with_status(session_state, rewrite_status)
 
     if not rewrite_result_str:
-        return False, _stop_with_status(LLM_PARSE_ERROR)
+        return False, _stop_with_status(session_state, LLM_PARSE_ERROR)
 
     return True, rewrite_result_str
 
 
-async def rag_pipeline(user_query, qdrant_client, llm_client):
+async def rag_pipeline(user_query, qdrant_client, llm_client, session_state):
     """
     Corrected flow with:
     - original input query logging
@@ -149,17 +143,15 @@ async def rag_pipeline(user_query, qdrant_client, llm_client):
     - resolved rewritten query preserved for future rewrites
     """
 
-    # --- log original input query ---
     print()
     print(f"[rag_control] user_query = {user_query!r}")
-    print()    
+    print()
 
-    last_user = (getattr(retrieval, "last_user_message", "") or "").strip()
-    last_reply = (getattr(retrieval, "last_assistant_answer", "") or "").strip()
-    last_status = getattr(retrieval, "last_turn_status", None)
-    last_resolved_user_query = (getattr(retrieval, "last_resolved_user_query", "") or "").strip()
+    last_user = (getattr(session_state, "last_user_message", "") or "").strip()
+    last_reply = (getattr(session_state, "last_assistant_answer", "") or "").strip()
+    last_status = getattr(session_state, "last_turn_status", None)
+    last_resolved_user_query = (getattr(session_state, "last_resolved_user_query", "") or "").strip()
 
-    # --- log preserved state ---
     print()
     print(f"[rag_control] last_user_message = {last_user!r}")
     print()
@@ -167,11 +159,11 @@ async def rag_pipeline(user_query, qdrant_client, llm_client):
     print()
     print(f"[rag_control] last_turn_status = {last_status!r}")
     print()
-    print(f"[rag_control] last_resolved_user_query = {getattr(retrieval, 'last_resolved_user_query', '')!r}")
+    print(f"[rag_control] last_resolved_user_query = {last_resolved_user_query!r}")
     print()
 
     has_previous_turn = not (last_user == "" and last_reply == "")
-    use_history = _conversation_history_is_usable()
+    use_history = _conversation_history_is_usable(session_state)
 
     print()
     print(f"[rag_control] has_previous_turn = {has_previous_turn}")
@@ -181,14 +173,13 @@ async def rag_pipeline(user_query, qdrant_client, llm_client):
     rewrite_attempted = False
     generation_query = user_query
 
-    # --- decide retrieval query ---
     if has_previous_turn:
         print()
         print("[rag_control] Follow-up detected; rewriting before retrieval.")
         print()
 
         rewrite_attempted = True
-        success, rewrite_output = await _perform_rewrite(user_query, llm_client, use_history)
+        success, rewrite_output = await _perform_rewrite(session_state, user_query, llm_client, use_history)
         if not success:
             return rewrite_output
 
@@ -206,23 +197,21 @@ async def rag_pipeline(user_query, qdrant_client, llm_client):
     print(f"[rag_control] generation_query = {generation_query!r}")
     print()
 
-    # --- first retrieval attempt ---
     retrieval_status, chunks = await _retrieve_chunks_safe(
         retrieval_query,
         qdrant_client,
         top_k=20,
     )
     if retrieval_status == UNKNOWN_RETRIEVAL_ERROR:
-        return _stop_with_status(UNKNOWN_RETRIEVAL_ERROR)
+        return _stop_with_status(session_state, UNKNOWN_RETRIEVAL_ERROR)
 
-    # --- fallback rewrite for first-turn zero chunks ---
     if not chunks:
         if not has_previous_turn and not rewrite_attempted:
             print()
             print("[rag_control] First-turn raw retrieval returned 0 chunks; attempting rewrite.")
             print()
             rewrite_attempted = True
-            success, rewrite_output = await _perform_rewrite(user_query, llm_client, use_history=False)
+            success, rewrite_output = await _perform_rewrite(session_state, user_query, llm_client, use_history=False)
             if not success:
                 return rewrite_output
 
@@ -240,27 +229,29 @@ async def rag_pipeline(user_query, qdrant_client, llm_client):
                 top_k=20,
             )
             if retrieval_status == UNKNOWN_RETRIEVAL_ERROR:
-                return _stop_with_status(UNKNOWN_RETRIEVAL_ERROR)
+                return _stop_with_status(session_state, UNKNOWN_RETRIEVAL_ERROR)
             if not chunks:
                 return _return_semantic_failure(
+                    session_state,
                     user_query,
                     NO_CONTEXT_CHUNKS,
                     resolved_user_query=generation_query,
                 )
         else:
             return _return_semantic_failure(
+                session_state,
                 user_query,
                 NO_CONTEXT_CHUNKS,
                 resolved_user_query=generation_query,
             )
 
-    # --- generation attempt ---
     response = await generate_response(generation_query, chunks, llm_client)
     response_str = str(response).strip()
     returned_status = MESSAGE_TO_STATUS.get(response_str)
 
     if returned_status is None:
         retrieval.update_conversation(
+            session_state,
             user_query,
             response_str,
             SUCCESS,
@@ -269,16 +260,15 @@ async def rag_pipeline(user_query, qdrant_client, llm_client):
         return response_str
 
     if returned_status in ERROR_STATUSES:
-        return _stop_with_status(returned_status)
+        return _stop_with_status(session_state, returned_status)
 
-    # --- first-turn NOT_IN_CONTEXT gets one rewrite rescue ---
     if returned_status == NOT_IN_CONTEXT_TYPE and not has_previous_turn and not rewrite_attempted:
         print()
         print("[rag_control] First-turn generation returned NOT_IN_CONTEXT; attempting rewrite.")
         print()
 
         rewrite_attempted = True
-        success, rewrite_output = await _perform_rewrite(user_query, llm_client, use_history=False)
+        success, rewrite_output = await _perform_rewrite(session_state, user_query, llm_client, use_history=False)
         if not success:
             return rewrite_output
 
@@ -296,9 +286,10 @@ async def rag_pipeline(user_query, qdrant_client, llm_client):
             top_k=20,
         )
         if retrieval_status == UNKNOWN_RETRIEVAL_ERROR:
-            return _stop_with_status(UNKNOWN_RETRIEVAL_ERROR)
+            return _stop_with_status(session_state, UNKNOWN_RETRIEVAL_ERROR)
         if not chunks:
             return _return_semantic_failure(
+                session_state,
                 user_query,
                 NO_CONTEXT_CHUNKS,
                 resolved_user_query=generation_query,
@@ -310,6 +301,7 @@ async def rag_pipeline(user_query, qdrant_client, llm_client):
 
         if returned_status is None:
             retrieval.update_conversation(
+                session_state,
                 user_query,
                 response_str,
                 SUCCESS,
@@ -318,22 +310,25 @@ async def rag_pipeline(user_query, qdrant_client, llm_client):
             return response_str
 
         if returned_status in ERROR_STATUSES:
-            return _stop_with_status(returned_status)
+            return _stop_with_status(session_state, returned_status)
 
         if returned_status == NOT_IN_CONTEXT_TYPE:
             return _return_semantic_failure(
+                session_state,
                 user_query,
                 NOT_IN_CONTEXT_TYPE,
                 resolved_user_query=generation_query,
             )
 
         return _return_semantic_failure(
+            session_state,
             user_query,
             NOT_IN_CONTEXT_TYPE,
             resolved_user_query=generation_query,
         )
 
     return _return_semantic_failure(
+        session_state,
         user_query,
         NOT_IN_CONTEXT_TYPE,
         resolved_user_query=generation_query,
