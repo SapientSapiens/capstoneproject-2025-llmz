@@ -8,32 +8,23 @@ CONFIDENCE_THRESHOLD = 0.50
 
 COLLECTION_NAME = "survival_strategies"
 
-# Global conversation state
-last_user_message = ""
-last_assistant_answer = ""
-last_turn_status = None
-last_resolved_user_query = ""
+
+def reset_conversation(session_state):
+    session_state.last_user_message = ""
+    session_state.last_assistant_answer = ""
+    session_state.last_turn_status = None
+    session_state.last_resolved_user_query = ""
 
 
-def reset_conversation():
-    global last_user_message, last_assistant_answer, last_turn_status, last_resolved_user_query
-    last_user_message = ""
-    last_assistant_answer = ""
-    last_turn_status = None
-    last_resolved_user_query = ""
+def update_conversation(session_state, user_msg, assistant_answer, turn_status=None, resolved_user_query=None):
+    session_state.last_user_message = user_msg
+    session_state.last_assistant_answer = assistant_answer
+    session_state.last_turn_status = turn_status
+    session_state.last_resolved_user_query = resolved_user_query if resolved_user_query is not None else user_msg
 
 
-def update_conversation(user_msg, assistant_answer, turn_status=None, resolved_user_query=None):
-    global last_user_message, last_assistant_answer, last_turn_status, last_resolved_user_query
-    last_user_message = user_msg
-    last_assistant_answer = assistant_answer
-    last_turn_status = turn_status
-    last_resolved_user_query = resolved_user_query if resolved_user_query is not None else user_msg
-
-
-def update_turn_status(turn_status):
-    global last_turn_status
-    last_turn_status = turn_status
+def update_turn_status(session_state, turn_status):
+    session_state.last_turn_status = turn_status
 
     
 def format_chunks_for_prompt(chunks):
@@ -56,7 +47,7 @@ def format_chunks_for_prompt(chunks):
 async def retrieve_chunks(query, qdrant_client, top_k=20):   
     print(f"**********Question for chunk retrival {query} **************")
 
-    # Using models.Document for Qdrant client nativev embedding generation (Internally with FastEmbed)
+    # Using models.Document for Qdrant client native embedding generation (Internally with FastEmbed)
     # This sends a raw vector to Qdrant server, avoiding server-side named vector issues.
     response = await qdrant_client.query_points(
         collection_name=COLLECTION_NAME,
