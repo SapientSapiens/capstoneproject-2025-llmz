@@ -299,7 +299,7 @@ Grounded survival answers from curated YouTube playlist knowledge.
 <br><br>
 Ask practical survival questions and get responses built from vectorized transcript content.
 <br>
-The assistant can connect relevant guidance across videos and across playlists when the knowledge base supports it.
+The assistant can connect relevant information across videos and across playlists when the knowledge base supports it.
 </div>
 
 <div class="hero-badge-row">
