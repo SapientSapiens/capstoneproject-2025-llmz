@@ -95,33 +95,52 @@ def render_header() -> None:
 }
 
 /* Markdown table readability */
-[data-testid="stMarkdownContainer"] table,
-[data-testid="stMarkdownContainer"] table *,
-[data-testid="stChatMessage"] table,
-[data-testid="stChatMessage"] table * {
-    color: #f8fafc !important;
-    opacity: 1 !important;
-    font-weight: 500 !important;
-    border-color: rgba(248, 250, 252, 0.24) !important;
-}
-
 [data-testid="stMarkdownContainer"] table {
     border-collapse: collapse !important;
     background: rgba(255, 255, 255, 0.025) !important;
 }
 
+[data-testid="stMarkdownContainer"] table,
+[data-testid="stMarkdownContainer"] table * {
+    opacity: 1 !important;
+    filter: none !important;
+    border-color: rgba(248, 250, 252, 0.24) !important;
+}
+
+[data-testid="stMarkdownContainer"] thead,
+[data-testid="stMarkdownContainer"] thead *,
 [data-testid="stMarkdownContainer"] th,
-[data-testid="stChatMessage"] th {
+[data-testid="stMarkdownContainer"] th *,
+[data-testid="stChatMessage"] th,
+[data-testid="stChatMessage"] th * {
     color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
     font-weight: 850 !important;
     background: rgba(255, 255, 255, 0.10) !important;
 }
 
+[data-testid="stMarkdownContainer"] tbody,
+[data-testid="stMarkdownContainer"] tbody *,
 [data-testid="stMarkdownContainer"] td,
-[data-testid="stChatMessage"] td {
+[data-testid="stMarkdownContainer"] td *,
+[data-testid="stMarkdownContainer"] td p,
+[data-testid="stMarkdownContainer"] td span,
+[data-testid="stMarkdownContainer"] td div,
+[data-testid="stChatMessage"] td,
+[data-testid="stChatMessage"] td *,
+[data-testid="stChatMessage"] td p,
+[data-testid="stChatMessage"] td span,
+[data-testid="stChatMessage"] td div {
     color: #f8fafc !important;
-    font-weight: 550 !important;
-    background: rgba(255, 255, 255, 0.045) !important;
+    -webkit-text-fill-color: #f8fafc !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+[data-testid="stMarkdownContainer"] tbody tr td,
+[data-testid="stChatMessage"] tbody tr td {
+    background: rgba(255, 255, 255, 0.055) !important;
 }
 
 /* Chat message readability */
