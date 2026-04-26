@@ -72,3 +72,22 @@ def get_api_key() -> str:
         return st.secrets["api_key"]
     except (KeyError, FileNotFoundError):
         return os.getenv("RAG_API_KEY", "")
+    
+# -----------------------------
+# Knowledge source configuration
+# -----------------------------
+# These are public YouTube playlist URLs, so they do not need Streamlit secrets.
+# Secrets are for sensitive values like API keys, not normal public links.
+
+KNOWLEDGE_SOURCES = [
+    {
+        "name": "Health",
+        "url": "https://www.youtube.com/playlist?list=PLSG9IRx05GOn-ioDWMw5-92PsbPi-MHSH",
+        "description": "Health, diseases, epidemics, infections, and survival-related medical scenarios.",
+    },
+    {
+        "name": "Natural Disasters",
+        "url": "https://www.youtube.com/playlist?list=PLSG9IRx05GOlqnHGUm2bYVi2KPXYC_lTg",
+        "description": "Storms, floods, hurricanes, earthquakes, quicksand, and other disaster survival scenarios.",
+    },
+]
