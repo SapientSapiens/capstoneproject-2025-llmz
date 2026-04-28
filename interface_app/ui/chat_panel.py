@@ -105,7 +105,7 @@ def _render_processing_overlay(placeholder: st.delta_generator.DeltaGenerator) -
                 <div class="processing-spinner"></div>
                 <div class="processing-title">Processing your survival question...</div>
                 <div class="processing-subtitle">
-                    Searching the vectorized survival knowledge base.
+                    Generating response from the retrieved knowledge chunks.
                 </div>
             </div>
         </div>
